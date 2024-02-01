@@ -18,24 +18,25 @@ public class MathVolumenEsfera {
         System.out.println("Escribe también la unidad de medida (mm, cm, m...):");
         Scanner unidadScanner = new Scanner(System.in);
         String unidadMedida = unidadScanner.nextLine();
-        //Pedimos nº de decimales a los que queremos redondear
-        System.out.println("Por último, escribe a cuántos decimales quieres aproximar (si no quieres decimales, escribe 0): ");
-        Scanner decimalesScanner=new Scanner(System.in);
-        int decimales = decimalesScanner.nextInt();
-        
-        //Convertimos el nº de decimales en el número que necesitamos para redondear: potencia de 10.
-        double decimalconvert = Math.pow(10, decimales);
-        System.out.println("10^decimales: " + decimalconvert);
 
         //Aplicamos la fórmula del volumen de la esfera
         System.out.println("Aplicando la fórmula: v = (4/3)*PI*radio^3");
         double volumen = (4/3)*Math.PI*Math.pow(radio, 3);
 
+        System.out.println("El volumen de la esfera es " + volumen + " " + unidadMedida + "^3.");
+
+        //Pedimos nº de decimales a los que queremos redondear
+        System.out.println("¿Quieres redondear la cantidad? Escribe a continuación el número de decimales que quieres conservar (si no quieres decimales, escribe 0): ");
+        Scanner decimalesScanner=new Scanner(System.in);
+        int decimales = decimalesScanner.nextInt();
+        
+        //Convertimos el nº de decimales en el número que necesitamos para redondear: potencia de 10 (10^decimales)
+        double decimalconvert = Math.pow(10, decimales);
+
         //Calculamos el resultado aproximado
         double volRedondeado = (double)Math.round(volumen*decimalconvert)/decimalconvert;
 
-        System.out.println("El volumen de la esfera es " + volumen + " " + unidadMedida + "^3.");
-        System.out.println("Redondeado a " + decimales + " decimales, es: " + volRedondeado + " " + unidadMedida + "^3.");
+        System.out.println("El volumen de la esfera, redondeado a " + decimales + " decimales, es: " + volRedondeado + " " + unidadMedida + "^3.");
 
 
         radioScanner.close();
