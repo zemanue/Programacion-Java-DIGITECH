@@ -1,6 +1,6 @@
 //2. Calcular los 10 primeros números de la serie de Fibonnaci. 
 
-public class Bucles_fibonacci_10_primeros {
+public class BuclesFibonacci10Primeros {
     public static void main(String[] args) {
         
         System.out.println("Los 10 primeros números de la sucesión de Fibonacci son: ");
