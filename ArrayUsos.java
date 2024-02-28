@@ -46,8 +46,8 @@ public class ArrayUsos {
     //USAR ARRAYS
         //Imprimir todos los elementos de un array: bucle for
         System.out.print("Impresión de todos los elementos de arrayChar: ");
-        for (char i : arrayChar) {
-            System.out.print(i + " ");
+        for (int i = 0; i < arrayChar.length; i++) {
+            System.out.print(arrayChar[i] + " ");
         }
         System.out.println("");
 
