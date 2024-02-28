@@ -15,7 +15,7 @@ public class ArrayUsos {
         //Creación de arrayString
         arrayString = new String[3];
         //Declaración y creación de arrayInt en una sola línea
-        int[] arrayInt = new int[10];
+        int[] arrayInt = new int[20];
 
         
     //INICIALIZAR:
@@ -27,7 +27,8 @@ public class ArrayUsos {
         char[] arrayChar = new char[]{'x', 'y', 'n', 'm'};
 
         //Bucle for para inicializar todos las posiciones de un array (para valores consecutivos como números):
-        for (int i = 0; i < arrayInt.length; i++) {     //(se puede alterar el orden en el que se inicializan o inicializar solo unos pocos)
+        //(se puede alterar el orden en el que se inicializan o inicializar solo unos pocos)
+        for (int i = 0; i < arrayInt.length; i++) {     
             arrayInt[i] = i+1; 
             }
 
@@ -41,6 +42,21 @@ public class ArrayUsos {
         for (int i = 0; i < arrayString.length; i++) {
             arrayString[i] = sc.nextLine();
         }
+
+        //Bucle con condicional anidado para llenar un array solo con números pares y otro con números impares
+            //Creamos los arrays pares e impares
+        int[] pares = new int[arrayInt.length / 2];
+        int[] impares = new int[arrayInt.length - pares.length];        
+        for (int i = 0; i < arrayInt.length; i++) {
+            arrayInt[i] = i + 1; 
+            //Bucle if que detecta cuándo i+1 es par y lo almacena en el array de pares
+            if ((i + 1) % 2 == 0) {
+                pares[i / 2] = i + 1;
+            } else { // almacena los otros números (impares) en el array de impares
+                
+                impares[i / 2] = i + 1;
+            }
+        }        
 
 
     //USAR ARRAYS
@@ -58,8 +74,8 @@ public class ArrayUsos {
         }
         System.out.println("");
 
-        //Impresión de los elementos pares de arrayInt
-        for (int i = 1; i < arrayInt.length; i = i+2) {
+        //Impresión de los elementos de arrayInt de 5 en 5
+        for (int i = 0; i < arrayInt.length; i += 5) {
             System.out.println(arrayInt[i]);
         }
 
