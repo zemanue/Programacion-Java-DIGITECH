@@ -9,13 +9,15 @@ public class ArrayUsos {
         
         Scanner sc = new Scanner(System.in);
 
+        int numCeldas = 20;
+
     //DECLARACIÓN Y CREACIÓN    
         //Declaración de arrayString
         String[] arrayString;
         //Creación de arrayString
-        arrayString = new String[3];
+        arrayString = new String[2];
         //Declaración y creación de arrayInt en una sola línea
-        int[] arrayInt = new int[20];
+        int[] arrayInt = new int[numCeldas];
 
         
     //INICIALIZAR:
@@ -61,11 +63,21 @@ public class ArrayUsos {
 
     //USAR ARRAYS
         //Imprimir todos los elementos de un array: bucle for
-        System.out.print("Impresión de todos los elementos de arrayChar: ");
+        System.out.print("Impresión de todos los elementos de arrayChar (bucle for): ");
         for (int i = 0; i < arrayChar.length; i++) {
             System.out.print(arrayChar[i] + " ");
         }
         System.out.println("");
+
+        //Imprimir todos los elementos de un array: bucle while
+        System.out.print("Impresión de todos los elementos de arrayInt (bucle while): ");    
+        int contador = 0;
+        while (arrayInt.length > contador) {
+            System.out.print(arrayInt[contador] + " ");
+            contador++;
+        }       
+        System.out.println("");
+
 
         //Impresión de todos los elementos de forma inversa (de la última posición a la primera)
         System.out.print("Impresión de todos los elementos de arrayString de forma inversa: ");
