@@ -103,24 +103,75 @@ public class ArrayUsos {
         String[][] matrizString = new String[3][3];
 
     //INICIALIZAR
+        
+        //INICIALIZACIÓN DIRECTA: para valores específicos:
+        int[][] matrizInt = new int[][] {
+            {3,4,5,7,8}, 
+            {0,0,0,0}, 
+            {1,1,1,1}, 
+            {6,6,6,-1} };        
+
+        //BUCLES FOR ANIDADOS
         //Primer bucle: recorre las filas del array
-        for(int i = 0; i<3; i++){
+        for(int i = 0; i < matrizString.length; i++){
             //Segundo bucle: por cada iteración del primer bucle, recorre todos las columnas.
-            for (int j = 0; j < 3 ; j++) {
+            for (int j = 0; j < matrizString[i].length; j++) {
                 matrizString[i][j] = "Fila " + i + ", columna " + j;
             }
         }
 
     //USAR
+        
         //Imprimir todos los elementos de la matriz por orden
         System.out.println("Elementos de matrizString: ");
         //Primer bucle: recorre las filas del array
-        for(int i = 0; i<3; i++){
-            //Segundo bucle: por cada iteración del primer bucle, recorre todos las columnas.
-            for (int j = 0; j < 3 ; j++) {
+        for(int i = 0; i < matrizString.length; i++){
+            //Segundo bucle: por cada iteración del primer bucle, recorre todas las columnas.
+            for (int j = 0; j < matrizString[i].length; j++) {
                 System.out.println(matrizString[i][j]);
             }
         }
+
+        
+        //Imprimir los valores de la primera y la última fila de la matriz
+        //MÉTODO 2: un bucle para la primera fila y un bucle para la última
+        System.out.print("Valores de la primera fila de matrizInt: ");
+        //Bucle for que se repite el mismo número de veces que 'matrizInt[0]' (longitud de valores tiene la primera fila)
+        for (int i = 0; i < matrizInt[0].length; i++) { 
+            System.out.print(matrizInt[0][i] + " ");
+        }
+        System.out.println("");
+
+        System.out.print("Valores de la última fila de matrizInt: ");
+        //Bucle for que se repite el mismo número de veces que 'matrizInt[matrizInt.length-1]' (longitud de valores que tiene la última fila de cualquier array)
+        for (int i = 0; i < matrizInt[matrizInt.length-1].length; i++) {
+            System.out.print(matrizInt[matrizInt.length-1][i] + " ");
+        }
+        System.out.println("");
+        
+        //MÉTODO 2: un bucle anidado que salte de la primera fila a la última
+        System.out.print("Valores de la primera y última fila: ");
+        for(int i = 0; i < matrizInt.length; i += matrizInt.length-1){
+            for (int j = 0; j < matrizInt[i].length; j++) {
+                System.out.print(matrizInt[i][j] + " ");
+            }
+            System.out.print( "| ");
+        }
+        System.out.println("");
+
+
+        //Mostrar el mayor y el menor de todos los números de la matriz
+        int max = Integer.MIN_VALUE; //Inicializamos 'max' con el valor mínimo posible para enteros: -2147483648
+        int min = Integer.MAX_VALUE; //Inicializamos 'min' con el valor máximo posible para enteros: 2147483647 
+
+        for (int i = 0; i < matrizInt.length; i++) { //Revisamos cada valor del array
+            for (int j = 0; j < matrizInt[i].length; j++) {
+                max = Math.max(max, matrizInt[i][j]); //Se compara cada elemento con 'max', y se reasigna su valor cada vez que haya un elemento mayor que él
+                min = Math.min(min, matrizInt[i][j]); //Lo mismo con 'min'
+            }
+        }
+        System.out.println("El valor máximo de matrizInt es: " + max);
+        System.out.println("El valor mínimo es: " + min);        
 
         sc.close();
     }
