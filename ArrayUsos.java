@@ -11,12 +11,15 @@ public class ArrayUsos {
 
         int numCeldas = 20;
 
+
+//ARRAYS UNIDIMENSIONALES
+
     //DECLARACIÓN Y CREACIÓN    
-        //Declaración de arrayString
+        //Declaración de un array
         String[] arrayString;
-        //Creación de arrayString
+        //Creación de ese array
         arrayString = new String[2];
-        //Declaración y creación de arrayInt en una sola línea
+        //Declaración y creación de un array en una sola línea
         int[] arrayInt = new int[numCeldas];
 
         
@@ -87,13 +90,37 @@ public class ArrayUsos {
         System.out.println("");
 
         //Impresión de los elementos de arrayInt de 5 en 5
+        System.out.print("Impresión de los elementos de arrayInt de 5 en 5: ");
         for (int i = 0; i < arrayInt.length; i += 5) {
-            System.out.println(arrayInt[i]);
+            System.out.print(arrayInt[i] + " ");
+        }
+        System.out.println("");
+
+
+//ARRAYS MULTIDIMENSIONALES (MATRICES)
+        
+    //DECLARACIÓN Y CREACIÓN
+        String[][] matrizString = new String[3][3];
+
+    //INICIALIZAR
+        //Primer bucle: recorre las filas del array
+        for(int i = 0; i<3; i++){
+            //Segundo bucle: por cada iteración del primer bucle, recorre todos las columnas.
+            for (int j = 0; j < 3 ; j++) {
+                matrizString[i][j] = "Fila " + i + ", columna " + j;
+            }
         }
 
-
-
-
+    //USAR
+        //Imprimir todos los elementos de la matriz por orden
+        System.out.println("Elementos de matrizString: ");
+        //Primer bucle: recorre las filas del array
+        for(int i = 0; i<3; i++){
+            //Segundo bucle: por cada iteración del primer bucle, recorre todos las columnas.
+            for (int j = 0; j < 3 ; j++) {
+                System.out.println(matrizString[i][j]);
+            }
+        }
 
         sc.close();
     }
