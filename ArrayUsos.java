@@ -134,7 +134,7 @@ public class ArrayUsos {
 
         
         //Imprimir los valores de la primera y la última fila de la matriz
-        //MÉTODO 2: un bucle para la primera fila y un bucle para la última
+        //MÉTODO 1: un bucle para la primera fila y un bucle para la última
         System.out.print("Valores de la primera fila de matrizInt: ");
         //Bucle for que se repite el mismo número de veces que 'matrizInt[0]' (longitud de valores tiene la primera fila)
         for (int i = 0; i < matrizInt[0].length; i++) { 
@@ -149,7 +149,7 @@ public class ArrayUsos {
         }
         System.out.println("");
         
-        //MÉTODO 2: un bucle anidado que salte de la primera fila a la última
+        //MÉTODO 2: un bucle anidado que salte de la primera fila a la última (cuidado: solo funcionaría para arrays de al menos tres filas)
         System.out.print("Valores de la primera y última fila: ");
         for(int i = 0; i < matrizInt.length; i += matrizInt.length-1){
             for (int j = 0; j < matrizInt[i].length; j++) {
