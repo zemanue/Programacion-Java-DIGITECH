@@ -31,9 +31,25 @@ public class ArrayPalabraDivididaEnCaracteres {
         System.out.println("Valores del array formado por los caracteres de la palabra: ");
         System.out.print("{-");
         for (int i = 0; i < array.length; i++) {
-                System.out.print(array[i] + "-");
+            System.out.print(array[i] + "-");
         }
         System.out.println("}");
+
+        //Comprobar si hay algún valor repetido en alguna celda.
+        boolean repetido = false;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] == array[j]) {
+                    repetido = true;
+                }
+            }
+        }
+
+        if (repetido) {
+            System.out.println("Hay caracteres repetidos.");
+        } else {
+            System.out.println("No hay caracteres repetidos.");
+        }
 
         sc.close();
     }
