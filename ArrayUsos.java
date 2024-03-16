@@ -28,16 +28,16 @@ public class ArrayUsos {
         /*arrayString[0] = "Isa";
         arrayString[1] = "Manu";*/
 
-        //Crear e inicializar (cuando ya sabemos todos los valores y son pocos) (también declaramos arrayChar):
+        //CREAR E INICIALIZAR (cuando ya sabemos todos los valores y son pocos) (también declaramos arrayChar):
         char[] arrayChar = new char[]{'x', 'y', 'n', 'm'};
 
-        //Bucle for para inicializar todos las posiciones de un array (para valores consecutivos como números):
+        //BUCLE FOR para inicializar todos las posiciones de un array (para valores consecutivos como números):
         //(se puede alterar el orden en el que se inicializan o inicializar solo unos pocos)
         for (int i = 0; i < arrayInt.length; i++) {     
             arrayInt[i] = i+1; 
             }
 
-        //Bucle for each (mismo propósito, pero siempre desde la posición 0 a la última):
+        //BUCLE FOR EACH (mismo propósito, pero siempre desde la posición 0 a la última):
         /*for (int i : arrayInt) {
             arrayInt[i] = i+1;
         }    */
@@ -48,7 +48,7 @@ public class ArrayUsos {
             arrayString[i] = sc.nextLine();
         }
 
-        //Bucle con condicional anidado para llenar un array solo con números pares y otro con números impares
+        //Bucle for con condicional anidado para inicializar dos arrays al mismo tiempo: uno solo con números pares y otro con impares
             //Creamos los arrays pares e impares
         int[] pares = new int[arrayInt.length / 2];
         int[] impares = new int[arrayInt.length - pares.length];        
@@ -61,7 +61,26 @@ public class ArrayUsos {
                 
                 impares[i / 2] = i + 1;
             }
-        }        
+        }
+        
+        //Inicializar un array con cada caracter de un String
+        String palabra = "String";
+        //Contar el número de caracteres
+        int numCaracteres = palabra.length();
+        //Crear el array de tamaño = nº de caracteres
+        char[] arraychar2 = new char[numCaracteres];
+        //Registar cada elemento 
+        for (int i = 0; i < arraychar2.length; i++) {
+            arraychar2[i] = palabra.charAt(i);
+        }
+
+        //Imprimir todos los elementos por orden y de forma visual (filas y columnas)
+        System.out.println("Valores del array formado por los caracteres de la palabra: ");
+        System.out.print("{-");
+        for (int i = 0; i < arraychar2.length; i++) {
+                System.out.print(arraychar2[i] + "-");
+        }
+        System.out.println("}");        
 
 
     //USAR ARRAYS
@@ -153,7 +172,7 @@ public class ArrayUsos {
 
     //USAR
         
-        //Imprimir todos los elementos de la matriz por orden
+        //IMPRIMIR TODOS LOS ELEMENTOS POR ORDEN
         System.out.println("Elementos de matrizString: ");
         //Primer bucle: recorre las filas del array
         for(int i = 0; i < matrizString.length; i++){
@@ -163,7 +182,7 @@ public class ArrayUsos {
             }
         }
 
-        //Imprimir todos los elementos por orden y de forma visual (filas y columnas)
+        //Imprimir todos los elementos POR ORDEN Y DE FORMA VISUAL (FILAS Y COLUMNAS)
         System.out.println("Valores de la matriz de números aleatorios: ");
         for (int i = 0; i < matrizDouble.length; i++) {
             System.out.print("{  ");
@@ -175,8 +194,9 @@ public class ArrayUsos {
         System.out.println("");
 
         
-        //Imprimir los valores de la primera y la última fila de la matriz
-        //MÉTODO 1: un bucle para la primera fila y un bucle para la última
+        //IMPRIMIR LA 1ª Y ÚLTIMA FILA
+        
+            //MÉTODO 1: un bucle para la primera fila y un bucle para la última
         System.out.print("Valores de la primera fila de matrizInt: ");
         //Bucle for que se repite el mismo número de veces que 'matrizInt[0]' (longitud de valores tiene la primera fila)
         for (int i = 0; i < matrizInt[0].length; i++) { 
@@ -191,7 +211,7 @@ public class ArrayUsos {
         }
         System.out.println("");
         
-        //MÉTODO 2: un bucle anidado que salte de la primera fila a la última (cuidado: solo funcionaría para arrays de al menos tres filas)
+            //MÉTODO 2: un bucle anidado que salte de la primera fila a la última (cuidado: solo funcionaría para arrays de al menos tres filas)
         System.out.print("Valores de la primera y última fila: ");
         for(int i = 0; i < matrizInt.length; i += matrizInt.length-1){
             for (int j = 0; j < matrizInt[i].length; j++) {
@@ -202,7 +222,7 @@ public class ArrayUsos {
         System.out.println("");
 
 
-        //Mostrar el mayor y el menor de todos los números de la matriz
+        //MOSTRAR EL NÚMERO MAYOR Y MENOR DE UNA MATRIZ
         int max = Integer.MIN_VALUE; //Inicializamos 'max' con el valor mínimo posible para enteros: -2147483648
         int min = Integer.MAX_VALUE; //Inicializamos 'min' con el valor máximo posible para enteros: 2147483647 
 
@@ -214,7 +234,11 @@ public class ArrayUsos {
         }
         System.out.println("El valor máximo de matrizInt es: " + max);
         System.out.println("El valor mínimo es: " + min);        
+        
+
+
 
         sc.close();
+
     }
 }
