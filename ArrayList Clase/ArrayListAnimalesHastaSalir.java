@@ -12,7 +12,7 @@ public class ArrayListAnimalesHastaSalir {
         
         ArrayList<String> animales = new ArrayList<>();
 
-        System.out.println("Introduce uno a uno los nombres de los animales que quieras almacenar en el array list:");
+        System.out.println("Introduce uno a uno los nombres de los animales que quieras almacenar en el array list. Escribe 'salir' si quieres terminar");
         Scanner sc = new Scanner(System.in);
 
         //Bucle do while para seguir recogiendo datos del usuario hasta que introduzca "salir".
