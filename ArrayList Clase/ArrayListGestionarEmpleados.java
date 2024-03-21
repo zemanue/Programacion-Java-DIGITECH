@@ -38,7 +38,7 @@ public class ArrayListGestionarEmpleados {
 
             opcion = sc.nextInt();
             sc.nextLine(); // Esta línea consume el carácter de nueva línea (evita errores al cambiar de nextInt a nextLine)
-            String nombreEmpleado = null; String respuesta = null; //Evita errores al poner ests variables como condición en los bucles
+            String nombreEmpleado = "0"; String respuesta = "0"; //Evita errores al poner ests variables como condición en los bucles
             int posicion;
 
             //Switch desarrollar una acción por cada número introducido
@@ -113,12 +113,12 @@ public class ArrayListGestionarEmpleados {
 
                                 //Si el número es válido    
                                 } else {
-                                    System.out.println("El nombre asignado en esa posición es: " + empleados.get(posicion-1));
+                                    System.out.println("El nombre asignado en esa posición es: " + empleados.get(posicion - 1));
                                     System.out.println("¿Es el nombre que buscaba? Escriba 's' para eliminarlo, 'n' para escribir otra posición, o 'salir' para cancelar la operación y volver al inicio.");
                                     respuesta = sc.nextLine();
                                     // if else para posibles respuestas: 's' para eliminar el nombre; 'n' para volver a pedir la posición, 'salir' para volver al inicio
                                     if (respuesta.equalsIgnoreCase("s")) {
-                                        empleados.remove(posicion);
+                                        empleados.remove(posicion - 1);
                                         System.out.println("Nombre eliminado. ¿Quiere seguir eliminando nombres? Escriba 's' para continuar, o cualquier otro texto para terminar y volver al inicio.");
                                         respuesta = sc.nextLine();
                                         if (respuesta.equalsIgnoreCase("s")) {
@@ -163,7 +163,7 @@ public class ArrayListGestionarEmpleados {
                         } else {
                                 System.out.println("Introduzca un número válido.");
                         }
-                    } while (!respuesta.equalsIgnoreCase("salir") && (nombreEmpleado != null && !nombreEmpleado.equalsIgnoreCase("salir")));
+                    } while (!respuesta.equalsIgnoreCase("salir") && !nombreEmpleado.equalsIgnoreCase("salir"));
                     break;
 
                 case 4:     //VISUALIZAR UN NOMBRE
