@@ -38,13 +38,14 @@ public class ArrayListGestionarEmpleados {
 
             opcion = sc.nextInt();
             sc.nextLine(); // Esta línea consume el carácter de nueva línea (evita errores al cambiar de nextInt a nextLine)
+            String nombreEmpleado = null; String respuesta = null; //Evita errores al poner ests variables como condición en los bucles
+            int posicion;
 
             //Switch desarrollar una acción por cada número introducido
             switch (opcion) {
                 case 1:     //AGREGAR NOMBRES
                     System.out.println("Agregar nombres.");
                     System.out.println("Introduzca uno a uno los nombres de los empleados que quiera agregar a la lista. Escriba 'salir' cuando haya terminado.");                    
-                    String nombreEmpleado;
                     do {
                         nombreEmpleado = sc.nextLine();
                         if (!nombreEmpleado.equalsIgnoreCase("salir")) {
@@ -62,8 +63,6 @@ public class ArrayListGestionarEmpleados {
                         break;
                     }
                     System.out.println("Modificar un nombre.");
-                    int posicion;
-                    String respuesta;
                     do {
                         System.out.println("Escriba la posición en la que está registrado el nombre que desea modificar (1, 2, 3, 4...):");
                         posicion = sc.nextInt() - 1;
@@ -93,8 +92,7 @@ public class ArrayListGestionarEmpleados {
                         break;
                     }
                     System.out.println("Borrar nombres.");
-                    String empleado = null; //Evita errores al poner empleados como condición en los bucles
-                    
+
                     do {
                         System.out.println("Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
                         respuesta = sc.nextLine();
@@ -144,20 +142,20 @@ public class ArrayListGestionarEmpleados {
                             //Bucle do while para volver a pedir el nombre del empleado, exista o no exista el nombre.
                             do {
                                 System.out.println("Escriba el nombre del empleado que quiere eliminar de la lista, o escriba 'salir' para volver.");
-                                empleado = sc.nextLine();
+                                nombreEmpleado = sc.nextLine();
                                 
-                                if (empleado.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
+                                if (nombreEmpleado.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
                                     System.out.println("Volviendo al inicio.");
                                     break;
-                                } else if (empleados.contains(empleado.toLowerCase())) {   //Si coincide con algún elemento de la lista, se elimina el nombre y se pide otro nombre.
-                                    empleados.remove(empleado);
-                                    System.out.println("'" + empleado + "' eliminado de la lista. ¿Quiere continuar?");
+                                } else if (empleados.contains(nombreEmpleado.toLowerCase())) {   //Si coincide con algún elemento de la lista, se elimina el nombre y se pide otro nombre.
+                                    empleados.remove(nombreEmpleado);
+                                    System.out.println("'" + nombreEmpleado + "' eliminado de la lista. ¿Quiere continuar?");
                                     break;
                                 } else{   //Si no coincide, se avisa y se vuelve a pedir el nombre.
                                     System.out.println("El nombre indicado no está en la lista.");
                                     break;
                                 }
-                            } while (!empleado.equalsIgnoreCase("salir"));                        
+                            } while (!nombreEmpleado.equalsIgnoreCase("salir"));                        
                             
                         } else if (respuesta.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
                                 System.out.println("Volviendo al inicio.");
@@ -165,7 +163,7 @@ public class ArrayListGestionarEmpleados {
                         } else {
                                 System.out.println("Introduzca un número válido.");
                         }
-                    } while (!respuesta.equalsIgnoreCase("salir") && (empleado != null && !empleado.equalsIgnoreCase("salir")));
+                    } while (!respuesta.equalsIgnoreCase("salir") && (nombreEmpleado != null && !nombreEmpleado.equalsIgnoreCase("salir")));
                     break;
 
                 case 4:     //VISUALIZAR UN NOMBRE
@@ -174,6 +172,11 @@ public class ArrayListGestionarEmpleados {
                         break;
                     }                    
                     
+                    System.out.println("Visualizar un nombre.");
+                    do { 
+                        
+                    } while (!respuesta.equalsIgnoreCase("salir"));
+
                     break; 
 
                 case 5:     //VISUALIZAR TODOS LOS NOMBRES
