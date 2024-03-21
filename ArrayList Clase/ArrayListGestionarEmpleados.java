@@ -39,22 +39,27 @@ public class ArrayListGestionarEmpleados {
             opcion = sc.nextInt();
             sc.nextLine(); // Esta línea consume el carácter de nueva línea (evita errores al cambiar de nextInt a nextLine)
             String nombreEmpleado = "0"; String respuesta = "0"; //Evita errores al poner ests variables como condición en los bucles
-            int posicion;
+            int numeroNombres, posicion;
 
             //Switch desarrollar una acción por cada número introducido
             switch (opcion) {
                 case 1:     //AGREGAR NOMBRES
                     System.out.println("Agregar nombres.");
-                    System.out.println("Introduzca uno a uno los nombres de los empleados que quiera agregar a la lista. Escriba 'salir' cuando haya terminado.");                    
-                    do {
+                    System.out.println("¿Cuántos nombres quiere escribir?");
+                    numeroNombres = sc.nextInt();
+                    sc.nextLine(); // Consumir la nueva línea después de nextInt()
+                    System.out.println("Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");                    
+                    for (int i = 0; i < numeroNombres; i++) {
                         nombreEmpleado = sc.nextLine();
-                        if (!nombreEmpleado.equalsIgnoreCase("salir")) {
+                        if (nombreEmpleado.equalsIgnoreCase("salir")) {
+                            System.out.println("Volviendo al inicio.");
+                            break;
+                        } else {
                             empleados.add(nombreEmpleado);
-                            System.out.println("Siguiente empleado:");
+                            System.out.println("Nombre registrado.");
                         }
-                    } while (!nombreEmpleado.equalsIgnoreCase("salir"));
+                    }
                     System.out.println("Nuevos nombres añadidos.");
-
                     break;
 
                 case 2:     //MODIFICAR UN NOMBRE
