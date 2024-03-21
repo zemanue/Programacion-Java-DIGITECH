@@ -192,15 +192,17 @@ public class ArrayListGestionarEmpleados {
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
                         System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
-                    }                    
+                    }
+                    System.out.println("Estos son los nombres que están registrados en la lista: ");
+                    System.out.println(empleados);
                     break;
 
                 case 6:     //SALIR
-                    
+                    System.out.println("Saliendo del programa.");
                     break;
                         
                 default:    //Si la respuesta es diferente a los números especificados, repite el bucle.
-                System.out.println("No has introducido ningún número válido.");
+                System.out.println("El número introducido no es válido.");
                     break;
             }
 
