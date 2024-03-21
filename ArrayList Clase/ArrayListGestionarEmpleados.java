@@ -93,7 +93,7 @@ public class ArrayListGestionarEmpleados {
                         break;
                     }
                     System.out.println("Borrar nombres.");
-                    String empleado;
+                    String empleado = null; //Evita errores al poner empleados como condición en los bucles
                     
                     do {
                         System.out.println("Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
@@ -136,8 +136,7 @@ public class ArrayListGestionarEmpleados {
                                         System.out.println("No ha introducido carácter incluido en las opciones ('s', 'n' o 'salir').");
                                     }
                                 }
-
-                            } while (true);
+                            } while (!respuesta.equalsIgnoreCase("salir"));
 
                         //Opción 2: borrar por nombre
                         } else if (respuesta.equals("2")) {
@@ -152,29 +151,21 @@ public class ArrayListGestionarEmpleados {
                                     break;
                                 } else if (empleados.contains(empleado.toLowerCase())) {   //Si coincide con algún elemento de la lista, se elimina el nombre y se pide otro nombre.
                                     empleados.remove(empleado);
-                                    System.out.println("'" +empleado + "' eliminado de la lista. ¿Quiere continuar?");
+                                    System.out.println("'" + empleado + "' eliminado de la lista. ¿Quiere continuar?");
+                                    break;
                                 } else{   //Si no coincide, se avisa y se vuelve a pedir el nombre.
-                                    System.out.println("El nombre indicado no está en la lista");
+                                    System.out.println("El nombre indicado no está en la lista.");
+                                    break;
                                 }
-                            } while (true);                        
+                            } while (!empleado.equalsIgnoreCase("salir"));                        
                             
                         } else if (respuesta.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
                                 System.out.println("Volviendo al inicio.");
                                 break;
-                            } else {
+                        } else {
                                 System.out.println("Introduzca un número válido.");
-                            }
-                        } while (!respuesta.equals("1") || !respuesta.equals("2"));
-
-                    if (respuesta.equals("1")) {
-
-                    }
-
-                    if (respuesta.equals("2")) {
-
-                    }
-
-
+                        }
+                    } while (!respuesta.equalsIgnoreCase("salir") && (empleado != null && !empleado.equalsIgnoreCase("salir")));
                     break;
 
                 case 4:     //VISUALIZAR UN NOMBRE
