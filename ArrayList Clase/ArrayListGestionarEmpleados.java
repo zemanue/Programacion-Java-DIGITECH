@@ -171,13 +171,22 @@ public class ArrayListGestionarEmpleados {
                         System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
                     }                    
-                    
                     System.out.println("Visualizar un nombre.");
+                    System.out.println("Hay " + empleados.size() + " nombres registrados.");
                     do { 
-                        
-                    } while (!respuesta.equalsIgnoreCase("salir"));
-
-                    break; 
+                        System.out.println("Indique la posición que desea visualizar, o indique '0' si desea salir:");
+                        posicion = sc.nextInt();
+                        if (posicion == 0) {
+                            System.out.println("Volviendo al inicio");
+                        }
+                        if (posicion < 1 || posicion > empleados.size()) {
+                            System.out.println("Debe ser un número comprendido entre 0 y " + empleados.size() + " (el tamaño de la lista actualmente).");
+                        } else {
+                            System.out.println("Nombre de la posición " + posicion + ": " + empleados.get(posicion - 1)  + ".");
+                            System.out.println("¿Quiere visualizar algún nombre más?");
+                        }                        
+                    } while (posicion != 0);
+                    break;
 
                 case 5:     //VISUALIZAR TODOS LOS NOMBRES
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
