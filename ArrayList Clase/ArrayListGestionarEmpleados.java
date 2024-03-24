@@ -179,7 +179,7 @@ public class ArrayListGestionarEmpleados {
                     System.out.println("Visualizar un nombre.");
                     System.out.println("Hay " + empleados.size() + " nombres registrados.");
                     do { 
-                        System.out.println("Indique la posición que desea visualizar, o indique '0' si desea salir:");
+                        System.out.println("Indique la posición que desea visualizar (1, 2, 3...), o indique '0' si desea salir:");
                         posicion = sc.nextInt();
                         if (posicion == 0) {
                             System.out.println("Volviendo al inicio");
@@ -213,7 +213,6 @@ public class ArrayListGestionarEmpleados {
 
         } while (opcion != 6); //El bucle se repita mientras las opciones introducidas no sean 6.
 
-        sc.close();
         sc.close();
     }
 }
