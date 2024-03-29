@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Condicionales_mayor_menor_2_numeros {
+public class CondicionalesMayorMenor2Numeros {
     public static void main(String[] args) {
         System.out.println("Escribe 2 números enteros para saber cuál es el número mayor y menor de los dos.");
         System.out.println("Escribe aquí el primer número:");              //Pedir el primer número

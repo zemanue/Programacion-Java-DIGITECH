@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Condicionales_mayor_menor_3_numeros {
+public class CondicionalesMayorMenor3Numeros {
 
     public static void main(String[] args) {
         System.out.println("Escribe 3 números enteros para saber cuál es el número mayor y menor de los tres.");

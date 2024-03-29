@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Condicionales_par_o_impar {
+public class CondicionalesParOImpar {
 
     public static void main(String[] args) {
         System.out.println("Escribe un número para saber si es par o impar:");
