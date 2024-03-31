@@ -18,17 +18,23 @@ public class ArrayListNumerosAleatorios {
         System.out.println("¿Cuántos números aleatorios quieres almacenar?");
         int cantidad = sc.nextInt();
         sc.nextLine(); // Consumir la nueva línea después de nextInt()
-        
-        System.out.println("Generando " + cantidad +  " números enteros aleatorios del 0 al 100.");
-        Random aleatorio = new Random();
-        for (int i = 0; i < cantidad; i++) {
-            numeros.add(aleatorio.nextInt(100));
-        }
 
-        System.out.println("Números aleatorios almacenados: ");
-        System.out.println(numeros);
-        System.out.println("Primer valor: " + numeros.getFirst());
-        System.out.println("Último valor: " + numeros.getLast());
+        if (cantidad <= 0) { //Por si se ingresa un número igual o menor a 0.
+            System.out.println("No se almacenará ningún número aleatorio.");
+
+        } else {
+            System.out.println("Generando " + cantidad +  " números enteros aleatorios del 0 al 100.");
+            Random aleatorio = new Random();
+            for (int i = 0; i < cantidad; i++) {
+                numeros.add(aleatorio.nextInt(100));
+            }
+
+            System.out.println("Números aleatorios almacenados: ");
+            System.out.println(numeros);
+            System.out.println("Primer valor: " + numeros.getFirst());
+            System.out.println("Último valor: " + numeros.getLast());            
+        }        
+
 
         String siONo;
         do {
