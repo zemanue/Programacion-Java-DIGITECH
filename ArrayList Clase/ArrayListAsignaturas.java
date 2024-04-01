@@ -62,6 +62,44 @@ public class ArrayListAsignaturas {
                 System.out.println(asignaturas);
                 break;
 
+                case 3: //BUSCAR UNA ASIGNATURA POR NOMBRE
+                if (asignaturas.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
+                    System.out.println("No hay ninguna asignatura registrada en la lista. Escriba '1' para agregar algún nombre primero.");
+                    break;
+                }
+                System.out.println("Buscar asignatura por nombre.");
+                do {
+                    System.out.println("Escriba el nombre de la asignatura que quiera buscar, o escriba 'salir' si quiere terminar de buscar.");
+                    nombreAsignatura = sc.nextLine();
+                    if (nombreAsignatura.equalsIgnoreCase("salir")) {
+                        System.out.println("Volviendo al inicio.");
+                        break;
+                        }
+                    boolean coincide = false;
+                    
+                    //Comprobar si alguna asignatura coincide con el texto
+                    for (String asignatura : asignaturas) {
+                        if (asignatura.toLowerCase().contains(nombreAsignatura.toLowerCase())) {
+                            coincide = true;
+                        }
+                    }
+                    
+                    if (!coincide) {
+                        System.out.println("No hay ninguna asignatura que coincida con el texto que ha ingresado.");
+                    } else {
+                        System.out.println("Estos nombres coinciden con el texto que ha ingresado:");
+                        //Escribir todas las asignaturas que contengan el texto introducido por el usuario
+                        for (String asignatura : asignaturas) {
+                            if (asignatura.toLowerCase().contains(nombreAsignatura.toLowerCase())) {
+                                coincide = true;
+                                System.out.println(asignatura);
+                            }
+                        }
+                    }
+                } while (!nombreAsignatura.equalsIgnoreCase("salir"));
+                
+                break;
+
                 case 4:     //SALIR
                 System.out.println("Saliendo del programa.");
                 break;
