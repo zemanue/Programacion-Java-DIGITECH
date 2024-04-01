@@ -6,7 +6,7 @@ buscar asignaturas por su nombre.
 
 import java.util.*;
 
-public class ArrayListAsignaturas {
+public class ArrayListGestionarAsignaturas {
     public static void main(String[] args) {
         
         ArrayList<String> asignaturas = new ArrayList<>();
