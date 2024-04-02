@@ -31,6 +31,26 @@ public class ArrayListGestionarListaNumeros {
             switch (opcion) {
                 case 1:     //AGREGAR NÚMEROS
                     System.out.println("Agregar números.");
+                    String arrayOArrayList;
+                    do {
+                        System.out.println("Escribe '1' para agregar números en el array, o escribe '2' para agregarlos en el ArrayList.");
+                        arrayOArrayList = sc.nextLine();
+                        switch (arrayOArrayList) {
+                            case "1":
+                                
+                                break;
+                        
+                            case "2":
+                                
+                            break;
+    
+                            default:
+                            System.out.println("El número introducido no es válido.");
+                                break;
+                        }
+                    } while (!arrayOArrayList.equalsIgnoreCase("salir"));
+
+
                     //Implementar la funcionalidad para que el usuario pueda elegir a qué estructura quiere añadir números (ArrayList y array convencional).
 
                 break;
