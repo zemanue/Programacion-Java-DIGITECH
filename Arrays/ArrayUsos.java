@@ -72,15 +72,7 @@ public class ArrayUsos {
         //Registar cada elemento 
         for (int i = 0; i < arraychar2.length; i++) {
             arraychar2[i] = palabra.charAt(i);
-        }
-
-        //Imprimir todos los elementos por orden y de forma visual (filas y columnas)
-        System.out.println("Valores del array formado por los caracteres de la palabra: ");
-        System.out.print("{-");
-        for (int i = 0; i < arraychar2.length; i++) {
-                System.out.print(arraychar2[i] + "-");
-        }
-        System.out.println("}");        
+        }        
 
 
     //USAR ARRAYS
@@ -90,6 +82,17 @@ public class ArrayUsos {
             System.out.print(arrayChar[i] + " ");
         }
         System.out.println("");
+
+        //Imprimir todos los elementos de un array de forma visual (entre llaves y comas)
+        System.out.println("Impresión entre llaves y comas de todos los valores de arraychar2:");
+        System.out.print("{");
+        for (int i = 0; i < arraychar2.length; i++) {
+            if (i+1 != arraychar2.length) {
+                System.out.print(arraychar2[i] + ", ");
+            } else {
+                System.out.println(arraychar2[i] + "}");
+            }
+        }
 
         //Imprimir todos los elementos de un array: bucle while
         System.out.print("Impresión de todos los elementos de arrayInt (bucle while): ");    
