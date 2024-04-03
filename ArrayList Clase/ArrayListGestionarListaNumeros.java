@@ -31,11 +31,11 @@ public class ArrayListGestionarListaNumeros {
             switch (opcion) {
                 case 1:     //AGREGAR NÚMEROS
                     System.out.println("Agregar números.");
-                    int arrayOArrayList;
+                    int elegirArrayOArrayList;
                     do {
                         System.out.println("Escribe '1' para agregar números en el array, o escribe '2' para agregarlos en el ArrayList.");
-                        arrayOArrayList = sc.nextInt();
-                        switch (arrayOArrayList) {
+                        elegirArrayOArrayList = sc.nextInt();
+                        switch (elegirArrayOArrayList) {
 
                             case 1: //Añadir al array
                                 System.out.println("Añadiendo al array convencional. Si había números registrados, se restablecerán. ¿Cuántos números quieres añadir?");
@@ -69,7 +69,7 @@ public class ArrayListGestionarListaNumeros {
                             System.out.println("El número introducido no es válido.");
                                 break;
                         }
-                    } while (arrayOArrayList != 1 && arrayOArrayList != 2);
+                    } while (elegirArrayOArrayList != 1 && elegirArrayOArrayList != 2);
                 break;
 
 
@@ -92,7 +92,17 @@ public class ArrayListGestionarListaNumeros {
 
                 case 3:     //CALCULAR LA SUMA
                 System.out.println("Calcular la suma.");
-                //Se suman los números en ambas estructuras.
+                int sumaArray = 0;
+                for (int i = 0; i < arrayNumeros.length; i++) {
+                    sumaArray+=arrayNumeros[i];
+                }
+                System.out.println("Suma de los valores del array: " + sumaArray + ".");
+
+                int sumaArrayList = 0;
+                for (Integer i : arrayListNumeros) {
+                    sumaArrayList += i;
+                }
+                System.out.println("Suma de los valores del ArrayList: " + sumaArrayList);
 
                 break;
 
