@@ -56,6 +56,7 @@ public class ArrayListGestionarListaNumeros {
                         
                             case 2: //Añadir al ArrayList
                                 System.out.println("Añadiendo al ArrayList. ¿Cuántos números quieres añadir?");
+                                System.out.println("Nota: si el ArrayList ya tenía algún valor registrado, los nuevos se añadirán después de los anteriores.");
                                 cantidad = sc.nextInt();
                                 System.out.println("Muy bien. Escribe uno a uno los números a añadir:");
                                 for (int i = 0; i < cantidad; i++) {
