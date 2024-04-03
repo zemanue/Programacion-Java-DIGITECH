@@ -46,10 +46,10 @@ public class ArrayListGestionarListaNumeros {
                                     System.out.println("Volviendo al inicio.");
                                 } else {
                                     System.out.println("Muy bien. Escribe uno a uno los números a añadir:");
-                                for (int i = 0; i < cantidad; i++) {
-                                    numero = sc.nextInt();
-                                    arrayNumeros[i] = numero;
-                                }
+                                    for (int i = 0; i < cantidad; i++) {
+                                        numero = sc.nextInt();
+                                        arrayNumeros[i] = numero;
+                                    }
                                 System.out.println("Números registrados. Volviendo al inicio.");                  
                                 }                                              
                                 break;
@@ -109,8 +109,17 @@ public class ArrayListGestionarListaNumeros {
 
                 case 4:     //ENCONTRAR EL NÚMERO MÁS GRANDE
                 System.out.println("Encontrar el número más grande.");
-                //Hacerlo en ambas estructuras
+                int max = Integer.MIN_VALUE; //Inicializamos 'max' con el valor mínimo posible para enteros: -2147483648
 
+                for (int i = 0; i < arrayNumeros.length; i++) {
+                max = Math.max(max, arrayNumeros[i]); //Se compara cada elemento con el valor de 'max', y se reasigna cada vez que haya un elemento mayor que él.
+                }
+                System.out.println("El mayor número del array es: " + max + ".");
+
+                for (Integer i : arrayListNumeros) {
+                    max = Math.max(max, i);
+                }
+                System.out.println("El mayor número del ArrayList es: " + max + ".");
                 break;
 
 
