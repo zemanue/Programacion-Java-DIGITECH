@@ -52,19 +52,58 @@ class OperacionesMatematicas {
 
 public class POOMetodosOperacionesMatematicas {
     public static void main(String[] args) {
-        int num1, num2;
+        int opcion, num1, num2;
         OperacionesMatematicas Operacion1 = new OperacionesMatematicas();
+        Scanner sc = new Scanner(System.in);
         
-        System.out.println("Escribe el primer número: ");
-        num1 = Operacion1.pedirNumero();
-        System.out.println("Escribe el segundo número: ");
-        num2 = Operacion1.pedirNumero();
-        
-        System.out.println(Operacion1.sumar(num1, num2));
-        System.out.println(Operacion1.restar(num1, num2));
-        System.out.println(Operacion1.multiplicar(num1, num2));
-        System.out.println(Operacion1.dividir(num1, num2));
+        System.out.println("Bienvenido/a al programa calculadora.");
 
+        do {
+        System.out.println("Escribe dos números para sumarlos, restarlos, multiplicarlos o dividirlos.");
+        
+        System.out.println("Primer número: ");
+        num1 = Operacion1.pedirNumero();
+        System.out.println("Segundo número: ");
+        num2 = Operacion1.pedirNumero();
+
+        System.out.println("¿Qué operación quieres hacer? Escribe el número de la opción que quieres elegir:");
+        System.out.println("1: Sumar");
+        System.out.println("2: Restar");
+        System.out.println("3: Multiplicar");
+        System.out.println("4: Dividir");
+        System.out.println("5: Salir");
+
+        opcion = sc.nextInt();
+
+        switch (opcion) {
+            case 1:
+                System.out.println("Has elegido 'Sumar'");
+                System.out.println(Operacion1.sumar(num1, num2));
+            break;        
+            case 2:
+                System.out.println("Has elegido 'Restar'");
+                System.out.println(Operacion1.restar(num1, num2));
+            break;            
+            case 3:
+                System.out.println("Has elegido 'Multiplicar'");                
+                System.out.println(Operacion1.multiplicar(num1, num2));                
+            break;
+            case 4:
+                System.out.println("Has elegido 'Dividir'");
+                System.out.println(Operacion1.dividir(num1, num2));                
+            break;
+            case 5:
+                System.out.println("Has elegido 'Salir'. Vuelve cuando quieras.");
+
+            break;
+            
+            default://Si la respuesta es diferente a los números especificados, repite el bucle.
+            System.out.println("El número introducido no es válido (debe estar comprendido entre el 1 y el 5). Intentémoslo de nuevo.");
+                break;
+        }
+    } while (opcion !=5);
+
+        sc.close();
         Operacion1.sc.close();
     }
 }
