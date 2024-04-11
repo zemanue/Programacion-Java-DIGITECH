@@ -20,45 +20,51 @@ import java.util.Scanner;
 class OperacionesMatematicas {
     Scanner sc = new Scanner(System.in);
     
-    public int pedirNumero(int numPedido) {
-        numPedido = sc.nextInt();
+    public int pedirNumero() {
+        int numPedido = sc.nextInt();
         return numPedido;
     }
-    
-    public int sumar(int num1, int num2) {
-        int suma = num1 + num2;
-        System.out.println(num1 + " + " + num2 + " = ");
+
+    public int sumar(int a, int b) {
+        int suma = a + b;
+        System.out.println(a + " + " + b + " = ");
         return suma;
     }
     
-    public int restar(int num1, int num2) {
-        int resta = num1 - num2;
-        System.out.println(num1 + " - " + num2 + " = ");
+    public int restar(int a, int b) {
+        int resta = a - b;
+        System.out.println(a + " - " + b + " = ");
         return resta;
     }
 
-    public int multiplicar(int num1, int num2) {
-        int multiplicacion = num1 * num2;
-        System.out.println(num1 + " * " + num2 + " = ");
+    public int multiplicar(int a, int b) {
+        int multiplicacion = a * b;
+        System.out.println(a + " * " + b + " = ");
         return multiplicacion;
     }
 
-    public int dividir(int num1, int num2) {
-        int division = num1 / num2;
-        System.out.println(num1 + " / " + num2 + " = ");
+    public int dividir(int a, int b) {
+        int division = a / b;
+        System.out.println(a + " / " + b + " = ");
         return division;
     }
 }
 
 public class POOMetodosOperacionesMatematicas {
     public static void main(String[] args) {
-
+        int num1, num2;
         OperacionesMatematicas Operacion1 = new OperacionesMatematicas();
+        
+        System.out.println("Escribe el primer número: ");
+        num1 = Operacion1.pedirNumero();
+        System.out.println("Escribe el segundo número: ");
+        num2 = Operacion1.pedirNumero();
+        
+        System.out.println(Operacion1.sumar(num1, num2));
+        System.out.println(Operacion1.restar(num1, num2));
+        System.out.println(Operacion1.multiplicar(num1, num2));
+        System.out.println(Operacion1.dividir(num1, num2));
 
-        System.out.println(Operacion1.sumar(10, 5));
-        System.out.println(Operacion1.restar(10, 5));
-        System.out.println(Operacion1.multiplicar(10, 5));
-        System.out.println(Operacion1.dividir(10, 5));
-
+        Operacion1.sc.close();
     }
 }
