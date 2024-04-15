@@ -19,10 +19,9 @@ public class POO3Vectores {
         }
     }
 
-        static void tercerArraySuma(int[] A, int[] B) {
-            int[] c = new int[20];
+        static void tercerArraySuma(int[] A, int[] B, int[] C) {
             for (int i = 0; i < A.length; i++) {
-                c[i] = A[i] + B[i];
+                C[i] = A[i] + B[i];
             }
         }
         
@@ -56,11 +55,16 @@ public class POO3Vectores {
                 System.out.print(C[i]);
             }
             System.out.println("}");            
-        }
-        
+        }   
     }        
-
     public static void main(String[] args) {
+        int[] A = new int[20];
+        int[] B = new int[20];
+        int[] C = new int[20];
 
+        Vector.generarArrayAleatorio(A);
+        Vector.generarArrayAleatorio(B);
+        Vector.tercerArraySuma(A, B, C);
+        Vector.visualizarTresArrays(A, B, C);
     }
 }
