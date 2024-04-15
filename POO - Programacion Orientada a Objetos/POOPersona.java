@@ -13,75 +13,73 @@ Vamos a tener el método principal que llame a los métodos de la 2ª clase. Vam
 los visualizaremos y si se ha producido alguna modificación se vuelve a mostrar todos los datos.
  */
 
+class Persona {
+    //Variables privadas
+    private String nombre, apellido, calle, telefono;
+    private String[] aficiones = new String[3];
+    
+    //Getters
+    public String getNombre() {
+        return nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }       
+    public String getCalle() {
+        return calle;
+    }
+    public String getTelefono() {
+        return telefono;
+    }
+    public String[] getAficiones() {
+        return aficiones;
+    }
+    //Setters
+    public void setNombre(String suNombre) {
+        this.nombre = suNombre;
+    }
+    public void setApellido(String suApellido) {
+        this.apellido = suApellido;
+    }
+    public void setCalle(String suCalle) {
+        this.calle = suCalle;
+    }
+    public void setTelefono(String suTelefono) {
+        this.telefono = suTelefono;
+    }
+    public void setAficiones(String[] susAficiones) {
+        this.aficiones = susAficiones;
+    }
+}
 
-    class Persona {
-        private String nombre, apellido, calle, telefono;
-        private String[] aficiones = new String[3];
-        
-        //Getters
-        public String getNombre() {
-            return nombre;
-        }
-        public String getApellido() {
-            return apellido;
-        }       
-        public String getCalle() {
-            return calle;
-        }
-        public String getTelefono() {
-            return telefono;
-        }
-        public String[] getAficiones() {
-            return aficiones;
-        }
-
-        //Setters
-        public void setNombre(String suNombre) {
-            this.nombre = suNombre;
-        }
-        public void setApellido(String suApellido) {
-            this.apellido = suApellido;
-        }
-        public void setCalle(String suCalle) {
-            this.calle = suCalle;
-        }
-        public void setTelefono(String suTelefono) {
-            this.telefono = suTelefono;
-        }
-        public void setAficiones(String[] susAficiones) {
-            this.aficiones = susAficiones;
+class MetodosPersona {
+//Métodos estáticos para poder llamar a este método sin necesidad de instanciar la clase MetodosPersona
+    static void cargarDatos(Persona persona) { //Se utiliza un solo parámetro, la persona, porque los valores están especificados aquí. Si se quisieran especificar abajo, se deben poner como en cambiarDatos()
+        persona.setNombre("Juan");
+        persona.setApellido("Perez");
+        persona.setCalle("Calle Diablo");
+        persona.setTelefono("677776776");
+        String[] susAficiones = {"Deporte", "Leer", "Viajar"};  //Hace falta crear el array con los valores en otra línea
+        persona.setAficiones(susAficiones);
+    }
+    static void mostrarDatos(Persona persona) {
+        System.out.println("Nombre: " + persona.getNombre());  
+        System.out.println("Apellido: " + persona.getApellido());  
+        System.out.println("Calle: " + persona.getCalle());  
+        System.out.println("Teléfono: " + persona.getTelefono());  
+        System.out.println("Aficiones: "); 
+        for (String susAficiones : persona.getAficiones()) {
+            System.out.println("- " + susAficiones);
         }
     }
-
-    class MetodosPersona {
-        static void cargarDatos(Persona persona) {
-            persona.setNombre("Juan");
-            persona.setApellido("Perez");
-            persona.setCalle("Calle Diablo");
-            persona.setTelefono("677776776");
-            String[] susAficiones = {"Deporte", "Leer", "Viajar"};
-            persona.setAficiones(susAficiones);
-        }
-
-        static void mostrarDatos(Persona persona) {
-            System.out.println("Nombre: " + persona.getNombre());  
-            System.out.println("Apellido: " + persona.getApellido());  
-            System.out.println("Calle: " + persona.getCalle());  
-            System.out.println("Teléfono: " + persona.getTelefono());  
-            System.out.println("Aficiones: "); 
-            for (String susAficiones : persona.getAficiones()) {
-                System.out.println("- " + susAficiones);
-            }
-        }
-
-        static void cambiarDatos(Persona Persona, String suNombre, String suApellido, String suCalle, String suTelefono, String[] susAficiones) {
-            Persona.setNombre(suNombre);
-            Persona.setApellido(suApellido);
-            Persona.setCalle(suCalle);
-            Persona.setTelefono(suTelefono);
-            Persona.setAficiones(susAficiones);
-        }
+    static void cambiarDatos(Persona Persona, String suNombre, String suApellido, String suCalle, String suTelefono, String[] susAficiones) {
+        Persona.setNombre(suNombre);
+        Persona.setApellido(suApellido);
+        Persona.setCalle(suCalle);
+        Persona.setTelefono(suTelefono);
+        Persona.setAficiones(susAficiones);
     }
+}
 public class POOPersona {
 
     public static void main(String[] args) {
@@ -91,7 +89,7 @@ public class POOPersona {
 
         MetodosPersona.mostrarDatos(persona1);
 
-        String[] nuevasAficiones = {"Montar a caballo", "Esquiar", "Programar"};
+        String[] nuevasAficiones = {"Montar a caballo", "Esquiar", "Programar"}; //Hace falta crear el array con los valores en otra línea
         MetodosPersona.cambiarDatos(persona1, "Ana", "Lopez", "Calle Angel", "611223344", nuevasAficiones);
 
         MetodosPersona.mostrarDatos(persona1);
