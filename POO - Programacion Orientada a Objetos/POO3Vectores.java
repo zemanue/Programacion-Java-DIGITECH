@@ -12,58 +12,48 @@ import java.util.Random;
 public class POO3Vectores {
     
     public class Vector {
-        static void dosArraysAleatorios (int[] array) {
+        static void generarArrayAleatorio (int[] A) {
             Random random = new Random();
-            //Se rellena el primer array "a"
-            int[] a = new int[20];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = random.nextInt(20) + 1; // Genera un número aleatorio entre 1 y 20
-            }
-            System.out.println("Se ha rellenado el primer vector con " + a.length + " números aleatorios del 1 al 20.");
-            
-            //Se rellena el segundo array "b"
-            int[] b = new int[20];
-            for (int i = 0; i < array.length; i++) {
-                array[i] = random.nextInt(20) + 1;
-            }
-            System.out.println("Se ha rellenado el primer vector con " + b.length + " números aleatorios del 1 al 20.");
+        for (int i = 0; i < A.length; i++) {
+            A[i] = random.nextInt(20) + 1; // Números aleatorios del 1 al 20
         }
+    }
 
-        static void tercerArraySuma(int[] array1, int[] array2) {
+        static void tercerArraySuma(int[] A, int[] B) {
             int[] c = new int[20];
-            for (int i = 0; i < array1.length; i++) {
-                c[i] = array1[i] + array2[i];
+            for (int i = 0; i < A.length; i++) {
+                c[i] = A[i] + B[i];
             }
         }
         
-        static void visualizarTresArrays(int[] array1, int[] array2, int[] array3) {
+        static void visualizarTresArrays(int[] A, int[] B, int[] C) {
             //Imprimir el primer array (los valores entre corchetes y separados por comas)
-            System.out.print("{");
-            for (int i = 0; i < array1.length; i++) {
+            System.out.print("Vector A: {");
+            for (int i = 0; i < A.length; i++) {
                 if (i != 0) {
                     System.out.print(", ");
                 }
-                System.out.print(array1[i]);
+                System.out.print(A[i]);
             }
             System.out.println("}");
 
             //Segundo array 
-            System.out.print("{");
-            for (int i = 0; i < array1.length; i++) {
+            System.out.print("Vector B: {");
+            for (int i = 0; i < B.length; i++) {
                 if (i != 0) {
                     System.out.print(", ");
                 }
-                System.out.print(array1[i]);
+                System.out.print(B[i]);
             }
             System.out.println("}");
             
             //Tercer  array 
-            System.out.print("{");
-            for (int i = 0; i < array1.length; i++) {
+            System.out.print("Vector C: {");
+            for (int i = 0; i < C.length; i++) {
                 if (i != 0) {
                     System.out.print(", ");
                 }
-                System.out.print(array1[i]);
+                System.out.print(C[i]);
             }
             System.out.println("}");            
         }
@@ -71,6 +61,6 @@ public class POO3Vectores {
     }        
 
     public static void main(String[] args) {
-        
+
     }
 }
