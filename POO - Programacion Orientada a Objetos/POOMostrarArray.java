@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class POOMostrarArray {
     
-    static class Vector {
-        void mostrarAlDerecho(int[] array) {
+    public class Vector {
+        static void mostrarAlDerecho(int[] array) {
             System.out.println("Impresión al derecho de todos los valores del vector:");
             //Imprimir los valores entre corchetes y separados por comas
             System.out.print("{");
@@ -21,7 +21,7 @@ public class POOMostrarArray {
             System.out.println("}");
         }
 
-        void mostrarAlReves(int[] array) {
+        static void mostrarAlReves(int[] array) {
             System.out.println("Impresión al revés de todos los valores del vector:");
             //Imprimir los valores entre corchetes y separados por comas
             System.out.print("{");
@@ -37,7 +37,6 @@ public class POOMostrarArray {
 
     public static void main(String[] args) {
         
-        Vector vector1 = new Vector();
         // Crear y llenar el vector con números aleatorios del 1 al 10
         int[] array = new int[10];
         Random random = new Random();
@@ -45,8 +44,8 @@ public class POOMostrarArray {
             array[i] = random.nextInt(10) + 1; // Genera un número aleatorio entre 1 y 10
         }
         System.out.println("Se ha rellenado el vector con " + array.length + " números aleatorios del 1 al 10.");
-        vector1.mostrarAlDerecho(array);
-        vector1.mostrarAlReves(array);
+        Vector.mostrarAlDerecho(array);
+        Vector.mostrarAlReves(array);
         
     }
 }
