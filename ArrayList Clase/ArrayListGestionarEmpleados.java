@@ -38,7 +38,7 @@ public class ArrayListGestionarEmpleados {
 
             opcion = sc.nextInt();
             sc.nextLine(); // Esta línea consume el carácter de nueva línea (evita errores al cambiar de nextInt a nextLine)
-            String nombreEmpleado = "0"; String respuesta = "0"; //Evita errores al poner ests variables como condición en los bucles
+            String nombreEmpleado = "0", respuesta = "0"; //Evita errores al poner estas variables como condición en los bucles
             int numeroNombres, posicion;
 
             //Switch desarrollar una acción por cada número introducido
@@ -64,7 +64,7 @@ public class ArrayListGestionarEmpleados {
 
                 case 2:     //MODIFICAR UN NOMBRE
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
-                        System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+                        System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
                     }
                     System.out.println("Modificar un nombre.");
@@ -93,7 +93,7 @@ public class ArrayListGestionarEmpleados {
 
                 case 3:     //BORRAR NOMBRES
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
-                        System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+                        System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
                     }
                     System.out.println("Borrar nombres.");
@@ -173,7 +173,7 @@ public class ArrayListGestionarEmpleados {
 
                 case 4:     //VISUALIZAR UN NOMBRE
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
-                        System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+                        System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
                     }                    
                     System.out.println("Visualizar un nombre.");
@@ -195,7 +195,7 @@ public class ArrayListGestionarEmpleados {
 
                 case 5:     //VISUALIZAR TODOS LOS NOMBRES
                     if (empleados.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
-                        System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+                        System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
                         break;
                     }
                     System.out.println("Estos son los nombres que están registrados en la lista: ");
