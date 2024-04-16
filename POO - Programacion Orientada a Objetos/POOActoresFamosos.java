@@ -172,14 +172,44 @@ class ListaDeActores {
         }
     }
 
-/*    public String buscarNombre() {
-                if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
+    public void buscarNombre() {
+        if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
             System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
         } else {
-            return ;
+            System.out.println("Buscar por nombre.");
+            boolean repetir;
+            do {
+                System.out.println("Escriba el nombre que quiera buscar, o escriba 'salir' si quiere terminar de buscar.");
+                nombreActor = sc.nextLine();
+                if (nombreActor.equalsIgnoreCase("salir")) {
+                    repetir = false;
+                    System.out.println("Volviendo al inicio.");
+                } else {                   
+                    repetir = true;
+                    boolean coincide = false;                    
+                    //Comprobar si algún nombre coincide con el texto
+                    for (String actores : listaActores) {
+                        if (actores.toLowerCase().contains(nombreActor.toLowerCase())) {
+                            coincide = true;
+                        }
+                    }                    
+                    if (!coincide) {
+                        System.out.println("No hay ningún nombre que coincida con el texto que ha ingresado.");
+                    } else {
+                        System.out.println("Estos nombres coinciden con el texto que ha ingresado:");
+                        //Escribir todos los nombres que contengan el texto introducido por el usuario
+                        for (int i = 0; i < listaActores.size(); i++) {
+                            String actor = listaActores.get(i);
+                            if (actor.toLowerCase().contains(nombreActor.toLowerCase())) {
+                                System.out.println((i+1) + "- " + actor);
+                            }
+                        }
+                    }
+                }
+            } while (repetir);
         }
     }
-*/
+
     public void visualizarNombres() {
         if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
             System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
@@ -231,7 +261,7 @@ public class POOActoresFamosos {
                 listaActores.borrarNombres();
                 break;  
             case 4:
-                //listaActores.buscarNombre();
+                listaActores.buscarNombre();
                 break; 
             case 5:
                 listaActores.visualizarNombres();
