@@ -25,13 +25,31 @@ import java.util.ArrayList;
 
 class ListaDeActores {
 
-    ArrayList<String> listaActores = new ArrayList<>();
+    ArrayList<String> listaActores = new ArrayList<>(); 
+    Scanner sc = new Scanner(System.in);
+    String nombreActor;
+    int numeroNombres, posicion;
 
     public void agregarNombres() {
-
+        System.out.println("Agregar nombres.");
+        System.out.println("¿Cuántos nombres quiere escribir?");
+        numeroNombres = sc.nextInt();
+        sc.nextLine(); // Consumir la nueva línea después de nextInt()
+        System.out.println("Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");                    
+        for (int i = 0; i < numeroNombres; i++) {
+            nombreActor = sc.nextLine();
+            if (nombreActor.equalsIgnoreCase("salir")) {
+                System.out.println("Volviendo al inicio.");
+                break;
+            } else {
+                listaActores.add(nombreActor);
+                System.out.println("Nombre registrado.");
+            }
+        }
+        System.out.println("Nuevos nombres agregados. Volvemos al menú.");
     }
 
-    public void modificarNombres() {
+/*     public void modificarNombres() {
 
     }
 
@@ -42,24 +60,29 @@ class ListaDeActores {
     public String buscarNombre() {
         return ;
     }
-
-    public String visualizarNombres() {
-        return ;
+*/
+    public void visualizarNombres() {
+        if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println("No hay ningún empleado registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+        } else {
+            System.out.println("Visualizar nombres. Estos son los nombres que están registrados en la lista: ");
+            System.out.println(listaActores);
+        }
     }
 
-    public String visualizarCantantes() {
-        return ;
-    }
+/*    public void visualizarCantantes() {
+
+    }*/
 
     public void salir(){
-
+        System.out.println("Saliendo del programa.");
     }
 
 }
 
 public class POOActoresFamosos {
-    
 
+    ListaDeActores listaActores = new ListaDeActores();
 
     public void menu() {
 
@@ -76,7 +99,7 @@ public class POOActoresFamosos {
     public void comenzar(int opcion) {
         switch (opcion) {
             case 1:
-                //agregarNombres()
+                listaActores.agregarNombres();
                 break;
             case 2:
                 //modificarNombres()
@@ -88,7 +111,7 @@ public class POOActoresFamosos {
                 //buscarNombre()
                 break; 
             case 5:
-                //visualizarActores()
+                listaActores.visualizarNombres();
                 break; 
             case 6:
                 //visualizarCantantes()
@@ -107,20 +130,23 @@ public class POOActoresFamosos {
         
         Scanner sc = new Scanner(System.in);
         int opcion;
-        ListaDeActores listaActores = new ListaDeActores();
+        POOActoresFamosos actoresFamosos = new POOActoresFamosos();
 
         System.out.println("¡Bienvenido/a al programa de nombres de actores y actrices famosos/as!");
         
         do {
-            
-        
+
         //LLamar a menu()
+        actoresFamosos.menu();
         opcion = sc.nextInt();
 
         //Llamar a comenzar(opcion)
+        actoresFamosos.comenzar(opcion);
         //Según la opcion elegida, se ejecutará un método u otro.
 
         } while (opcion != 7);
+
+        System.out.println("Gracias por participar. Vuelve cuando quieras.");
 
         sc.close();
     }
