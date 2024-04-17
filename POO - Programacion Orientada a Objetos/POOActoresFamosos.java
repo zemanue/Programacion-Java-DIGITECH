@@ -12,7 +12,7 @@ Tendremos dos clases:
         6) Cantidad de cantantes
         7) Salir.
         La variable será local.
-    - comenzar (): se ejecuta la opción seleccionada. Se debe utizar switch
+    - comenzar (): se ejecuta la opción seleccionada. Se debe utilizar switch
     - Main(): se crea el objeto y llama a al método menu().
 - Clase ListaDeActores.
     Crearemos el ArrayList.
@@ -22,6 +22,30 @@ Tendremos dos clases:
 
 import java.util.Scanner;
 import java.util.ArrayList;
+
+class Actor {
+//nombreActor y esCantante con sus getters y setters.
+    private String nombreActor;
+    public String getNombreActor() {
+        return nombreActor;
+    }
+    public void setNombreActor(String nombreActor) {
+        this.nombreActor = nombreActor;
+    }
+    private boolean esCantante;
+    public boolean isEsCantante() {
+        return esCantante;
+    }
+    public void setEsCantante(boolean esCantante) {
+        this.esCantante = esCantante;
+    }
+
+//Constructor
+    public Actor(String nombreActor, boolean esCantante) {
+        this.nombreActor = nombreActor;
+        this.esCantante = esCantante;
+    }
+}
 
 class ListaDeActores {
 
@@ -40,10 +64,36 @@ class ListaDeActores {
             nombreActor = sc.nextLine();
             if (nombreActor.equalsIgnoreCase("salir")) {
                 System.out.println("Saliendo al menú.");
-                break;
+                return;
+            }
+            //Comprobar si el nombre del actor introducido coincide con un nombre de actor ya registrado.
+            boolean coincide = false;                    
+            for (String actor : listaActores) {
+                if (actor.toLowerCase().contains(nombreActor.toLowerCase())) {
+                    coincide = true;
+                }
+            }                    
+            if (coincide) {
+                System.out.println("El nombre ya está registrado. Prueba otro");
             } else {
+                Actor actor = new Actor(nombreActor, false);
+                boolean repetir;
+                do {
+                    repetir = false;
+                    System.out.println("¿Es cantante? (s/n)");
+                    String respuesta = sc.nextLine();
+                    if (respuesta.equalsIgnoreCase("s")) {
+                        actor.setEsCantante(true);
+                    } else if (respuesta.equalsIgnoreCase("n")) {
+                        actor.setEsCantante(false);
+                    } else {
+                        System.out.println("El texto introducido no es válido. Escribe 's' para decir que sí, o 'n' para decir que no.");
+                        repetir = true;
+                    }
+                } while (repetir);
+
                 listaActores.add(nombreActor);
-                System.out.println("Nombre registrado.");
+                System.out.println("Nombre registrado. Siguiente nombre:");
             }
         }
         if (!nombreActor.equalsIgnoreCase("salir")) {
