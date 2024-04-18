@@ -49,34 +49,50 @@ class Actor {
 
 class ListaDeActores {
 
-    ArrayList<String> listaActores = new ArrayList<>();
+    ArrayList<Actor> listaActores = new ArrayList<>();
+
     Scanner sc = new Scanner(System.in);
     String nombreActor;
 
-    public void agregarNombres() {
+    public void agregarNombre(String nombre, boolean esCantante) {
+        for (Actor actor : listaActores) {
+            if (actor.getNombreActor().equals(nombre)) {
+                System.out.println("No se puede insertar porque el nombre de actor ya existe.");
+                return;
+            }
+        }
+        listaActores.add(new Actor(nombre, esCantante));
+        System.out.println("Nombre agregado correctamente.");
+    }
+
+/*    public void agregarNombres(String nombre, boolean esCantante) {
         int numeroNombres;
         System.out.println("Agregar nombres.");
         System.out.println("¿Cuántos nombres quieres escribir?");
         numeroNombres = sc.nextInt();
         sc.nextLine(); // Consumir la nueva línea después de nextInt()
         System.out.println("Ahora introduce uno a uno los nombres que quiera agregar a la lista. Escribe 'salir' si quieres terminar antes.");                    
+        //Bucle para escribir tantos nombres como haya indicado el usuario, comprobarlos y añadirlos si se da el caso.
         for (int i = 0; i < numeroNombres; i++) {
             nombreActor = sc.nextLine();
-            if (nombreActor.equalsIgnoreCase("salir")) {
+            if (nombreActor.equalsIgnoreCase("salir")) { //si se escribe salir, se sale del método sin registrar nada más.
                 System.out.println("Saliendo al menú.");
                 return;
             }
+
             //Comprobar si el nombre del actor introducido coincide con un nombre de actor ya registrado.
             boolean coincide = false;                    
-            for (String actor : listaActores) {
-                if (actor.toLowerCase().contains(nombreActor.toLowerCase())) {
+            for (Actor actor : listaActores) {
+                if (actor.toString().toLowerCase().equalsIgnoreCase(nombreActor)) {
                     coincide = true;
                 }
             }                    
             if (coincide) {
                 System.out.println("El nombre ya está registrado. Prueba otro");
+
+            //Se crea una instancia de clase Actor, se registra el nombre y se pregunta si es cantante
             } else {
-                Actor actor = new Actor(nombreActor, false);
+                Actor actor = new Actor(nombreActor);
                 boolean repetir;
                 do {
                     repetir = false;
@@ -91,21 +107,22 @@ class ListaDeActores {
                         repetir = true;
                     }
                 } while (repetir);
-
-                listaActores.add(nombreActor);
+                listaActores.add(actor);
                 System.out.println("Nombre registrado. Siguiente nombre:");
             }
+
         }
-        if (!nombreActor.equalsIgnoreCase("salir")) {
+    Hace falta esto?     if (!nombreActor.equalsIgnoreCase("salir")) {
             System.out.println("Nuevos nombres agregados. Volvemos al menú.");
         }        
-    }
+    }*/
 
-    public void modificarNombres() {
+/*     public void modificarNombres() {
         if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
             System.out.println("No hay ningún nombre registrado en la lista. Escribe '1' para agregar algún nombre primero.");
             return;
         }
+
         boolean repetir;
         System.out.println("Modificar un nombre.");
         do {
@@ -130,6 +147,7 @@ class ListaDeActores {
                     System.out.println("Volviendo al menú.");
                 } else { //Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
                     listaActores.set(posicion, respuesta);
+                    actor.setNombreActor();
                     System.out.println("Nombre modificado.");
                 }
             }
@@ -263,14 +281,16 @@ class ListaDeActores {
             }
         } while (repetir);
     }
-
+*/
     public void visualizarNombres() {
         if (listaActores.isEmpty()) { 
             System.out.println("No hay ningún nombre registrado en la lista. Escribe '1' para agregar algún nombre primero.");
             return;
         }
         System.out.println("Visualizar nombres. Estos son los nombres que están registrados en la lista actualmente: ");
-        System.out.println(listaActores);
+        for (Actor actor : listaActores) { // Corregido: Iterar sobre los actores, no sobre los nombres
+            System.out.println(actor.getNombreActor());
+        }
     }
 
 /*    public void visualizarCantantes() {
@@ -290,6 +310,7 @@ class ListaDeActores {
 public class POOActoresFamosos {
 
     ListaDeActores listaActores = new ListaDeActores();
+    Scanner sc = new Scanner(System.in);
 
     public void menu() {
 
@@ -306,16 +327,48 @@ public class POOActoresFamosos {
     public void comenzar(int opcion) {
         switch (opcion) {
             case 1:
-                listaActores.agregarNombres();
+            int numeroNombres;
+            System.out.println("Agregar nombres.");
+            System.out.println("¿Cuántos nombres quieres añadir?");
+            numeroNombres = sc.nextInt();
+            sc.nextLine(); // Consumir la nueva línea después de nextInt()
+            System.out.println("Ahora introduce uno a uno los nombres que quiera agregar a la lista. Escribe 'salir' si quieres terminar antes.");                    
+            //Bucle para escribir tantos nombres como haya indicado el usuario, comprobarlos y añadirlos si se da el caso.
+            for (int i = 0; i < numeroNombres; i++) {
+                String nombre = sc.nextLine();
+                if (nombre.equalsIgnoreCase("salir")) {
+                    System.out.println("Saliendo al menú.");
+                    return;
+                }
+                boolean cantanteSiONo = false;
+                boolean repetir;
+                do {
+                    repetir = false;
+                    System.out.println("¿Es cantante? (s/n)");
+                    String respuesta = sc.nextLine();
+                    if (respuesta.equalsIgnoreCase("s")) {
+                        cantanteSiONo = true;
+                    } else if (respuesta.equalsIgnoreCase("n")) {
+                        cantanteSiONo = false;
+                    } else {
+                        System.out.println("El texto introducido no es válido. Escribe 's' para decir que sí, o 'n' para decir que no.");
+                        repetir = true;
+                    }
+                } while (repetir);
+                listaActores.agregarNombre(nombre, cantanteSiONo);
+                System.out.println("Nombre registrado. Siguiente nombre:");
+
+            }    
                 break;
+                
             case 2:
-                listaActores.modificarNombres();
+                //listaActores.modificarNombres();
                 break;   
             case 3:
-                listaActores.borrarNombres();
+                //listaActores.borrarNombres();
                 break;  
             case 4:
-                listaActores.buscarNombre();
+                //listaActores.buscarNombre();
                 break; 
             case 5:
                 listaActores.visualizarNombres();
