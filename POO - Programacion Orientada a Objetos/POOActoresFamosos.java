@@ -78,94 +78,18 @@ class ListaDeActores {
         }
     }
 
-/*    public void borrarNombres() {
-        if (listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
-            System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-        } else {
-            boolean repetir;
-            System.out.println("Borrar nombres.");
-            do {
-                repetir = false;
-                System.out.println("Escribe '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al menú.");
-                String respuesta = sc.nextLine();
-                    //Opción 1: borrar por posición
-                    if (respuesta.equals("1")) {
-                        System.out.println("Borrar por posición.");
-                        //Bucle do while para volver a pedir la posición del empleado.
-                        do {
-                            repetir = false;                            
-                            System.out.println("Hay " + listaActores.size() + " nombres registrados.");
-                            System.out.println("Escribe la posición en la que está registrado el nombre que deseas borrar (1, 2, 3...):");
-                            int posicion = sc.nextInt() - 1;
-                            sc.nextLine(); // Consumir la nueva línea después de nextInt()
-
-                            //Si la posición es >= listaActores.size() ó < 0, se pide de nuevo la posición (vuelta al comienzo del do while)
-                            if (posicion >= listaActores.size() || posicion < 0) {
-                                System.out.println("Debe ser un número comprendido entre 1 y " + listaActores.size() + " (el tamaño de la lista actualmente).");
-                                repetir = true;
-
-                            //Si el número es válido    
-                            } else {
-                                System.out.println("El nombre asignado en esa posición es: " + listaActores.get(posicion));
-                                System.out.println("¿Es el nombre que buscabas? Escribe 's' para eliminarlo, 'n' para escribir otra posición, o 'salir' para cancelar la operación y volver al inicio.");
-                                respuesta = sc.nextLine();
-                                // if else para posibles respuestas: 's' para eliminar el nombre; 'n' para volver a pedir la posición, 'salir' para volver al inicio
-                                if (respuesta.equalsIgnoreCase("s")) {
-                                    listaActores.remove(posicion);
-                                    System.out.println("Nombre eliminado. ¿Quieres seguir eliminando nombres? Escribe 's' para continuar, o cualquier otro texto para terminar y volver al inicio.");
-                                    respuesta = sc.nextLine();
-                                    if (respuesta.equalsIgnoreCase("s")) {
-                                        repetir = true;
-                                    } else {
-                                    System.out.println("Volviendo al inicio.");
-                                    }
-                                } else if (respuesta.equalsIgnoreCase("n")) { //Si el usuario teclea 'n', se vuelve a pedir la posición.
-                                    System.out.println("Buscando otra posición de la lista.");
-                                    repetir = true;
-                                } else if (respuesta.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
-                                    System.out.println("Volviendo al inicio.");
-                                } else { //Si teclea cualquier valor que no sea 's', 'n' o 'salir', se vuelve a pedir la posición.
-                                    System.out.println("No has introducido ningún carácter incluido en las opciones ('s', 'n' o 'salir').");
-                                    repetir = true;
-                                }
-                            }
-                        } while (repetir);
-
-                    //Opción 2: borrar por nombre
-                    } else if (respuesta.equals("2")) {
-                        System.out.println("Borrar por nombre");
-                        //Bucle do while para volver a pedir el nombre del empleado, exista o no exista el nombre.
-                        do {
-                            repetir = false;
-                            System.out.println("Escribe el nombre del empleado que quieres eliminar de la lista, o escribe 'salir' para volver.");
-                            nombreActor = sc.nextLine();
-                            
-                            if (nombreActor.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
-                                System.out.println("Volviendo al inicio.");
-                                break;
-                            } else if (listaActores.contains(nombreActor.toLowerCase())) {   //Si coincide con algún elemento de la lista, se elimina el nombre y se pide otro nombre.
-                                listaActores.remove(nombreActor);
-                                System.out.println("'" + nombreActor + "' eliminado de la lista. ¿Quieres continuar?");
-                                repetir = true;
-                            } else{   //Si no coincide, se avisa y se vuelve a pedir el nombre.
-                                System.out.println("El nombre indicado no está en la lista.");
-                                System.out.println("Si quieres consultar qué nombres hay en la lista, puedes elegir la opción 4 o 5 del menú.");
-                                System.out.println("Volviendo al menú.");
-                            }
-                        } while (repetir);                        
-                        
-                    } else if (respuesta.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
-                            System.out.println("Volviendo al inicio.");
-                    } else {
-                            System.out.println("Introduce un número válido.");
-                            repetir = true;
-                    }
-
-            } while (repetir);
+    public void borrarNombres(String nombre) {
+        for (Actor actor : listaActores) {
+            if (actor.getNombreActor().equalsIgnoreCase(nombre)) { //Si coincide con algún elemento de la lista, se elimina el nombre
+                listaActores.remove(actor);
+                System.out.println("'" + actor.getNombreActor() + "' eliminado de la lista.");
+                return;
+            }
         }
+        System.out.println("El nombre que intentas borrar no existe en la lista.");                        
     }
 
-    public void buscarNombre() {
+/*    public void buscarNombre() {
         if (listaActores.isEmpty()) { 
             System.out.println("No hay ningún nombre registrado en la lista en este momento.");
             return;
@@ -319,7 +243,26 @@ public class POOActoresFamosos {
                 break;   
 
             case 3:
-                //listaActores.borrarNombres();
+            if (listaActores.listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
+                System.out.println("No hay ningún nombre registrado en la lista en este momento.");
+                return;
+                }
+                String nombreActor;
+                System.out.println("Borrar nombres.");
+                //Bucle do while para pedir el nombre del empleado y comprobar si existe.
+                do {
+                    repetir = false;
+                    System.out.println("Escribe el nombre del empleado que quieres eliminar de la lista, o escribe 'salir' para volver.");
+                    nombreActor = sc.nextLine();           
+                    if (nombreActor.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
+                        System.out.println("Volviendo al inicio.");
+                        return;
+                    }
+                listaActores.borrarNombres(nombreActor);
+                System.out.println("¿Quieres continuar?");
+                repetir = true;
+                } while (repetir);
+
                 break;  
             case 4:
                 //listaActores.buscarNombre();
