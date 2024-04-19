@@ -36,7 +36,7 @@ class Actor {
 
     private boolean esCantante;
 
-    public boolean isEsCantante() {
+    public boolean getEsCantante() {
         return esCantante;
     }
     public void setEsCantante(boolean esCantante) {
@@ -123,13 +123,28 @@ class ListaDeActores {
         System.out.println("]");
         }
 
-/*    public void visualizarCantantes() {
-        if (listaActores.isEmpty()) { 
-            System.out.println("No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-            return;
+    public void visualizarCantantes() {
+        System.out.println("Visualizar cantantes.");
+        boolean hayCantantes = false;
+        // Comprobar si algún nombre coincide con el texto
+        for (Actor actor : listaActores) {
+            if (actor.getEsCantante()) {
+                hayCantantes = true;
+            }
         }
-        
-    }*/
+        if (!hayCantantes) {
+            System.out.println("No hay ningún nombre que coincida con el texto ingresado.");
+        } else {
+            System.out.println("Estos son los actores/actrices que además son cantantes: ");
+            // Escribir todos los nombres que contengan el texto introducido por el usuario
+            for (Actor actor : listaActores) {
+                String nombreActor = actor.getNombreActor();
+                if (actor.getEsCantante()) {
+                    System.out.println((listaActores.indexOf(actor) + 1) + "- " + nombreActor);
+                }
+            }
+        } 
+    }
 
     public void salir(){
         System.out.println("Saliendo del programa.");
@@ -275,7 +290,7 @@ public class POOActoresFamosos {
                     System.out.println("No hay ningún nombre registrado en la lista en este momento.");
                     return;
                 }
-                //listaActores.visualizarCantantes();
+                listaActores.visualizarCantantes();
                 break;
             case 7:
                 listaActores.salir();
