@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 class Actor {
 //nombreActor y esCantante con sus getters y setters.
-    private String nombreActor;
 
+    private String nombreActor;
     public String getNombreActor() {
         return nombreActor;
     }
@@ -35,7 +35,6 @@ class Actor {
     }
 
     private boolean esCantante;
-
     public boolean getEsCantante() {
         return esCantante;
     }
@@ -53,7 +52,6 @@ class Actor {
 class ListaDeActores {
 
     ArrayList<Actor> listaActores = new ArrayList<>();
-
     Scanner sc = new Scanner(System.in);
     String nombreActor;
 
@@ -113,15 +111,11 @@ class ListaDeActores {
 
     public void visualizarNombres() {
         System.out.println("Visualizar nombres. Estos son los nombres que están registrados en la lista actualmente: ");
-        System.out.print("["); //Bloque para imprimirlos entre corchetes y separados por comas.
-        for (Actor actor : listaActores) { 
-            System.out.print(actor.getNombreActor());
-            if (listaActores.indexOf(actor) != listaActores.size() - 1) {
-                System.out.print(", ");
-            }
+        for (Actor actor : listaActores) {
+            String nombreActor = actor.getNombreActor();
+            System.out.println((listaActores.indexOf(actor) + 1) + "- " + nombreActor);
         }
-        System.out.println("]");
-        }
+    }
 
     public void visualizarCantantes() {
         System.out.println("Visualizar cantantes.");
@@ -143,10 +137,10 @@ class ListaDeActores {
                     System.out.println((listaActores.indexOf(actor) + 1) + "- " + nombreActor);
                 }
             }
-        } 
+        }
     }
 
-    public void salir(){
+    public void salir() {
         System.out.println("Saliendo del programa.");
     }
 
@@ -158,7 +152,6 @@ public class POOActoresFamosos {
     Scanner sc = new Scanner(System.in);
 
     public void menu() {
-
         System.out.println("Por favor, pulsa uno de los siguientes números para hacer una acción:");
         System.out.println("- 1: Agregar nombres.");
         System.out.println("- 2: Modificar un nombre.");
@@ -203,12 +196,12 @@ public class POOActoresFamosos {
                     listaActores.agregarNombre(nombre, cantanteSiONo);
                     System.out.println("Nombre registrado. Siguiente nombre:");
                 }    
-                    break;
+                break;
 
             case 2:
                 if (listaActores.listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
-                System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                return;
+                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
+                    return;
                 }
                 String nombreAnterior, nombreNuevo;
                 System.out.println("Modificar un nombre.");
@@ -231,7 +224,7 @@ public class POOActoresFamosos {
                     System.out.println("El nombre de actor que intenta modificar no existe en la lista.");
                     repetir = true;
                 } while (repetir);
-                    break;   
+                break;   
 
             case 3:
                 if (listaActores.listaActores.isEmpty()) { // Si la lista está vacía, enviar de nuevo al menú.
@@ -279,12 +272,13 @@ public class POOActoresFamosos {
                 break;
                 
             case 5:
-            if (listaActores.listaActores.isEmpty()) { 
-                System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                return;
-            }
-            listaActores.visualizarNombres();
+                if (listaActores.listaActores.isEmpty()) { 
+                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
+                    return;
+                }
+                listaActores.visualizarNombres();
                 break; 
+
             case 6:
                 if (listaActores.listaActores.isEmpty()) { // Si la lista está vacía, enviar de nuevo al menú.
                     System.out.println("No hay ningún nombre registrado en la lista en este momento.");
@@ -292,12 +286,14 @@ public class POOActoresFamosos {
                 }
                 listaActores.visualizarCantantes();
                 break;
+                
             case 7:
                 listaActores.salir();
                 break;
+
             default:
-            System.out.println("La opción elegida no es válida. Volviendo al inicio.");
-            menu();
+                System.out.println("La opción elegida no es válida. Volviendo al inicio.");
+                menu();
                 break;
         }
     }
