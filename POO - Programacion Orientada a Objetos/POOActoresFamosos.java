@@ -57,7 +57,7 @@ class ListaDeActores {
 
     public void agregarNombre(String nombre, boolean esCantante) {
         for (Actor actor : listaActores) {
-            if (actor.getNombreActor().equals(nombre)) {
+            if (actor.getNombreActor().equalsIgnoreCase(nombre)) {
                 System.out.println("No se puede insertar porque el nombre del actor o actriz ya existe.");
                 return;
             }
@@ -110,7 +110,8 @@ class ListaDeActores {
     }
 
     public void visualizarNombres() {
-        System.out.println("Visualizar nombres. Estos son los nombres que están registrados en la lista actualmente: ");
+        System.out.println("Visualizar nombres. ");
+        System.out.println("La lista tiene " + listaActores.size() + " nombres registrados actualmente: ");
         for (Actor actor : listaActores) {
             String nombreActor = actor.getNombreActor();
             System.out.println((listaActores.indexOf(actor) + 1) + "- " + nombreActor);
@@ -118,18 +119,20 @@ class ListaDeActores {
     }
 
     public void visualizarCantantes() {
-        System.out.println("Visualizar cantantes.");
+        System.out.println("Cantidad de cantantes.");
         boolean hayCantantes = false;
+        int numCantantes = 0;
         // Comprobar si algún nombre coincide con el texto
         for (Actor actor : listaActores) {
             if (actor.getEsCantante()) {
                 hayCantantes = true;
+                numCantantes++;
             }
         }
         if (!hayCantantes) {
-            System.out.println("No hay ningún nombre que coincida con el texto ingresado.");
+            System.out.println("No hay ningún cantante en la lista actualmente.");
         } else {
-            System.out.println("Estos son los actores/actrices que además son cantantes: ");
+            System.out.println("Hay " + numCantantes + " actores/actrices registrados que además son cantantes: ");
             // Escribir todos los nombres que contengan el texto introducido por el usuario
             for (Actor actor : listaActores) {
                 String nombreActor = actor.getNombreActor();
@@ -174,6 +177,7 @@ public class POOActoresFamosos {
                 System.out.println("Ahora introduce uno a uno los nombres que quiera agregar a la lista. Escribe 'salir' si quieres terminar antes.");                    
                 //Bucle para escribir tantos nombres como haya indicado el usuario, comprobarlos y añadirlos si se da el caso.
                 for (int i = 0; i < numeroNombres; i++) {
+                    System.out.println("Siguiente nombre:");
                     String nombre = sc.nextLine();
                     if (nombre.equalsIgnoreCase("salir")) {
                         System.out.println("Saliendo al menú.");
@@ -186,15 +190,15 @@ public class POOActoresFamosos {
                         String respuesta = sc.nextLine();
                         if (respuesta.equalsIgnoreCase("s")) {
                             cantanteSiONo = true;
+                            listaActores.agregarNombre(nombre, cantanteSiONo);
                         } else if (respuesta.equalsIgnoreCase("n")) {
                             cantanteSiONo = false;
+                            listaActores.agregarNombre(nombre, cantanteSiONo);
                         } else {
                             System.out.println("El texto introducido no es válido. Escribe 's' para decir que sí, o 'n' para decir que no.");
                             repetir = true;
                         }
                     } while (repetir);
-                    listaActores.agregarNombre(nombre, cantanteSiONo);
-                    System.out.println("Nombre registrado. Siguiente nombre:");
                 }    
                 break;
 
