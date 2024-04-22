@@ -18,22 +18,22 @@ public class Empleado{
 
     private String nombre;
 
-    public Empleado() {
-    }
-
+    //Constructores
+    public Empleado() {}
     public Empleado(String nombre) {
         this.nombre = nombre;
     }
 
+    //Getter y setter
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String toString(Empleado empleado) {
-        return "Empleado " + empleado.getNombre();
+    //Método toString()
+    public String toString() {
+        return "Empleado " + getNombre();
     }
 }
