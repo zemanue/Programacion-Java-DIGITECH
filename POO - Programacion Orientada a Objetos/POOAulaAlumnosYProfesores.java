@@ -32,6 +32,7 @@ cuando tengan sentido (edad no puede ser 80 en un estudiante o calificación ser
 */
 
 import java.util.Random;
+import java.util.Scanner;
 
 class PersonaAula {
     private String nombre;
@@ -168,54 +169,94 @@ class Aula {
 public class POOAulaAlumnosYProfesores {
     public static void main(String args[]) {
 
-        Profesor profesor1 = new Profesor("Jaime Pérez", 33, "hombre", "filosofia");
-        if (!profesor1.asisteAClase()) {
-            System.out.println("La clase no se puede celebrar porque el profesor no ha podido asistir.");
-        } else {
-            Aula aula1 = new Aula(001, 8, profesor1.getMateria());
+        boolean repetir = true;
+        int numDias = 1, diasDeClase = 0;
+        Scanner sc = new Scanner(System.in);
 
-            Alumno joseRamirez = new Alumno("Jose Ramírez", 15, "hombre", 7.2);
-            Alumno isabelJohansson = new Alumno("Isabel Johansson", 14, "mujer", 8.5);
-            Alumno manuelRedondo = new Alumno("Manuel Redondo", 14, "hombre", 7.9);
-            Alumno teresaRuiz = new Alumno("Teresa Ruiz", 15, "mujer", 3.5);
-            Alumno ikerJimenez = new Alumno("Íker Jiménez", 14, "hombre", 4.8);
-            Alumno luisFuertes = new Alumno("Luis Fuertes", 15, "hombre", 9.6);
-            Alumno rosaPrieto = new Alumno("Rosa Prieto", 15, "mujer", 8.1);
-            Alumno paulaLluch = new Alumno("Paula Lluch", 15, "mujer", 5.3);
-    
-            int numAlumnos = 0;
-    
-            if (joseRamirez.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (isabelJohansson.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (manuelRedondo.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (teresaRuiz.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (ikerJimenez.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (luisFuertes.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (rosaPrieto.asisteAClase()) {
-                numAlumnos++;
-            }
-            if (paulaLluch.asisteAClase()) {
-                numAlumnos++;
-            }
-    
-            if (numAlumnos <= (aula1.getMaximoAlumnos() / 2)) {
-                System.out.println("No se puede celebrar la clase porque tiene que asistir más del 50% de lo alumnos/as.");
+        //Profesores
+        Profesor profesor1 = new Profesor("Jaime Pérez", 33, "hombre", "Filosofía");
+
+        //Aulas
+        Aula aula1 = new Aula(001, 8, profesor1.getMateria());
+
+        //Estudiantes
+        Alumno joseRamirez = new Alumno("Jose Ramírez", 15, "hombre", 7.2);
+        Alumno isabelJohansson = new Alumno("Isabel Johansson", 14, "mujer", 8.5);
+        Alumno manuelRedondo = new Alumno("Manuel Redondo", 14, "hombre", 7.9);
+        Alumno teresaRuiz = new Alumno("Teresa Ruiz", 15, "mujer", 3.5);
+        Alumno ikerJimenez = new Alumno("Íker Jiménez", 14, "hombre", 4.8);
+        Alumno luisFuertes = new Alumno("Luis Fuertes", 15, "hombre", 9.6);
+        Alumno rosaPrieto = new Alumno("Rosa Prieto", 15, "mujer", 8.1);
+        Alumno paulaLluch = new Alumno("Paula Lluch", 15, "mujer", 5.3);
+
+        while (repetir) {
+            System.out.println("Día " + numDias + " de clase:");
+
+            if (!profesor1.asisteAClase()) {
+                System.out.println("La clase no se puede celebrar porque el profesor no ha podido asistir.");
             } else {
-                System.out.println("Se ha podido celebrar la clase.");
-            }    
+                System.out.println("El profesor " + profesor1.getNombre() + " puede asistir a clase. Impartirá " + profesor1.getMateria() + ".");
+                
+                int numAlumnos = 0;
+                System.out.println("Han venido a clase: ");
+                if (joseRamirez.asisteAClase()) {
+                    System.out.println(joseRamirez.getNombre());
+                    numAlumnos++;
+                }
+                if (isabelJohansson.asisteAClase()) {
+                    System.out.println(isabelJohansson.getNombre());
+                    numAlumnos++;
+                }
+                if (manuelRedondo.asisteAClase()) {
+                    System.out.println(manuelRedondo.getNombre());
+                    numAlumnos++;
+                }
+                if (teresaRuiz.asisteAClase()) {
+                    System.out.println(teresaRuiz.getNombre());
+                    numAlumnos++;
+                }
+                if (ikerJimenez.asisteAClase()) {
+                    System.out.println(ikerJimenez.getNombre());
+                    numAlumnos++;
+                }
+                if (luisFuertes.asisteAClase()) {
+                    System.out.println(luisFuertes.getNombre());
+                    numAlumnos++;
+                }
+                if (rosaPrieto.asisteAClase()) {
+                    System.out.println(rosaPrieto.getNombre());
+                    numAlumnos++;
+                }
+                if (paulaLluch.asisteAClase()) {
+                    System.out.println(paulaLluch.getNombre());
+                    numAlumnos++;
+                }
+        
+                if (numAlumnos <= (aula1.getMaximoAlumnos() / 2)) {
+                    System.out.println("No se puede celebrar la clase porque tiene que asistir más del 50% de lo alumnos/as (más de "
+                                        + aula1.getMaximoAlumnos() / 2 + " estudiantes).");
+                } else {
+                    System.out.println("Se ha podido celebrar la clase.");
+                    diasDeClase++;
+                }
+            }
+            do {
+                System.out.println("¿Quieres avanzar al próximo día? (s/n)");
+                String respuesta = sc.nextLine();
+                if (respuesta.equalsIgnoreCase("s")) {
+                    System.out.println("Avanzando de día.");
+                    numDias++;
+                    break;
+                } else if (respuesta.equalsIgnoreCase("n")) {
+                    System.out.println("Terminado. Después de " + numDias + ", se han podido celebrar " 
+                                        + diasDeClase + " días de clase.");
+                    repetir = false;
+                } else {
+                    System.out.println("Introduce un carácter válido ('s' para sí, 'n' para no).");
+                }
+            } while (repetir);
         }
+        sc.close();
     }
 }
 
