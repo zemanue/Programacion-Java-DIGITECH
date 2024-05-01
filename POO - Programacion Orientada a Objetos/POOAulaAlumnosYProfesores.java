@@ -62,13 +62,12 @@ class PersonaAula {
         this.sexo = sexo;
     }
 
+    //Método asisteAClase()
     public boolean asisteAClase() {
         return true;
     }
     
-    public PersonaAula(){
-    }
-    
+    //Constructor    
     public PersonaAula(String nombre, int edad, String sexo) {
         this.nombre = nombre;
         this.edad = edad;
@@ -95,8 +94,9 @@ class Alumno extends PersonaAula {
         this.faltas = faltas;
     }
 
+    //Método asisteAClase()
     public boolean asisteAClase() {
-        Random probabilidad = new Random(); //genera número del 0-100
+        Random probabilidad = new Random(); 
         if (probabilidad.nextInt(101) < 50) {
             return false;
         } else {
@@ -122,29 +122,27 @@ class Profesor extends PersonaAula {
         this.materia = materia;
     }
 
+    //Método asisteAClase()
     public boolean asisteAClase() {
-        Random probabilidad = new Random(); //genera número del 0-10
+        Random probabilidad = new Random();
         if (probabilidad.nextInt(101) < 20) {
             return false;
         } else {
             return true;
         }
     }
-    
+
+    //Constructor
     public Profesor(String nombre, int edad, String sexo, String materia) {
         super(nombre, edad, sexo);
         this.materia = materia;
     }
-
-    //Constructor
-    
 }
 
 class Aula {
     private int idAula;
     private int maximoAlumnos;
     private String materia;
-    // private Profesor profesor;
 
     public int getIdAula() {
         return idAula;
@@ -167,11 +165,10 @@ class Aula {
         this.materia = materia;
     }
 
-    public Aula(int idAula, int maximoAlumnos, String materia) { //, Profesor profesor
+    public Aula(int idAula, int maximoAlumnos, String materia) {
         this.idAula = idAula;
         this.maximoAlumnos = maximoAlumnos;
         this.materia = materia;
-        //this.profesor = profesor;
     }
 }
 
@@ -188,8 +185,8 @@ public class POOAulaAlumnosYProfesores {
         //Aulas
         Aula aula1 = new Aula(001, 8, profesor1.getMateria());
 
-        Alumno[] alumnos = {
         //Estudiantes
+        Alumno[] alumnos = {
         new Alumno("Jose Ramírez", 15, "hombre", 7.2),
         new Alumno("Isabel Johansson", 14, "mujer", 8.5),
         new Alumno("Manuel Redondo", 14, "hombre", 7.9),
