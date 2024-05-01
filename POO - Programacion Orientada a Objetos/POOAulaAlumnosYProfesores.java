@@ -31,6 +31,7 @@ están entregando las notas).
 cuando tengan sentido (edad no puede ser 80 en un estudiante o calificación ser 12). 
 */
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -197,42 +198,42 @@ public class POOAulaAlumnosYProfesores {
             } else {
                 System.out.println("El profesor " + profesor1.getNombre() + " puede asistir a clase. Impartirá " + profesor1.getMateria() + ".");
                 
-                int numAlumnos = 0;
-                System.out.println("Han venido a clase: ");
+                //Lista de alumnos/as que han asistido a clase
+                ArrayList<Alumno> alumnosEnClase = new ArrayList<>();
                 if (joseRamirez.asisteAClase()) {
-                    System.out.println(joseRamirez.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(joseRamirez);
                 }
                 if (isabelJohansson.asisteAClase()) {
-                    System.out.println(isabelJohansson.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(isabelJohansson);
                 }
                 if (manuelRedondo.asisteAClase()) {
-                    System.out.println(manuelRedondo.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(manuelRedondo);
                 }
                 if (teresaRuiz.asisteAClase()) {
-                    System.out.println(teresaRuiz.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(teresaRuiz);
                 }
                 if (ikerJimenez.asisteAClase()) {
-                    System.out.println(ikerJimenez.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(ikerJimenez);
                 }
                 if (luisFuertes.asisteAClase()) {
-                    System.out.println(luisFuertes.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(luisFuertes);
                 }
                 if (rosaPrieto.asisteAClase()) {
-                    System.out.println(rosaPrieto.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(rosaPrieto);
                 }
                 if (paulaLluch.asisteAClase()) {
-                    System.out.println(paulaLluch.getNombre());
-                    numAlumnos++;
+                    alumnosEnClase.add(paulaLluch);
                 }
-        
-                if (numAlumnos <= (aula1.getMaximoAlumnos() / 2)) {
+
+                if (alumnosEnClase.isEmpty()) {
+                    System.out.println("No ha venido nadie a clase.");
+                } else {
+                    System.out.println("Han venido a clase: ");
+                    for (Alumno i : alumnosEnClase) {
+                        System.out.println("- " + i.getNombre());
+                    }    
+                }
+                if (alumnosEnClase.size() <= (aula1.getMaximoAlumnos() / 2)) {
                     System.out.println("No se puede celebrar la clase porque tiene que asistir más del 50% de lo alumnos/as (más de "
                                         + aula1.getMaximoAlumnos() / 2 + " estudiantes).");
                 } else {
