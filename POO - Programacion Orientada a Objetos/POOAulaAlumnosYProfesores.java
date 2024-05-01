@@ -19,7 +19,7 @@ operaciones anteriores deben llamarse igual en Estudiante y Profesor (polimorfis
 que esta destinada (matemáticas, filosofía o física). Piensa que más atributos necesita.
 
 • Un aula para que se pueda dar clase necesita que el profesor esté disponible, que el
-profesor de la materia correspondiente en el aula correspondiente (un profesor de
+profesor dé la materia correspondiente en el aula correspondiente (un profesor de
 filosofía no puede dar en un aula de matemáticas) y que haya más del 50% de alumnos.
 
 • El objetivo es crear un aula de alumnos y un profesor y determinar si puede darse clase,
@@ -228,10 +228,7 @@ public class POOAulaAlumnosYProfesores {
                 if (alumnosEnClase.isEmpty()) {
                     System.out.println("No ha venido nadie a clase.");
                 } else {
-                    System.out.println("Han venido a clase: ");
-                    for (Alumno i : alumnosEnClase) {
-                        System.out.println("- " + i.getNombre());
-                    }    
+                    System.out.println("Han venido a clase " + alumnosEnClase.size() + " estudiantes.");   
                 }
                 if (alumnosEnClase.size() <= (aula1.getMaximoAlumnos() / 2)) {
                     System.out.println("No se puede celebrar la clase porque tiene que asistir más del 50% de lo alumnos/as (más de "
@@ -239,6 +236,21 @@ public class POOAulaAlumnosYProfesores {
                 } else {
                     System.out.println("Se ha podido celebrar la clase.");
                     diasDeClase++;
+
+                    System.out.println("Nota de los alumnos:");
+                    for (Alumno i : alumnosEnClase) {
+                        if (i.getSexo().equals("hombre")) {
+                            System.out.print("- " + i.getNombre() + ": " + i.getCalificacionActual());
+                            System.out.println((i.getCalificacionActual() >= 5) ? " - Aprobado." : " - Suspenso.");                            
+                        }
+                    }
+                    System.out.println("Nota de las alumnas:");
+                    for (Alumno i : alumnosEnClase) {
+                        if (i.getSexo().equals("mujer")) {
+                            System.out.print("- " + i.getNombre() + ": " + i.getCalificacionActual());                            
+                            System.out.println((i.getCalificacionActual() >= 5) ? " - Aprobada." : " - Suspensa.");                            
+                        }
+                    }
                 }
             }
             do {
@@ -260,5 +272,3 @@ public class POOAulaAlumnosYProfesores {
         sc.close();
     }
 }
-
-
