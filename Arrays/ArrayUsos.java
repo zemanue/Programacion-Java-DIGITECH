@@ -62,16 +62,22 @@ public class ArrayUsos {
                 impares[i / 2] = i + 1;
             }
         }
+
+        //Inicializar un array con letras automáticamente (de la A a...)
+        char[] arrayChar2 = new char[10];
+        for (int i = 0; i < impares.length; i++) {
+            arrayChar2[i] = (char) ('A' + i);
+        }
         
         //Inicializar un array con cada caracter de un String
         String palabra = "String";
         //Contar el número de caracteres
         int numCaracteres = palabra.length();
         //Crear el array de tamaño = nº de caracteres
-        char[] arraychar2 = new char[numCaracteres];
+        char[] arrayChar3 = new char[numCaracteres];
         //Registar cada elemento 
-        for (int i = 0; i < arraychar2.length; i++) {
-            arraychar2[i] = palabra.charAt(i);
+        for (int i = 0; i < arrayChar3.length; i++) {
+            arrayChar3[i] = palabra.charAt(i);
         }        
 
 
@@ -86,11 +92,11 @@ public class ArrayUsos {
         //Imprimir todos los elementos de un array de forma visual (entre llaves y comas)
         System.out.println("Impresión entre llaves y comas de todos los valores de arraychar2:");
         System.out.print("{");
-        for (int i = 0; i < arraychar2.length; i++) {
-            if (i+1 != arraychar2.length) {
-                System.out.print(arraychar2[i] + ", ");
+        for (int i = 0; i < arrayChar2.length; i++) {
+            if (i+1 != arrayChar2.length) {
+                System.out.print(arrayChar2[i] + ", ");
             } else {
-                System.out.println(arraychar2[i] + "}");
+                System.out.println(arrayChar2[i] + "}");
             }
         }
 
@@ -142,6 +148,17 @@ public class ArrayUsos {
             }
         }
 
+        //INICIALIZAR UNA MATRIZ DE CHAR+INT
+        //Creamos un objeto que tenga una variable de tipo char y otra int (Clase Butaca: variables: char columna, int fila)
+        Butaca[][] Butacas = new Butaca[5][8];
+        for (int i = 0; i < Butacas.length; i++) {
+            for (int j = 0; j < Butacas[i].length; j++) {
+                char columna = (char) ('A' + j);
+                int fila = i + 1; 
+                Butacas[i][j] = new Butaca(columna, fila, false);
+            }
+        }
+
         //INICIALIZAR CON NÚMEROS ALEATORIOS NO REPETIDOS
         double[][] matrizDouble = new double[5][5];
         double random;
@@ -171,7 +188,7 @@ public class ArrayUsos {
                 //Después de la comprobación, registramos el número aleatorio en la posición de la matriz que corresponda
                 matrizDouble[i][j] = random;
             }
-        }        
+        } 
 
     //USAR
         
@@ -244,4 +261,38 @@ public class ArrayUsos {
         sc.close();
 
     }
+}
+
+class Butaca {
+    private char columna;
+    private int fila;
+    private boolean ocupado;
+
+    //Getters y setters
+    public char getColumna() {
+        return columna;
+    }
+    public void setColumna(char columna) {
+        this.columna = columna;
+    }
+    public int getFila() {
+        return fila;
+    }
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+    public boolean isOcupado() {
+        return ocupado;
+    }
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+
+    //Constructor
+    public Butaca(char columna, int fila, boolean ocupado) {
+        this.columna = columna;
+        this.fila = fila;
+        this.ocupado = ocupado;
+    }
+
 }
