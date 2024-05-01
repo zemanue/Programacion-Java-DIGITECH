@@ -78,13 +78,21 @@ class PersonaAula {
 
 class Alumno extends PersonaAula {
     private double calificacionActual;
+    private int faltas;
 
-    //Getter y setter
+    //Getters y setters
     public double getCalificacionActual() {
         return calificacionActual;
     }
     public void setCalificacionActual(double calificacionActual) {
         this.calificacionActual = calificacionActual;
+    }
+
+    public int getFaltas() {
+        return faltas;
+    }
+    public void setFaltas(int faltas) {
+        this.faltas = faltas;
     }
 
     public boolean asisteAClase() {
@@ -180,16 +188,18 @@ public class POOAulaAlumnosYProfesores {
         //Aulas
         Aula aula1 = new Aula(001, 8, profesor1.getMateria());
 
+        Alumno[] alumnos = {
         //Estudiantes
-        Alumno joseRamirez = new Alumno("Jose Ramírez", 15, "hombre", 7.2);
-        Alumno isabelJohansson = new Alumno("Isabel Johansson", 14, "mujer", 8.5);
-        Alumno manuelRedondo = new Alumno("Manuel Redondo", 14, "hombre", 7.9);
-        Alumno teresaRuiz = new Alumno("Teresa Ruiz", 15, "mujer", 3.5);
-        Alumno ikerJimenez = new Alumno("Íker Jiménez", 14, "hombre", 4.8);
-        Alumno luisFuertes = new Alumno("Luis Fuertes", 15, "hombre", 9.6);
-        Alumno rosaPrieto = new Alumno("Rosa Prieto", 15, "mujer", 8.1);
-        Alumno paulaLluch = new Alumno("Paula Lluch", 15, "mujer", 5.3);
-
+        new Alumno("Jose Ramírez", 15, "hombre", 7.2),
+        new Alumno("Isabel Johansson", 14, "mujer", 8.5),
+        new Alumno("Manuel Redondo", 14, "hombre", 7.9),
+        new Alumno("Teresa Ruiz", 15, "mujer", 3.5),
+        new Alumno("Íker Jiménez", 14, "hombre", 4.8),
+        new Alumno("Luis Fuertes", 15, "hombre", 9.6),
+        new Alumno("Rosa Prieto", 15, "mujer", 8.1),
+        new Alumno("Paula Lluch", 15, "mujer", 5.3),
+        };
+        
         while (repetir) {
             System.out.println("Día " + numDias + " de clase:");
 
@@ -198,41 +208,33 @@ public class POOAulaAlumnosYProfesores {
             } else {
                 System.out.println("El profesor " + profesor1.getNombre() + " puede asistir a clase. Impartirá " + profesor1.getMateria() + ".");
                 
-                //Lista de alumnos/as que han asistido a clase
+                //Lista de alumnos/as que han asistido a clase y alumnos/as que no han asistido
                 ArrayList<Alumno> alumnosEnClase = new ArrayList<>();
-                if (joseRamirez.asisteAClase()) {
-                    alumnosEnClase.add(joseRamirez);
+                ArrayList<Alumno> alumnosQueFaltan = new ArrayList<>();                
+                for (Alumno estudiante : alumnos) {
+                    if (estudiante.asisteAClase()) {
+                        alumnosEnClase.add(estudiante);
+                    } else {
+                        alumnosQueFaltan.add(estudiante);
+                        estudiante.setFaltas(estudiante.getFaltas()+1);
+                    }
                 }
-                if (isabelJohansson.asisteAClase()) {
-                    alumnosEnClase.add(isabelJohansson);
-                }
-                if (manuelRedondo.asisteAClase()) {
-                    alumnosEnClase.add(manuelRedondo);
-                }
-                if (teresaRuiz.asisteAClase()) {
-                    alumnosEnClase.add(teresaRuiz);
-                }
-                if (ikerJimenez.asisteAClase()) {
-                    alumnosEnClase.add(ikerJimenez);
-                }
-                if (luisFuertes.asisteAClase()) {
-                    alumnosEnClase.add(luisFuertes);
-                }
-                if (rosaPrieto.asisteAClase()) {
-                    alumnosEnClase.add(rosaPrieto);
-                }
-                if (paulaLluch.asisteAClase()) {
-                    alumnosEnClase.add(paulaLluch);
-                }
-
+                
                 if (alumnosEnClase.isEmpty()) {
                     System.out.println("No ha venido nadie a clase.");
-                } else {
+                } else if (alumnosEnClase.size() == 1) {
+                    System.out.println("Ha venido a clase 1 estudiante.");   
+                }
+                else {
                     System.out.println("Han venido a clase " + alumnosEnClase.size() + " estudiantes.");   
                 }
                 if (alumnosEnClase.size() <= (aula1.getMaximoAlumnos() / 2)) {
                     System.out.println("No se puede celebrar la clase porque tiene que asistir más del 50% de lo alumnos/as (más de "
                                         + aula1.getMaximoAlumnos() / 2 + " estudiantes).");
+                    System.out.println("Personas que han faltado: ");
+                    for (Alumno i : alumnosQueFaltan) {
+                        System.out.println("- " + i.getNombre());
+                    }
                 } else {
                     System.out.println("Se ha podido celebrar la clase.");
                     diasDeClase++;
@@ -251,9 +253,17 @@ public class POOAulaAlumnosYProfesores {
                             System.out.println((i.getCalificacionActual() >= 5) ? " - Aprobada." : " - Suspensa.");                            
                         }
                     }
+                    if (alumnosQueFaltan.isEmpty()) {
+                        System.out.println("¡Hoy no ha faltado nadie!");
+                    } else {
+                        System.out.println("Personas que han faltado: ");
+                        for (Alumno i : alumnosQueFaltan) {
+                            System.out.println("- " + i.getNombre());
+                        }
+                    }
                 }
             }
-            do {
+            while (repetir) {
                 System.out.println("¿Quieres avanzar al próximo día? (s/n)");
                 String respuesta = sc.nextLine();
                 if (respuesta.equalsIgnoreCase("s")) {
@@ -261,13 +271,17 @@ public class POOAulaAlumnosYProfesores {
                     numDias++;
                     break;
                 } else if (respuesta.equalsIgnoreCase("n")) {
-                    System.out.println("Terminado. Después de " + numDias + ", se han podido celebrar " 
+                    System.out.println("Terminado. Después de " + numDias + " días, se han podido celebrar " 
                                         + diasDeClase + " días de clase.");
+                    System.out.println("Faltas de asistencia: ");
+                    for (int i = 0; i < alumnos.length; i++) {
+                        System.out.println("- " + alumnos[i].getNombre() + ": " + alumnos[i].getFaltas());
+                    }
                     repetir = false;
                 } else {
                     System.out.println("Introduce un carácter válido ('s' para sí, 'n' para no).");
                 }
-            } while (repetir);
+            }
         }
         sc.close();
     }
