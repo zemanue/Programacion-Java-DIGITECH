@@ -143,26 +143,25 @@ public class POOCine {
             }
         }
 
-        Espectador[] espectadores = {
-                new Espectador("Jose Ramírez", 21, 50.15),
-                new Espectador("Isabel Johansson", 29, 76.35),
-                new Espectador("Manuel Redondo", 27, 80.25),
-                new Espectador("Teresa Ruiz", 18, 17.90),
-                new Espectador("Íker Jiménez", 42, 3.50),
-                new Espectador("Luis Fuertes", 50, 90.35),
-                new Espectador("Rosa Prieto", 61, 9.10),
-                new Espectador("Paula Lluch", 38, 54.60),
-                new Espectador("Jaime Reque", 46, 150.99),
-                new Espectador("Esperanza Costas", 13, 4),
-                new Espectador("Dylan Montiel", 35, 96.45),
-                new Espectador("Samira Conde", 19, 21.80),
-                new Espectador("Juan Miguel Forqué", 31, 56.50),
-                new Espectador("Sandra Pizarro", 40, 105.10),
-                new Espectador("Carla Mansilla", 71, 570.20),
-                new Espectador("Jessica Frances", 37, 84.60),
-                new Espectador("Carlos Buendia", 38, 62.90),
-                new Espectador("Sergi Buendia", 10, 10.00),
-        };
+        ArrayList<Espectador> espectadores = new ArrayList<>();
+                espectadores.add(new Espectador("Jose Ramírez", 21, 50.15));
+                espectadores.add(new Espectador("Isabel Johansson", 29, 76.35));
+                espectadores.add(new Espectador("Manuel Redondo", 27, 80.25));
+                espectadores.add(new Espectador("Teresa Ruiz", 18, 17.90));
+                espectadores.add(new Espectador("Íker Jiménez", 42, 3.50));
+                espectadores.add(new Espectador("Luis Fuertes", 50, 90.35));
+                espectadores.add(new Espectador("Rosa Prieto", 61, 9.10));
+                espectadores.add(new Espectador("Paula Lluch", 38, 54.60));
+                espectadores.add(new Espectador("Jaime Reque", 46, 150.99));
+                espectadores.add(new Espectador("Esperanza Costas", 13, 4));
+                espectadores.add(new Espectador("Dylan Montiel", 35, 96.45));
+                espectadores.add(new Espectador("Samira Conde", 19, 21.80));
+                espectadores.add(new Espectador("Juan Miguel Forqué", 31, 56.50));
+                espectadores.add(new Espectador("Sandra Pizarro", 40, 105.10));
+                espectadores.add(new Espectador("Carla Mansilla", 71, 570.20));
+                espectadores.add(new Espectador("Jessica Frances", 37, 84.60));
+                espectadores.add(new Espectador("Carlos Buendia", 38, 62.90));
+                espectadores.add(new Espectador("Sergi Buendia", 10, 10.00));
 
         
         boolean repetir = true;
@@ -175,10 +174,33 @@ public class POOCine {
                 System.out.println((i + 1) + ". " + peliculasProyectadas.get(i).getTitulo());
             }
             int numPelicula = sc.nextInt();
+            sc.nextLine();
             if (numPelicula < 1 || numPelicula > 6) {
                 System.out.println("Introduce un número válido (entre 1 y " + peliculasProyectadas.size() + ").");
             } else {
                 System.out.println("Vas a ver " + peliculasProyectadas.get(numPelicula - 1).getTitulo());
+            }
+
+            System.out.println("Escribe tus datos a continuación: ");
+            System.out.println("Edad: ");
+            int edad = sc.nextInt();
+            sc.nextLine();
+            if (edad < peliculasProyectadas.get(numPelicula - 1).getEdadMinima()) {
+                System.out.println("Lo siento, la película es para personas mayores de " + peliculasProyectadas.get(numPelicula - 1).getEdadMinima());
+                System.out.println("Prueba otra película adecuada para tu edad.");
+            } else {
+                System.out.println("Dinero que tienes contigo: ");
+                double dineroQueTiene = sc.nextDouble();
+                sc.nextLine();
+                if (dineroQueTiene < precioEntrada) {
+                    System.out.println("Lo siento, no tienes dinero suficiente para entrar al cine. La entrada cuesta " + precioEntrada + " euros.");
+                } else {
+                    System.out.println("Muy bien, puedes entrar a ver la película.");
+                    System.out.print("Nombre y primer apellido: ");
+                    String nombre = sc.nextLine();
+                    Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);
+                    espectadores.add(espectadorTu);
+                }
             }
         }
 
