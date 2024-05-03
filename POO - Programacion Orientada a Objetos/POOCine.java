@@ -15,6 +15,7 @@ ocupado o no el asiento.
 */
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class Pelicula {
     private String titulo; 
@@ -161,6 +162,26 @@ public class POOCine {
                 new Espectador("Jessica Frances", 37, 84.60),
                 new Espectador("Carlos Buendia", 38, 62.90),
                 new Espectador("Sergi Buendia", 10, 10.00),
-    };
+        };
+
+        
+        boolean repetir = true;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Bienvenido al cine.");
+        while (repetir) {
+            System.out.println("¿Qué película quieres ver? Escribe el número correspondiente");
+            for (int i = 0; i < peliculasProyectadas.size(); i++) {
+                System.out.println((i + 1) + ". " + peliculasProyectadas.get(i).getTitulo());
+            }
+            int numPelicula = sc.nextInt();
+            if (numPelicula < 1 || numPelicula > 6) {
+                System.out.println("Introduce un número válido (entre 1 y " + peliculasProyectadas.size() + ").");
+            } else {
+                System.out.println("Vas a ver " + peliculasProyectadas.get(numPelicula - 1).getTitulo());
+            }
+        }
+
+            sc.close();
     }
 }
