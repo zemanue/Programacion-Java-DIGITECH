@@ -14,6 +14,8 @@ empieza al final de la matriz como se muestra en la tabla. También deberemos sa
 ocupado o no el asiento.
 */
 
+import java.util.ArrayList;
+
 class Pelicula {
     private String titulo; 
     private int duracionMinutos;
@@ -113,25 +115,52 @@ class Asiento {
     }
 
     //Constructor
-    public Asiento(char columna, int fila, boolean ocupado) {
+    public Asiento(char columna, int fila) {
         this.columna = columna;
         this.fila = fila;
-        this.ocupado = ocupado;
+        this.ocupado = false;
     }
 }
 
 public class POOCine {
     public static void main(String[] args) {
-        String peliculaProyectada;
-        double precioEntrada;
+        ArrayList<Pelicula> peliculasProyectadas = new ArrayList<>();
+        peliculasProyectadas.add(new Pelicula("Civil War", 169, 18, "Alex Garland"));
+        peliculasProyectadas.add(new Pelicula("The Garfield Movie", 101, 0, "Mark Dindal"));
+        peliculasProyectadas.add(new Pelicula("Immaculate", 89, 18, "Michael Mohan"));
+        peliculasProyectadas.add(new Pelicula("The Fall Guy", 125, 12, "David Leitch"));
+        peliculasProyectadas.add(new Pelicula("Challengers", 132, 16, "Luca Guadagnino"));
+        peliculasProyectadas.add(new Pelicula("Dragonkeeper", 100, 0, "Salvador Simó"));
+
+        double precioEntrada = 8.90;
 
         Asiento[][] asientos = new Asiento[8][9];
-        //Rellenar automáticamente con letras de la A a la J (9 columnas) y números del 1 al 8 (filas)
+        // Rellenar automáticamente con letras de la A a la J (9 columnas) y números del 1 al 8 (8 filas)
         for (int i = 0; i < asientos.length; i++) {
             for (int j = 0; j < asientos[i].length; j++) {
-
+                asientos[i][j] = new Asiento((char) ('A' + j), i + 1);
             }
         }
 
+        Espectador[] espectadores = {
+                new Espectador("Jose Ramírez", 21, 50.15),
+                new Espectador("Isabel Johansson", 29, 76.35),
+                new Espectador("Manuel Redondo", 27, 80.25),
+                new Espectador("Teresa Ruiz", 18, 17.90),
+                new Espectador("Íker Jiménez", 42, 3.50),
+                new Espectador("Luis Fuertes", 50, 90.35),
+                new Espectador("Rosa Prieto", 61, 9.10),
+                new Espectador("Paula Lluch", 38, 54.60),
+                new Espectador("Jaime Reque", 46, 150.99),
+                new Espectador("Esperanza Costas", 13, 4),
+                new Espectador("Dylan Montiel", 35, 96.45),
+                new Espectador("Samira Conde", 19, 21.80),
+                new Espectador("Juan Miguel Forqué", 31, 56.50),
+                new Espectador("Sandra Pizarro", 40, 105.10),
+                new Espectador("Carla Mansilla", 71, 570.20),
+                new Espectador("Jessica Frances", 37, 84.60),
+                new Espectador("Carlos Buendia", 38, 62.90),
+                new Espectador("Sergi Buendia", 10, 10.00),
+    };
     }
 }
