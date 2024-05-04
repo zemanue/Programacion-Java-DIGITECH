@@ -154,7 +154,7 @@ public class POOCine {
 
         Asiento[][] asientos = new Asiento[8][9];
         // Rellenar automáticamente con letras de la A a la J (9 columnas) y números del 1 al 8 (8 filas)
-        for (int i = 0; i < asientos.length; i++) {
+        for (int i = asientos.length-1; i >= 0; i--) {
             for (int j = 0; j < asientos[i].length; j++) {
                 asientos[i][j] = new Asiento((char) ('A' + j), i + 1);
             }
@@ -248,5 +248,14 @@ public class POOCine {
             }
         }
             sc.close();
+    }
+
+    public static void imprimirAsientos(Asiento[][] asientos) {
+        for (int i = asientos.length-1; i >= 0; i--) {
+            for (int j = 0; j < asientos[i].length; j++) {
+                System.out.print(asientos[i][j].getColumna() + "" + asientos[i][j].getFila() + " ");
+            }
+            System.out.println("");
+        }
     }
 }
