@@ -141,8 +141,20 @@ class Asiento {
 }
 
 public class POOCine {
+
+    static ArrayList<Pelicula> peliculasProyectadas = new ArrayList<>();
+    static ArrayList<Espectador> espectadores = new ArrayList<>();
+    static double precioEntrada = 8.90;
+    static Asiento[][] asientos = new Asiento[8][9];
+
+    static boolean repetir = true;
+    static int numDias = 1, numSesion = 1;
+    static Scanner sc = new Scanner(System.in);
+    static Random random = new Random();
+
     public static void main(String[] args) {
-        ArrayList<Pelicula> peliculasProyectadas = new ArrayList<>();
+
+        //Registrar las películas en la lista de películas proyectadas
         peliculasProyectadas.add(new Pelicula("Civil War", 169, 18, "Alex Garland"));
         peliculasProyectadas.add(new Pelicula("The Garfield Movie", 101, 0, "Mark Dindal"));
         peliculasProyectadas.add(new Pelicula("Immaculate", 89, 18, "Michael Mohan"));
@@ -150,46 +162,38 @@ public class POOCine {
         peliculasProyectadas.add(new Pelicula("Challengers", 132, 16, "Luca Guadagnino"));
         peliculasProyectadas.add(new Pelicula("Dragonkeeper", 100, 0, "Salvador Simó"));
 
-        double precioEntrada = 8.90;
-
-        Asiento[][] asientos = new Asiento[8][9];
-        // Rellenar automáticamente con letras de la A a la J (9 columnas) y números del 1 al 8 (8 filas)
+        // Rellenar los asientos automáticamente con letras de la A a la J (9 columnas) y números del 1 al 8 (8 filas)
         for (int i = asientos.length-1; i >= 0; i--) {
             for (int j = 0; j < asientos[i].length; j++) {
                 asientos[i][j] = new Asiento((char) ('A' + j), i + 1);
             }
         }
 
-        ArrayList<Espectador> espectadores = new ArrayList<>();
-                espectadores.add(new Espectador("Jose Ramírez", 21, 50.15));
-                espectadores.add(new Espectador("Isabel Johansson", 29, 76.35));
-                espectadores.add(new Espectador("Manuel Redondo", 27, 80.25));
-                espectadores.add(new Espectador("Teresa Ruiz", 18, 17.90));
-                espectadores.add(new Espectador("Íker Jiménez", 42, 3.50));
-                espectadores.add(new Espectador("Luis Fuertes", 50, 90.35));
-                espectadores.add(new Espectador("Rosa Prieto", 61, 9.10));
-                espectadores.add(new Espectador("Paula Lluch", 38, 54.60));
-                espectadores.add(new Espectador("Jaime Reque", 46, 150.99));
-                espectadores.add(new Espectador("Esperanza Costas", 13, 4));
-                espectadores.add(new Espectador("Dylan Montiel", 35, 96.45));
-                espectadores.add(new Espectador("Samira Conde", 15, 21.80));
-                espectadores.add(new Espectador("Juan Miguel Forqué", 31, 56.50));
-                espectadores.add(new Espectador("Sandra Pizarro", 40, 105.10));
-                espectadores.add(new Espectador("Carla Mansilla", 71, 570.20));
-                espectadores.add(new Espectador("Jessica Frances", 37, 84.60));
-                espectadores.add(new Espectador("Carlos Buendia", 38, 62.90));
-                espectadores.add(new Espectador("Sergi Buendia", 10, 10.00));
-                espectadores.add(new Espectador("Mar Fuentes", 24, 101.40));
-                espectadores.add(new Espectador("Xavi Montes", 19, 90.10));
-                espectadores.add(new Espectador("Amanda Cuesta", 13, 3.00));
-                espectadores.add(new Espectador("Antonio Fernández", 30, 78.90));
-                espectadores.add(new Espectador("Ángela Torres", 25, 32.00));
+        //Añadir personas a la lista de espectadores
+        espectadores.add(new Espectador("Jose Ramírez", 21, 50.15));
+        espectadores.add(new Espectador("Isabel Johansson", 29, 76.35));
+        espectadores.add(new Espectador("Manuel Redondo", 27, 80.25));
+        espectadores.add(new Espectador("Teresa Ruiz", 18, 17.90));
+        espectadores.add(new Espectador("Íker Jiménez", 42, 3.50));
+        espectadores.add(new Espectador("Luis Fuertes", 50, 90.35));
+        espectadores.add(new Espectador("Rosa Prieto", 61, 9.10));
+        espectadores.add(new Espectador("Paula Lluch", 38, 54.60));
+        espectadores.add(new Espectador("Jaime Reque", 46, 150.99));
+        espectadores.add(new Espectador("Esperanza Costas", 13, 4));
+        espectadores.add(new Espectador("Dylan Montiel", 35, 96.45));
+        espectadores.add(new Espectador("Samira Conde", 15, 21.80));
+        espectadores.add(new Espectador("Juan Miguel Forqué", 31, 56.50));
+        espectadores.add(new Espectador("Sandra Pizarro", 40, 105.10));
+        espectadores.add(new Espectador("Carla Mansilla", 71, 570.20));
+        espectadores.add(new Espectador("Jessica Frances", 37, 84.60));
+        espectadores.add(new Espectador("Carlos Buendia", 38, 62.90));
+        espectadores.add(new Espectador("Sergi Buendia", 10, 10.00));
+        espectadores.add(new Espectador("Mar Fuentes", 24, 101.40));
+        espectadores.add(new Espectador("Xavi Montes", 19, 90.10));
+        espectadores.add(new Espectador("Amanda Cuesta", 13, 3.00));
+        espectadores.add(new Espectador("Antonio Fernández", 30, 78.90));
+        espectadores.add(new Espectador("Ángela Torres", 25, 32.00));     
 
-        
-        boolean repetir = true;
-        int numDias = 1, numSesion = 1;
-        Scanner sc = new Scanner(System.in);
-        Random random = new Random();
 
         System.out.println("Bienvenido al cine. Contamos con solo una sala de cine, pero hacemos 3 sesiones al día.");
         while (repetir) {
@@ -218,13 +222,9 @@ public class POOCine {
                     Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);
 
                     System.out.println("La sala tiene " + asientos.length + " filas y " + asientos[0].length + " columnas.");
-                    for (int i = 0; i < asientos.length; i++) {
-                        for (int j = 0; j < asientos[i].length; j++) {
-                            System.out.print(asientos[i][j].getColumna() + "" + asientos[i][j].getFila() + " ");
-                        }
-                        System.out.println("");    
-                    }
-                    espectadores.add(espectadorTu);
+                    System.out.println("Asientos ocupados: ");
+                    adjudicarAsientos(numPelicula);
+                    
                 }
             }
             while (repetir) {
@@ -250,7 +250,29 @@ public class POOCine {
             sc.close();
     }
 
-    public static void imprimirAsientos(Asiento[][] asientos) {
+    public static void adjudicarAsientos(int numPelicula) {
+        for (Espectador espectador : espectadores) {
+            // Si la edad del espectador es >= edad mínima permitida y tiene suficiente dinero, se procede a asignar un asiento
+            if (espectador.getEdad() >= peliculasProyectadas.get(numPelicula).getEdadMinima()
+                    && espectador.getDineroQueTiene() >= precioEntrada) {                            
+                //Se genera un número aleatorio de fila y columna, y se comprueba que no se haya ocupado el asiento.
+                boolean numRepetido = true;
+                while (numRepetido) {
+                    int fila = random.nextInt(asientos.length);
+                    int columna = random.nextInt(asientos[0].length);
+                    //Si el asiento no está ocupado
+                    if (!asientos[fila][columna].isOcupado()) {
+                        System.out.print(asientos[fila][columna].getColumna() + "" + asientos[fila][columna].getFila() + ": ");
+                        System.out.println(espectador.getNombre());
+                        asientos[fila][columna].setOcupado(true); //El asiento pasa a estar ocupado y ya no puede ser elegido de nuevo
+                        numRepetido = false;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void imprimirAsientos() {
         for (int i = asientos.length-1; i >= 0; i--) {
             for (int j = 0; j < asientos[i].length; j++) {
                 System.out.print(asientos[i][j].getColumna() + "" + asientos[i][j].getFila() + " ");
