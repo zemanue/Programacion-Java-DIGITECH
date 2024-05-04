@@ -12,10 +12,27 @@ entrada en el cine.
 • Los asientos son etiquetados por una letra (columna) y un número (fila), la fila 1
 empieza al final de la matriz como se muestra en la tabla. También deberemos saber si está
 ocupado o no el asiento.
+(continuación del ejercicio, sacado de https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/)
+
+8 A 8 B 8 C 8 D 8 E 8 F 8 G 8 H 8 I
+7 A 7 B 7 C 7 D 7 E 7 F 7 G 7 H 7 I
+6 A 6 B 6 C 6 D 6 E 6 F 6 G 6 H 6 I
+5 A 5 B 5 C 5 D 5 E 5 F 5 G 5 H 5 I
+4 A 4 B 4 C 4 D 4 E 4 F 4 G 4 H 4 I
+3 A 3 B 3 C 3 D 3 E 3 F 3 G 3 H 3 I
+2 A 2 B 2 C 2 D 2 E 2 F 2 G 2 H 2 I
+1 A 1 B 1 C 1 D 1 E 1 F 1 G 1 H 1 I
+
+Realizaremos una pequeña simulación, en el que generaremos muchos espectadores y los sentaremos aleatoriamente (no podemos donde ya este ocupado).
+En esta versión sentaremos a los espectadores de uno en uno.
+
+Solo se podrá sentar si tienen el suficiente dinero, hay espacio libre y tiene edad para ver la película, en caso de que el asiento este ocupado le buscamos uno libre.
+Los datos del espectador y la película pueden ser totalmente aleatorios.
 */
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 class Pelicula {
     private String titulo; 
@@ -155,41 +172,41 @@ public class POOCine {
                 espectadores.add(new Espectador("Jaime Reque", 46, 150.99));
                 espectadores.add(new Espectador("Esperanza Costas", 13, 4));
                 espectadores.add(new Espectador("Dylan Montiel", 35, 96.45));
-                espectadores.add(new Espectador("Samira Conde", 19, 21.80));
+                espectadores.add(new Espectador("Samira Conde", 15, 21.80));
                 espectadores.add(new Espectador("Juan Miguel Forqué", 31, 56.50));
                 espectadores.add(new Espectador("Sandra Pizarro", 40, 105.10));
                 espectadores.add(new Espectador("Carla Mansilla", 71, 570.20));
                 espectadores.add(new Espectador("Jessica Frances", 37, 84.60));
                 espectadores.add(new Espectador("Carlos Buendia", 38, 62.90));
                 espectadores.add(new Espectador("Sergi Buendia", 10, 10.00));
+                espectadores.add(new Espectador("Mar Fuentes", 24, 101.40));
+                espectadores.add(new Espectador("Xavi Montes", 19, 90.10));
+                espectadores.add(new Espectador("Amanda Cuesta", 13, 3.00));
+                espectadores.add(new Espectador("Antonio Fernández", 30, 78.90));
+                espectadores.add(new Espectador("Ángela Torres", 25, 32.00));
 
         
         boolean repetir = true;
+        int numDias = 1, numSesion = 1;
         Scanner sc = new Scanner(System.in);
+        Random random = new Random();
 
-        System.out.println("Bienvenido al cine.");
+        System.out.println("Bienvenido al cine. Contamos con solo una sala de cine, pero hacemos 3 sesiones al día.");
         while (repetir) {
-            System.out.println("¿Qué película quieres ver? Escribe el número correspondiente");
-            for (int i = 0; i < peliculasProyectadas.size(); i++) {
-                System.out.println((i + 1) + ". " + peliculasProyectadas.get(i).getTitulo());
-            }
-            int numPelicula = sc.nextInt();
-            sc.nextLine();
-            if (numPelicula < 1 || numPelicula > 6) {
-                System.out.println("Introduce un número válido (entre 1 y " + peliculasProyectadas.size() + ").");
-            } else {
-                System.out.println("Vas a ver " + peliculasProyectadas.get(numPelicula - 1).getTitulo());
-            }
+            System.out.println("Día " + numDias + ", sesión " + numSesion);
+            int numPelicula = random.nextInt(0, 6);
+            System.out.println("Se va a proyectar " + peliculasProyectadas.get(numPelicula).getTitulo());
+            //Añadir una pregunta al usuario sobre si quiere verla: si sí, pregunta sus datos. Si no, pasa a la siguiente sesión.
 
             System.out.println("Escribe tus datos a continuación: ");
-            System.out.println("Edad: ");
+            System.out.print("Edad: ");
             int edad = sc.nextInt();
             sc.nextLine();
-            if (edad < peliculasProyectadas.get(numPelicula - 1).getEdadMinima()) {
-                System.out.println("Lo siento, la película es para personas mayores de " + peliculasProyectadas.get(numPelicula - 1).getEdadMinima());
-                System.out.println("Prueba otra película adecuada para tu edad.");
+            if (edad < peliculasProyectadas.get(numPelicula).getEdadMinima()) {
+                System.out.println("Lo siento, la película es para personas mayores de " + peliculasProyectadas.get(numPelicula).getEdadMinima());
+                System.out.println("Prueba otra sesión en la que la película sea adecuada a tu edad.");
             } else {
-                System.out.println("Dinero que tienes contigo: ");
+                System.out.print("Dinero que tienes contigo: ");
                 double dineroQueTiene = sc.nextDouble();
                 sc.nextLine();
                 if (dineroQueTiene < precioEntrada) {
@@ -199,11 +216,37 @@ public class POOCine {
                     System.out.print("Nombre y primer apellido: ");
                     String nombre = sc.nextLine();
                     Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);
+
+                    System.out.println("La sala tiene " + asientos.length + " filas y " + asientos[0].length + " columnas.");
+                    for (int i = 0; i < asientos.length; i++) {
+                        for (int j = 0; j < asientos[i].length; j++) {
+                            System.out.print(asientos[i][j].getColumna() + "" + asientos[i][j].getFila() + " ");
+                        }
+                        System.out.println("");    
+                    }
                     espectadores.add(espectadorTu);
                 }
             }
+            while (repetir) {
+                System.out.println("¿Quieres ver la próxima película que se proyecte? (s/n)");
+                String respuesta = sc.nextLine();
+                if (respuesta.equalsIgnoreCase("s")) {
+                    if (numSesion >= 3) {
+                        numDias++;
+                        numSesion = 1;
+                        break;
+                    } else {
+                        numSesion++;
+                        break;
+                    }
+                } else if (respuesta.equalsIgnoreCase("n")) {
+                    System.out.println("Gracias por venir, vuelve cuando quieras.");
+                    repetir = false;
+                } else {
+                    System.out.println("Introduce un carácter válido ('s' para sí, 'n' para no).");
+                }
+            }
         }
-
             sc.close();
     }
 }
