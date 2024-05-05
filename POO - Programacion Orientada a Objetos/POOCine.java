@@ -197,7 +197,7 @@ public class POOCine {
 
         System.out.println("Bienvenido al cine. Contamos con solo una sala de cine, pero hacemos 3 sesiones al día.");
         while (repetir) {
-            System.out.println("Día " + numDias + ", sesión " + numSesion);
+            System.out.println("Día " + numDias + ", sesión " + numSesion + ".");
             int numPelicula = random.nextInt(0, 6);
             System.out.println("Se va a proyectar " + peliculasProyectadas.get(numPelicula).getTitulo());
             //Añadir una pregunta al usuario sobre si quiere verla: si sí, pregunta sus datos. Si no, pasa a la siguiente sesión.
@@ -210,7 +210,7 @@ public class POOCine {
                 System.out.println("Lo siento, la película es para personas mayores de " + peliculasProyectadas.get(numPelicula).getEdadMinima());
                 System.out.println("Prueba otra sesión en la que la película sea adecuada a tu edad.");
             } else {
-                System.out.print("Dinero que tienes contigo: ");
+                System.out.print("Euros que tienes contigo: ");
                 double dineroQueTiene = sc.nextDouble();
                 sc.nextLine();
                 if (dineroQueTiene < precioEntrada) {
@@ -222,9 +222,33 @@ public class POOCine {
                     Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);
 
                     System.out.println("La sala tiene " + asientos.length + " filas y " + asientos[0].length + " columnas.");
-                    System.out.println("Asientos ocupados: ");
+                    System.out.println("Estos son los asientos ocupados: ");
                     adjudicarAsientos(numPelicula);
-                    
+                    while (repetir) {
+                        System.out.println("¿Qué asiento quieres elegir?");
+                        System.out.print("Elige una columna (A-I): ");
+                        char columna = sc.nextLine().toUpperCase().charAt(0) ; // Convertir la entrada a mayúsculas y obtener el primer carácter
+                        System.out.print("Elige una fila (1-8): ");
+                        int fila = sc.nextInt();
+                        sc.nextLine();
+
+                        int columnaI = columna - 'A';
+                        int filaI = fila - 1;
+
+                        if (filaI >= 0 && filaI <8 && columnaI >= 0 && columnaI < 9) {
+                            //Si el asiento no está ocupado
+                            if (!asientos[filaI][columnaI].isOcupado()) {
+                                System.out.println("El asiento " + (columna) + (fila) + " está disponible.");
+                                System.out.println("¡Disfruta la película!");
+                                repetir = false;
+                            } else {
+                                System.out.println("El asiento " + (columna) + (fila) + " no esta disponible.");
+                            }
+                        } else {
+                            System.out.println("Asiento no válido. Por favor, selecciona una columna entre A-I y una fila entre 1-8."); 
+                        }
+                    }
+                    repetir = true;
                 }
             }
             while (repetir) {
