@@ -147,7 +147,7 @@ public class POOCine {
     static double precioEntrada = 8.90;
     static Asiento[][] asientos = new Asiento[8][9];
 
-    static boolean repetir = true;
+    static boolean repetir1, repetir2;
     static int numDias = 1, numSesion = 1;
     static Scanner sc = new Scanner(System.in);
     static Random random = new Random();
@@ -194,9 +194,13 @@ public class POOCine {
         espectadores.add(new Espectador("Antonio Fernández", 30, 78.90));
         espectadores.add(new Espectador("Ángela Torres", 25, 32.00));     
 
+        repetir1 = true;
 
         System.out.println("Bienvenido al cine. Contamos con solo una sala de cine, pero hacemos 3 sesiones al día.");
-        while (repetir) {
+        while (repetir1) {
+            
+            repetir2 = true;
+            
             System.out.println("Día " + numDias + ", sesión " + numSesion + ".");
             int numPelicula = random.nextInt(0, 6);
             System.out.println("Se va a proyectar " + peliculasProyectadas.get(numPelicula).getTitulo());
@@ -217,14 +221,15 @@ public class POOCine {
                     System.out.println("Lo siento, no tienes dinero suficiente para entrar al cine. La entrada cuesta " + precioEntrada + " euros.");
                 } else {
                     System.out.println("Muy bien, puedes entrar a ver la película.");
+                    /* Este bloque no es necesario porque por ahora no hace falta registrar al usuario en la lista de espectadores.
                     System.out.print("Nombre y primer apellido: ");
                     String nombre = sc.nextLine();
-                    Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);
+                    Espectador espectadorTu = new Espectador(nombre, edad, dineroQueTiene);*/
 
                     System.out.println("La sala tiene " + asientos.length + " filas y " + asientos[0].length + " columnas.");
                     System.out.println("Estos son los asientos ocupados: ");
                     adjudicarAsientos(numPelicula);
-                    while (repetir) {
+                    while (repetir1) {
                         System.out.println("¿Qué asiento quieres elegir?");
                         System.out.print("Elige una columna (A-I): ");
                         char columna = sc.nextLine().toUpperCase().charAt(0) ; // Convertir la entrada a mayúsculas y obtener el primer carácter
@@ -240,7 +245,7 @@ public class POOCine {
                             if (!asientos[filaI][columnaI].isOcupado()) {
                                 System.out.println("El asiento " + (columna) + (fila) + " está disponible.");
                                 System.out.println("¡Disfruta la película!");
-                                repetir = false;
+                                repetir1 = false;
                             } else {
                                 System.out.println("El asiento " + (columna) + (fila) + " no esta disponible.");
                             }
@@ -248,30 +253,16 @@ public class POOCine {
                             System.out.println("Asiento no válido. Por favor, selecciona una columna entre A-I y una fila entre 1-8."); 
                         }
                     }
-                    repetir = true;
+                    repetir1 = true;
                 }
             }
-            while (repetir) {
+            while (repetir2) {
                 System.out.println("¿Quieres ver la próxima película que se proyecte? (s/n)");
                 String respuesta = sc.nextLine();
-                if (respuesta.equalsIgnoreCase("s")) {
-                    if (numSesion >= 3) {
-                        numDias++;
-                        numSesion = 1;
-                        break;
-                    } else {
-                        numSesion++;
-                        break;
-                    }
-                } else if (respuesta.equalsIgnoreCase("n")) {
-                    System.out.println("Gracias por venir, vuelve cuando quieras.");
-                    repetir = false;
-                } else {
-                    System.out.println("Introduce un carácter válido ('s' para sí, 'n' para no).");
-                }
+                verSiguientePelicula(respuesta);
             }
         }
-            sc.close();
+        sc.close();
     }
 
     public static void adjudicarAsientos(int numPelicula) {
@@ -293,6 +284,24 @@ public class POOCine {
                     }
                 }
             }
+        }
+    }
+
+    public static void verSiguientePelicula(String respuesta) {
+        if (respuesta.equalsIgnoreCase("s")) {
+            if (numSesion >= 3) {
+                numDias++;
+                numSesion = 1;
+            } else {
+                numSesion++;
+            }
+            repetir2 = false;
+        } else if (respuesta.equalsIgnoreCase("n")) {
+            System.out.println("Gracias por venir, vuelve cuando quieras.");
+            repetir1 = false;
+            repetir2 = false;
+        } else {
+            System.out.println("Introduce un carácter válido ('s' para sí, 'n' para no).");
         }
     }
 
