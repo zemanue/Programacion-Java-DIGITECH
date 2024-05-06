@@ -50,7 +50,17 @@ public abstract class Planta {
         Planta ficus = new PlantaDeInterior("ficus", "interior");
         ficus.mostrarPropiedades();
         ficus.sistemaDeRiego(ficus.getTipoDePlanta());
+        System.out.println("");
 
+        Planta calendula = new PlantaDeInterior("caléndula", "exterior");
+        calendula.mostrarPropiedades();
+        calendula.sistemaDeRiego(calendula.getTipoDePlanta());
+        System.out.println("");
+
+        Planta limonero = new PlantaDeInterior("limonero", "frutal");
+        limonero.mostrarPropiedades();
+        limonero.sistemaDeRiego(limonero.getTipoDePlanta());
+        System.out.println("");
     }
 }
 
