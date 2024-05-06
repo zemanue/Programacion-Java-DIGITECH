@@ -10,8 +10,16 @@ package abstractas;
 
 public abstract class Planta {
 
+    protected String nombre;
     protected String tipoDePlanta;
-    protected double litrosDeAgua = 0;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String tipoDePlanta) {
+        this.nombre = tipoDePlanta;
+    }
 
     public String getTipoDePlanta() {
         return tipoDePlanta;
@@ -21,29 +29,54 @@ public abstract class Planta {
         this.tipoDePlanta = tipoDePlanta;
     }
 
-    public double getLitrosDeAgua() {
-        return litrosDeAgua;
-    }
-
-    public void setLitrosDeAgua(double litrosDeAgua) {
-        this.litrosDeAgua = litrosDeAgua;
-    }
-
     public void sistemaDeRiego(String tipoDePlanta) {
+        System.out.print("Sistema de riego: ");
         if (tipoDePlanta.equalsIgnoreCase("interior")) {
-            System.out.println("Regando por goteo.");
-            litrosDeAgua += 0.1;
+            System.out.println("Riego por goteo.");
         } else if(tipoDePlanta.equalsIgnoreCase("exterior") || tipoDePlanta.equalsIgnoreCase("frutal")) {
             System.out.println("Riego permanente.");
-            litrosDeAgua += 10;
         } else {
-            System.out.println("");
+            System.out.println("El tipo de planta no es válido.");
         }
-    };
+    }
+
+    public void mostrarPropiedades() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Tipo de planta: " + tipoDePlanta);
+    }
 
     public static void main(String[] args) {
-        
-        System.out.println("Los datos de mi clase abstracta son ");
 
+        Planta ficus = new PlantaDeInterior("ficus", "interior");
+        ficus.mostrarPropiedades();
+        ficus.sistemaDeRiego(ficus.getTipoDePlanta());
+
+    }
+}
+
+class PlantaDeInterior extends Planta {
+
+    // Constructor
+    public PlantaDeInterior(String nombre, String tipoDePlanta) {
+        this.nombre = nombre;
+        this.tipoDePlanta = tipoDePlanta;
+    }
+}
+
+class PlantaDeExterior extends Planta {
+
+    // Constructor
+    public PlantaDeExterior(String nombre, String tipoDePlanta) {
+        this.nombre = nombre;
+        this.tipoDePlanta = tipoDePlanta;
+    }
+}
+
+class PlantaFrutal extends Planta {
+
+    // Constructor
+    public PlantaFrutal(String nombre, String tipoDePlanta) {
+        this.nombre = nombre;
+        this.tipoDePlanta = tipoDePlanta;
     }
 }
