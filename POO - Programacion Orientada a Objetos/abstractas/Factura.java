@@ -65,12 +65,32 @@ public abstract class Factura {
         this.totalfinal = totalfinal;
     }
 
-    //Constructor
+    //Constructores
     public Factura(int nfactura, double importe) {
         this.nfactura = nfactura;
         this.importe = importe;
+        this.detalle = "Sin detalle";
     }
 
+    public Factura(int nfactura, double importe, String detalle) {
+        this.nfactura = nfactura;
+        this.importe = importe;
+        this.detalle = detalle;
+    }
 
+    public void mostrarDatos() {
+        System.out.println("Número de factura: " + getNfactura());
+        System.out.println("Importe: " + getImporte());
+        System.out.println("Detalle: " + getDetalle());
+        System.out.println("IVA del producto: " + calcularIva());
+        System.out.println("Precio total final: " + totalFinal());
+    }
 
+    public double calcularIva() {
+        return getImporte() * 0.21;
+    }
+
+    public double totalFinal() {
+        return calcularIva() + getImporte();
+    }
 }
