@@ -79,18 +79,38 @@ public abstract class Factura {
     }
 
     public void mostrarDatos() {
-        System.out.println("Número de factura: " + getNfactura());
-        System.out.println("Importe: " + getImporte());
-        System.out.println("Detalle: " + getDetalle());
-        System.out.println("IVA del producto: " + calcularIva());
-        System.out.println("Precio total final: " + totalFinal());
+        System.out.println("Datos de la factura");
+        System.out.println(" - Número de factura: " + getNfactura());
+        System.out.println(" - Importe: " + getImporte() + " euros");
+        System.out.println(" - Detalle: " + getDetalle());
+        System.out.println(" - IVA del producto: " + calcularIva() + " euros");
+        System.out.println(" - Precio total final: " + totalFinal() + " euros");
     }
 
     public double calcularIva() {
-        return getImporte() * 0.21;
+        double iva = getImporte() * 0.21;
+        double ivaRound = (double) Math.round(iva*100) / 100;
+        return ivaRound;
     }
 
     public double totalFinal() {
         return calcularIva() + getImporte();
+    }
+}
+
+class Main extends Factura {
+    //Constructores
+    public Main(int nfactura, double importe) {
+        super(nfactura, importe);
+    }
+    public Main(int nfactura, double importe, String detalle) {
+        super(nfactura, importe, detalle);
+    }
+
+    public static void main(String[] args) {
+        Main factura1 = new Main(123456789, 79);
+        factura1.mostrarDatos();
+        System.out.println("Cálculo del método calcularIva(): " + factura1.calcularIva());
+        System.out.println("Cálculo del método totalFinal(): " + factura1.totalFinal());
     }
 }
