@@ -17,8 +17,8 @@ public abstract class Planta {
         return nombre;
     }
 
-    public void setNombre(String tipoDePlanta) {
-        this.nombre = tipoDePlanta;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getTipoDePlanta() {
