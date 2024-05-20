@@ -14,7 +14,7 @@ Tambien, crear 5 objetos de la clase Empleado y llamar a sus métodos
 
 package Tarea9Herencia;
 
-public class Main {
+public class MainPersona {
 
     public static void main(String[] args) {
         //Objetos Persona
