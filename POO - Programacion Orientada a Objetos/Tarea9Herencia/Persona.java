@@ -29,10 +29,11 @@ public class Persona {
     }
 
     // Método para imprimir todos los datos
-    public void imprimirDatos(Persona persona) {
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Apellidos: " + getApellidos());
-        System.out.println("Edad: " + getEdad());
+    public void imprimirDatos() {
+        System.out.println("Datos de la persona: ");
+        System.out.println("- Nombre: " + getNombre());
+        System.out.println("- Apellidos: " + getApellidos());
+        System.out.println("- Edad: " + getEdad());
     }
 
     //Constructores
@@ -43,6 +44,7 @@ public class Persona {
     }
     public Persona(String nombre, String apellidos) {
         this.nombre = nombre;
+        this.apellidos = apellidos;
     }
     public Persona(String nombre, String apellidos, int edad) {
         this.nombre = nombre;

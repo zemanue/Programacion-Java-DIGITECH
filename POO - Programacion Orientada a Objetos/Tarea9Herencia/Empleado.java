@@ -18,24 +18,25 @@ public class Empleado extends Persona{
         if (sueldo > 0) {
             this.sueldo = sueldo;
         } else {
-            System.out.println("No se ha asignado ningún sueldo porque debe ser mayor a 0€.");
+            System.out.println("No se ha asignado ningún sueldo porque debe ser mayor a 0 euros.");
         }
     }
     public void setComision(double comision) {
         if (sueldo > 0) {
             this.comision = comision;
         } else {
-            System.out.println("No se ha asignado ninguna comisión porque debe ser mayor a 0€.");
+            System.out.println("No se ha asignado ninguna comisión porque debe ser mayor a 0 euros.");
         }
     }
 
     // Métodos
-    public void imprimirDatos(Empleado empleado) {
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Apellidos: " + getApellidos());
-        System.out.println("Edad: " + getEdad());
-        System.out.println("Sueldo: " + getSueldo() + "€");
-        System.out.println("Comisión: " + getComision()+ "€");
+    public void imprimirDatos() {
+        System.out.println("Datos del empleado: ");
+        System.out.println("- Nombre: " + getNombre());
+        System.out.println("- Apellidos: " + getApellidos());
+        System.out.println("- Edad: " + getEdad());
+        System.out.println("- Sueldo en euros: " + getSueldo());
+        System.out.println("- Comisión en euros: " + getComision());
     }
 
     // Constructores
@@ -58,20 +59,20 @@ public class Empleado extends Persona{
     }
     public Empleado(String nombre, String apellidos, double sueldo) {
         super(nombre, apellidos);
-        this.sueldo = sueldo;
+        setSueldo(sueldo);
     }
     public Empleado(String nombre, String apellidos, double sueldo, double comision) {
         super(nombre, apellidos);
-        this.sueldo = sueldo;
-        this.comision = comision;
+        setSueldo(sueldo);
+        setComision(comision);
     }
     public Empleado(String nombre, String apellidos, int edad, double sueldo) {
         super(nombre, apellidos, edad);
-        this.sueldo = sueldo;
+        setSueldo(sueldo);
     }
     public Empleado(String nombre, String apellidos, int edad, double sueldo, double comision) {
         super(nombre, apellidos, edad);
-        this.sueldo = sueldo;
-        this.comision = comision;
+        setSueldo(sueldo);
+        setComision(comision);
     }
 }
