@@ -39,6 +39,8 @@ public class Empleado extends Persona{
     }
 
     // Constructores
+    public Empleado (){
+    }
     public Empleado(String apellidos) {
         super(apellidos);
     }

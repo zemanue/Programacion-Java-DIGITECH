@@ -36,6 +36,8 @@ public class Persona {
     }
 
     //Constructores
+    public Persona() {
+    }
     public Persona(String apellidos) {
         this.apellidos = apellidos;
     }
