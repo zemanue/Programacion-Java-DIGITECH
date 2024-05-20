@@ -14,8 +14,9 @@ public class Turismo extends Vehiculo {
     }
     
     // Constructor
-    public Turismo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia) {
+    public Turismo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia, int numeroDePlazas) {
         super(matricula, marca, modelo, color, numeroDePuertas, potencia);
+        this.numeroDePlazas = numeroDePlazas;
     }
 
 

@@ -14,8 +14,9 @@ public class Deportivo extends Vehiculo {
     }
 
     // Constructor
-    public Deportivo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia) {
+    public Deportivo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia, boolean descapotable) {
         super(matricula, marca, modelo, color, numeroDePuertas, potencia);
+        this.descapotable = descapotable;
     }
 
 
