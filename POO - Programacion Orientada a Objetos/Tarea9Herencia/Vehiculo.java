@@ -47,6 +47,16 @@ public class Vehiculo {
         this.potencia = potencia;
     }
 
+    // Método para imprimir datos
+	public void imprimirDatos() {
+		System.out.println("- Matrícula: "+ getMatricula());
+		System.out.println("- Marca: "+ getMarca());
+		System.out.println("- Modelo: "+ getModelo());
+		System.out.println("- Color: "+ getColor());
+		System.out.println("- Puertas: "+ getNumeroDePuertas());
+		System.out.println("- Potencia en caballos: "+ getPotencia());
+	}
+
     // Constructor
     public Vehiculo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia) {
         this.matricula = matricula;

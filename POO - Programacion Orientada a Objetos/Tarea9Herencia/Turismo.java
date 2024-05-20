@@ -12,7 +12,13 @@ public class Turismo extends Vehiculo {
     public void setNumeroDePlazas(int numeroDePlazas) {
         this.numeroDePlazas = numeroDePlazas;
     }
-    
+
+    // Método para imprimir datos
+	public void imprimirDatos() {
+        super.imprimirDatos();
+        System.out.println("- Número de plazas: " + getNumeroDePlazas());
+	}
+
     // Constructor
     public Turismo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia, int numeroDePlazas) {
         super(matricula, marca, modelo, color, numeroDePuertas, potencia);

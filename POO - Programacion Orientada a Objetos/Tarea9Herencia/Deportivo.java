@@ -13,6 +13,12 @@ public class Deportivo extends Vehiculo {
         this.descapotable = descapotable;
     }
 
+    // Método para imprimir datos
+	public void imprimirDatos() {
+        super.imprimirDatos();
+        System.out.println("- Descapotable: " + isDescapotable());
+	}
+
     // Constructor
     public Deportivo(String matricula, String marca, String modelo, String color, int numeroDePuertas, int potencia, boolean descapotable) {
         super(matricula, marca, modelo, color, numeroDePuertas, potencia);
