@@ -15,26 +15,26 @@ import java.io.IOException;
 
 public class FileLeerArchivo {
 
-public static void main(String[] args) {
-    File archivo = new File("fichero-de-texto.txt");
-    FileReader lector = null;
-    try {
-        lector = new FileReader(archivo);
+    public static void main(String[] args) {
+        File archivo = new File("fichero-de-texto.txt");
+        FileReader lector = null;
         try {
-            int caracter;
-            while ((caracter = lector.read()) != -1) {
-                if (!Character.isWhitespace((char) caracter)) {
-                    System.out.print((char) caracter);
+            lector = new FileReader(archivo);
+            try {
+                int caracter;
+                while ((caracter = lector.read()) != -1) {
+                    if (!Character.isWhitespace((char) caracter)) {
+                        System.out.print((char) caracter);
+                    }
                 }
+            } catch (Exception e) {
+                System.err.println("Error inesperado: " + e.getMessage());
+            } finally {
+                lector.close();
             }
-        } catch (Exception e) {
-            System.err.println("Error inesperado: " + e.getMessage());
-        } finally {
-            lector.close();
-        }
 
-    } catch (IOException e) {
-        System.err.println("Error al leer el archivo: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
     }
-}
 }
