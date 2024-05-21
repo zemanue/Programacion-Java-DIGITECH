@@ -14,7 +14,7 @@
 - Totalfinal(),que es el subtotal + iva
  */
 
-package abstractas;
+package Abstractas;
 
 public abstract class Factura {
 

@@ -6,7 +6,7 @@ parámetro que es el tipo de planta(interior, exterior, frutal).
 - Desde el main, se deben mostrar las dos propiedades que tiene nuestra clase abstracta.
 - Desde main, utilizar el método sistema de riego. */
 
-package abstractas;
+package Abstractas;
 
 public abstract class Planta {
 
