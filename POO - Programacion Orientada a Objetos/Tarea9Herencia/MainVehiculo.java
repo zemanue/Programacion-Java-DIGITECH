@@ -10,12 +10,27 @@ si es descapotable o no.
 
 package Tarea9Herencia;
 
+import java.util.ArrayList;
+
 public class MainVehiculo {
     public static void main(String[] args) {
+
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        
         Vehiculo vehiculo1 = new Vehiculo("1919RTG", "Seat", "Ibiza", "rojo", 5, 130);
+        vehiculos.add(vehiculo1);
+
         Turismo turismo1 = new Turismo("6473LOP", "Toyota", "Corolla", "negro", 5, 160, 5);
-        Deportivo deportivo1 = new Deportivo("1919RTG", "Seat", "Ibiza", "blanco", 3, 450, true);
+        vehiculos.add(turismo1);
 
+        Deportivo deportivo1 = new Deportivo("1919RTG", "Porsche", "Panamera", "blanco", 3, 450, true);
+        vehiculos.add(deportivo1);
 
+        System.out.println("Vehículos en la lista: ");
+        for (Vehiculo vehiculo : vehiculos) {
+            System.out.println("Vehículo " + (vehiculos.indexOf(vehiculo) + 1) + ":");
+            vehiculo.imprimirDatos();
+            System.out.println("");
+        }
     }
 }
