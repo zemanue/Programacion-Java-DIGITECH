@@ -34,117 +34,18 @@ public class POOGestionarEmpleados {
     }
 
     public void comenzar(int opcion) {
-        String nombreEmpleado = "0", respuesta = "0";
         int posicion;
         switch (opcion) {
             case 1:
                 agregarNombres();
                 break;
 
-            case 2: 
+            case 2:
                 modificarUnNombre();
                 break;
 
-            case 3: // BORRAR NOMBRES
-                if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-                    System.out.println(
-                            "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-                    break;
-                }
-                System.out.println("Borrar nombres.");
-
-                do {
-                    System.out.println(
-                            "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
-                    respuesta = sc.nextLine();
-
-                    // Opción 1: borrar por posición
-                    if (respuesta.equals("1")) {
-                        System.out.println("Borrar por posición.");
-                        // Bucle do while para volver a pedir la posición del empleado.
-                        do {
-                            System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
-                            System.out.println(
-                                    "Escriba la posición en la que está registrado el nombre que desea borrar (1, 2, 3...):");
-                            posicion = sc.nextInt();
-                            sc.nextLine(); // Consumir la nueva línea después de nextInt()
-
-                            // Si el número es < 0 ó > empleados.size(), se pide de nuevo la posición
-                            // (vuelta al comienzo del do while)
-                            if (posicion < 1 || posicion > listaEmpleados.size()) {
-                                System.out.println("Debe ser un número comprendido entre 1 y " + listaEmpleados.size()
-                                        + " (el tamaño de la lista actualmente).");
-
-                                // Si el número es válido
-                            } else {
-                                System.out.println(
-                                        "El nombre asignado en esa posición es: " + listaEmpleados.get(posicion - 1));
-                                System.out.println(
-                                        "¿Es el nombre que buscaba? Escriba 's' para eliminarlo, 'n' para escribir otra posición, o 'salir' para cancelar la operación y volver al inicio.");
-                                respuesta = sc.nextLine();
-                                // if else para posibles respuestas: 's' para eliminar el nombre; 'n' para
-                                // volver a pedir la posición, 'salir' para volver al inicio
-                                if (respuesta.equalsIgnoreCase("s")) {
-                                    listaEmpleados.remove(posicion - 1);
-                                    System.out.println(
-                                            "Nombre eliminado. ¿Quiere seguir eliminando nombres? Escriba 's' para continuar, o cualquier otro texto para terminar y volver al inicio.");
-                                    respuesta = sc.nextLine();
-                                    if (respuesta.equalsIgnoreCase("s")) {
-                                        break;
-                                    }
-                                    break;
-                                } else if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a
-                                                                              // pedir la posición.
-                                    System.out.println("Buscando otra posición de la lista.");
-                                } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de
-                                                                                  // nuevo al inicio
-                                    System.out.println("Volviendo al inicio.");
-                                    break;
-                                } else { // Si teclea cualquier valor que no sea 's', 'n' o 'salir', se vuelve a pedir
-                                         // la posición.
-                                    System.out.println(
-                                            "No ha introducido carácter incluido en las opciones ('s', 'n' o 'salir').");
-                                }
-                            }
-                        } while (!respuesta.equalsIgnoreCase("salir"));
-
-                        // Opción 2: borrar por nombre
-                    } else if (respuesta.equals("2")) {
-                        System.out.println("Borrar por nombre");
-                        // Bucle do while para volver a pedir el nombre del empleado, exista o no exista
-                        // el nombre.
-                        do {
-                            System.out.println(
-                                    "Escriba el nombre del empleado que quiere eliminar de la lista, o escriba 'salir' para volver.");
-                            nombreEmpleado = sc.nextLine();
-
-                            if (nombreEmpleado.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo
-                                                                            // al inicio
-                                System.out.println("Volviendo al inicio.");
-                                break;
-                            } else if (listaEmpleados.contains(nombreEmpleado.toLowerCase())) { // Si coincide con algún
-                                                                                                // elemento de la lista,
-                                                                                                // se elimina el nombre
-                                                                                                // y se pide otro
-                                                                                                // nombre.
-                                listaEmpleados.remove(nombreEmpleado);
-                                System.out
-                                        .println("'" + nombreEmpleado + "' eliminado de la lista. ¿Quiere continuar?");
-                                break;
-                            } else { // Si no coincide, se avisa y se vuelve a pedir el nombre.
-                                System.out.println("El nombre indicado no está en la lista.");
-                                break;
-                            }
-                        } while (!nombreEmpleado.equalsIgnoreCase("salir"));
-
-                    } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
-                                                                      // inicio
-                        System.out.println("Volviendo al inicio.");
-                        break;
-                    } else {
-                        System.out.println("Introduzca un número válido.");
-                    }
-                } while (!respuesta.equalsIgnoreCase("salir") && !nombreEmpleado.equalsIgnoreCase("salir"));
+            case 3:
+                borrarNombres();
                 break;
 
             case 4: // VISUALIZAR UN NOMBRE
@@ -247,6 +148,106 @@ public class POOGestionarEmpleados {
                 return;
             }
         } while (respuesta.equalsIgnoreCase("n"));
+    }
+
+    public void borrarNombres() {
+        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println(
+                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            return;
+        }
+        System.out.println("Borrar nombres.");
+        String nombreEmpleado = "0", respuesta = "0";
+        do {
+            System.out.println(
+                    "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
+            respuesta = sc.nextLine();
+
+            // Opción 1: borrar por posición
+            if (respuesta.equals("1")) {
+                System.out.println("Borrar por posición.");
+                // Bucle do while para volver a pedir la posición del empleado.
+                do {
+                    System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
+                    System.out.println(
+                            "Escriba la posición en la que está registrado el nombre que desea borrar (1, 2, 3...):");
+                    int posicion = sc.nextInt();
+                    sc.nextLine(); // Consumir la nueva línea después de nextInt()
+
+                    // Si el número es < 0 ó > empleados.size(), se pide de nuevo la posición
+                    // (vuelta al comienzo del do while)
+                    if (posicion < 1 || posicion > listaEmpleados.size()) {
+                        System.out.println("Debe ser un número comprendido entre 1 y " + listaEmpleados.size()
+                                + " (el tamaño de la lista actualmente).");
+
+                        // Si el número es válido
+                    } else {
+                        System.out.println(
+                                "El nombre asignado en esa posición es: " + listaEmpleados.get(posicion - 1));
+                        System.out.println(
+                                "¿Es el nombre que buscaba? Escriba 's' para eliminarlo, 'n' para escribir otra posición, o 'salir' para cancelar la operación y volver al inicio.");
+                        respuesta = sc.nextLine();
+                        // if else para posibles respuestas: 's' para eliminar el nombre; 'n' para
+                        // volver a pedir la posición, 'salir' para volver al inicio
+                        if (respuesta.equalsIgnoreCase("s")) {
+                            listaEmpleados.remove(posicion - 1);
+                            System.out.println(
+                                    "Nombre eliminado. ¿Quiere seguir eliminando nombres? Escriba 's' para continuar, o cualquier otro texto para terminar y volver al inicio.");
+                            respuesta = sc.nextLine();
+                            if (respuesta.equalsIgnoreCase("s")) {
+                                break;
+                            }
+                            break;
+                        } else if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a
+                                                                      // pedir la posición.
+                            System.out.println("Buscando otra posición de la lista.");
+                        } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de
+                                                                          // nuevo al inicio
+                            System.out.println("Volviendo al inicio.");
+                            break;
+                        } else { // Si teclea cualquier valor que no sea 's', 'n' o 'salir', se vuelve a pedir
+                                 // la posición.
+                            System.out.println(
+                                    "No ha introducido carácter incluido en las opciones ('s', 'n' o 'salir').");
+                        }
+                    }
+                } while (!respuesta.equalsIgnoreCase("salir"));
+
+                // Opción 2: borrar por nombre
+            } else if (respuesta.equals("2")) {
+                System.out.println("Borrar por nombre");
+                // Bucle do while para volver a pedir el nombre del empleado, exista o no exista
+                // el nombre.
+                do {
+                    System.out.println(
+                            "Escriba el nombre del empleado que quiere eliminar de la lista, o escriba 'salir' para volver.");
+                    nombreEmpleado = sc.nextLine();
+
+                    if (nombreEmpleado.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo
+                                                                    // al inicio
+                        System.out.println("Volviendo al inicio.");
+                        return;
+                    } else if (listaEmpleados.contains(nombreEmpleado)) {
+                        // Si coincide con algún elemento de la lista, se elimina el nombre y se pide
+                        // otro nombre.
+                        listaEmpleados.remove(nombreEmpleado);
+                        System.out
+                                .println("'" + nombreEmpleado + "' eliminado de la lista. ¿Quiere continuar?");
+                        break;
+                    } else { // Si no coincide, se avisa y se vuelve a pedir el nombre.
+                        System.out.println("El nombre indicado no está en la lista.");
+                        break;
+                    }
+                } while (!nombreEmpleado.equalsIgnoreCase("salir"));
+
+            } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                              // inicio
+                System.out.println("Volviendo al inicio.");
+                break;
+            } else {
+                System.out.println("Introduzca un número válido.");
+            }
+        } while (!respuesta.equalsIgnoreCase("salir") && !nombreEmpleado.equalsIgnoreCase("salir"));
 
     }
 
