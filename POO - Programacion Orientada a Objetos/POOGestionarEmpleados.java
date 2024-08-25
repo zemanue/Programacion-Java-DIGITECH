@@ -34,62 +34,15 @@ public class POOGestionarEmpleados {
     }
 
     public void comenzar(int opcion) {
-        int numeroNombres;
         String nombreEmpleado = "0", respuesta = "0";
         int posicion;
         switch (opcion) {
-            case 1: // AGREGAR NOMBRES
-                System.out.println("Agregar nombres.");
-                System.out.println("¿Cuántos nombres quiere escribir?");
-                numeroNombres = sc.nextInt();
-                sc.nextLine(); // Consumir la nueva línea después de nextInt()
-                System.out.println(
-                        "Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");
-                for (int i = 0; i < numeroNombres; i++) {
-                    nombreEmpleado = sc.nextLine();
-                    if (nombreEmpleado.equalsIgnoreCase("salir")) {
-                        System.out.println("Volviendo al inicio.");
-                        break;
-                    } else {
-                        listaEmpleados.add(nombreEmpleado);
-                        System.out.println("Nombre registrado.");
-                    }
-                }
-                System.out.println("Nuevos nombres añadidos.");
+            case 1:
+                agregarNombres();
                 break;
 
-            case 2: // MODIFICAR UN NOMBRE
-                if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-                    System.out.println(
-                            "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-                    break;
-                }
-                System.out.println("Modificar un nombre.");
-                do {
-                    System.out.println(
-                            "Escriba la posición en la que está registrado el nombre que desea modificar (1, 2, 3, 4...):");
-                    posicion = sc.nextInt() - 1;
-                    sc.nextLine(); // Consumir la nueva línea después de nextInt()
-                    System.out.println("El nombre asignado en esa posición es: " + listaEmpleados.get(posicion));
-
-                    System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
-                    System.out.println(
-                            "¿No es el nombre que buscaba? Escriba 'n' para escribir otra posición, o 'salir' si quiere cancelar la operación y volver al inicio.");
-                    respuesta = sc.nextLine();
-                    // if else para posibles respuestas: 'n', 'salir' u otras combinaciones para
-                    // registrar modificar el nombre.
-                    if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a pedir la posición.
-                        System.out.println("Buscando otro nombre de la lista.");
-                    } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
-                                                                      // inicio
-                        System.out.println("Volviendo al inicio.");
-                        break;
-                    } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
-                        listaEmpleados.set(posicion, respuesta);
-                        System.out.println("Nombre modificado.");
-                        break;
-                    }
-                } while (respuesta.equalsIgnoreCase("n"));
+            case 2: 
+                modificarUnNombre();
                 break;
 
             case 3: // BORRAR NOMBRES
@@ -239,6 +192,62 @@ public class POOGestionarEmpleados {
                 menu();
                 break;
         }
+    }
+
+    public void agregarNombres() {
+        System.out.println("Agregar nombres.");
+        System.out.println("¿Cuántos nombres quiere escribir?");
+        int numeroNombres = sc.nextInt();
+        sc.nextLine(); // Consumir la nueva línea después de nextInt()
+        System.out.println(
+                "Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");
+        for (int i = 0; i < numeroNombres; i++) {
+            String nombreEmpleado = sc.nextLine();
+            if (nombreEmpleado.equalsIgnoreCase("salir")) {
+                System.out.println("Volviendo al inicio.");
+                return;
+            } else {
+                listaEmpleados.add(nombreEmpleado);
+                System.out.println("Nombre registrado.");
+            }
+        }
+        System.out.println("Nuevos nombres añadidos.");
+    }
+
+    public void modificarUnNombre() {
+        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println(
+                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            return;
+        }
+        System.out.println("Modificar un nombre.");
+        String respuesta = "0";
+        do {
+            System.out.println(
+                    "Escriba la posición en la que está registrado el nombre que desea modificar (1, 2, 3, 4...):");
+            int posicion = sc.nextInt() - 1;
+            sc.nextLine(); // Consumir la nueva línea después de nextInt()
+            System.out.println("El nombre asignado en esa posición es: " + listaEmpleados.get(posicion));
+
+            System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
+            System.out.println(
+                    "¿No es el nombre que buscaba? Escriba 'n' para escribir otra posición, o 'salir' si quiere cancelar la operación y volver al inicio.");
+            respuesta = sc.nextLine();
+            // if else para posibles respuestas: 'n', 'salir' u otras combinaciones para
+            // registrar modificar el nombre.
+            if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a pedir la posición.
+                System.out.println("Buscando otro nombre de la lista.");
+            } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                              // inicio
+                System.out.println("Volviendo al inicio.");
+                return;
+            } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
+                listaEmpleados.set(posicion, respuesta);
+                System.out.println("Nombre modificado.");
+                return;
+            }
+        } while (respuesta.equalsIgnoreCase("n"));
+
     }
 
     public static void main(String[] args) {
