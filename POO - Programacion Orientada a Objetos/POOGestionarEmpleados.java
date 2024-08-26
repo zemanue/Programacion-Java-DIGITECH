@@ -34,7 +34,6 @@ public class POOGestionarEmpleados {
     }
 
     public void comenzar(int opcion) {
-        int posicion;
         switch (opcion) {
             case 1:
                 agregarNombres();
@@ -52,14 +51,8 @@ public class POOGestionarEmpleados {
                 visualizarUnNombre();
                 break;
 
-            case 5: // VISUALIZAR TODOS LOS NOMBRES
-                if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-                    System.out.println(
-                            "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-                    break;
-                }
-                System.out.println("Estos son los nombres que están registrados en la lista: ");
-                System.out.println(listaEmpleados);
+            case 5:
+                visualizarTodosLosNombres();
                 break;
 
             case 6: // SALIR
@@ -253,7 +246,16 @@ public class POOGestionarEmpleados {
                 System.out.println("¿Quiere visualizar algún nombre más?");
             }
         } while (posicion != 0);
+    }
 
+    public void visualizarTodosLosNombres() {
+        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println(
+                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            return;
+        }
+        System.out.println("Estos son los nombres que están registrados en la lista: ");
+        System.out.println(listaEmpleados);
     }
 
     public static void main(String[] args) {
