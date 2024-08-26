@@ -48,30 +48,8 @@ public class POOGestionarEmpleados {
                 borrarNombres();
                 break;
 
-            case 4: // VISUALIZAR UN NOMBRE
-                if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-                    System.out.println(
-                            "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-                    break;
-                }
-                System.out.println("Visualizar un nombre.");
-                System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
-                do {
-                    System.out.println(
-                            "Indique la posición que desea visualizar (1, 2, 3...), o indique '0' si desea salir:");
-                    posicion = sc.nextInt();
-                    if (posicion == 0) {
-                        System.out.println("Volviendo al inicio");
-                    }
-                    if (posicion < 1 || posicion > listaEmpleados.size()) {
-                        System.out.println("Debe ser un número comprendido entre 0 y " + listaEmpleados.size()
-                                + " (el tamaño de la lista actualmente).");
-                    } else {
-                        System.out.println(
-                                "Nombre de la posición " + posicion + ": " + listaEmpleados.get(posicion - 1) + ".");
-                        System.out.println("¿Quiere visualizar algún nombre más?");
-                    }
-                } while (posicion != 0);
+            case 4: 
+                visualizarUnNombre();
                 break;
 
             case 5: // VISUALIZAR TODOS LOS NOMBRES
@@ -248,6 +226,33 @@ public class POOGestionarEmpleados {
                 System.out.println("Introduzca un número válido.");
             }
         } while (!respuesta.equalsIgnoreCase("salir") && !nombreEmpleado.equalsIgnoreCase("salir"));
+    }
+
+    public void visualizarUnNombre() {
+        int posicion;
+        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println(
+                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            return;
+        }
+        System.out.println("Visualizar un nombre.");
+        System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
+        do {
+            System.out.println(
+                    "Indique la posición que desea visualizar (1, 2, 3...), o indique '0' si desea salir:");
+            posicion = sc.nextInt();
+            if (posicion == 0) {
+                System.out.println("Volviendo al inicio");
+            }
+            else if (posicion < 1 || posicion > listaEmpleados.size()) {
+                System.out.println("Debe ser un número comprendido entre 0 y " + listaEmpleados.size()
+                        + " (el tamaño de la lista actualmente).");
+            } else {
+                System.out.println(
+                        "Nombre de la posición " + posicion + ": " + listaEmpleados.get(posicion - 1) + ".");
+                System.out.println("¿Quiere visualizar algún nombre más?");
+            }
+        } while (posicion != 0);
 
     }
 
