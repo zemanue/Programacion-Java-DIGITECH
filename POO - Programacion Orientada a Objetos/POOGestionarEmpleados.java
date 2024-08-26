@@ -38,31 +38,37 @@ public class POOGestionarEmpleados {
             case 1:
                 agregarNombres();
                 break;
-
             case 2:
-                modificarUnNombre();
+                estaLaListaVacia();
+                if (!listaEmpleados.isEmpty()) modificarUnNombre();
                 break;
-
             case 3:
-                borrarNombres();
+                estaLaListaVacia();    
+                if (!listaEmpleados.isEmpty()) borrarNombres();
                 break;
-
             case 4: 
-                visualizarUnNombre();
+                estaLaListaVacia();
+                if (!listaEmpleados.isEmpty()) visualizarUnNombre();
                 break;
-
             case 5:
-                visualizarTodosLosNombres();
+                estaLaListaVacia();
+                if (!listaEmpleados.isEmpty()) visualizarTodosLosNombres();
                 break;
-
             case 6: // SALIR
                 System.out.println("Saliendo del programa.");
                 break;
-
             default:
                 System.out.println("La opción elegida no es válida. Volviendo al menú.");
                 menu();
                 break;
+        }
+    }
+
+    public void estaLaListaVacia() {
+        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+            System.out.println(
+                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            return;
         }
     }
 
@@ -87,11 +93,6 @@ public class POOGestionarEmpleados {
     }
 
     public void modificarUnNombre() {
-        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-            System.out.println(
-                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-            return;
-        }
         System.out.println("Modificar un nombre.");
         String respuesta = "0";
         do {
@@ -122,11 +123,6 @@ public class POOGestionarEmpleados {
     }
 
     public void borrarNombres() {
-        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-            System.out.println(
-                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-            return;
-        }
         System.out.println("Borrar nombres.");
         String nombreEmpleado = "0", respuesta = "0";
         do {
@@ -223,11 +219,6 @@ public class POOGestionarEmpleados {
 
     public void visualizarUnNombre() {
         int posicion;
-        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-            System.out.println(
-                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-            return;
-        }
         System.out.println("Visualizar un nombre.");
         System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
         do {
@@ -249,11 +240,6 @@ public class POOGestionarEmpleados {
     }
 
     public void visualizarTodosLosNombres() {
-        if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-            System.out.println(
-                    "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
-            return;
-        }
         System.out.println("Estos son los nombres que están registrados en la lista: ");
         System.out.println(listaEmpleados);
     }
