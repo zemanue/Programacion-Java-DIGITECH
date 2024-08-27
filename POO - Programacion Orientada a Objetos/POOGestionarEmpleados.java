@@ -40,19 +40,23 @@ public class POOGestionarEmpleados {
                 break;
             case 2:
                 estaLaListaVacia();
-                if (!listaEmpleados.isEmpty()) modificarUnNombre();
+                if (!listaEmpleados.isEmpty())
+                    modificarUnNombre();
                 break;
             case 3:
-                estaLaListaVacia();    
-                if (!listaEmpleados.isEmpty()) borrarNombres();
-                break;
-            case 4: 
                 estaLaListaVacia();
-                if (!listaEmpleados.isEmpty()) visualizarUnNombre();
+                if (!listaEmpleados.isEmpty())
+                    borrarNombres();
+                break;
+            case 4:
+                estaLaListaVacia();
+                if (!listaEmpleados.isEmpty())
+                    visualizarUnNombre();
                 break;
             case 5:
                 estaLaListaVacia();
-                if (!listaEmpleados.isEmpty()) visualizarTodosLosNombres();
+                if (!listaEmpleados.isEmpty())
+                    visualizarTodosLosNombres();
                 break;
             case 6: // SALIR
                 System.out.println("Saliendo del programa.");
@@ -82,11 +86,10 @@ public class POOGestionarEmpleados {
             if (numeroNombres == 0) {
                 System.out.println("No se ha agregado ningún nombre.");
                 return;
-            } else if (numeroNombres < 0) {
+            } else if (numeroNombres < 0)
                 System.out.println("Número no válido.");
-            } else {
+            else
                 numeroValido = true;
-            }
         } while (!numeroValido);
         sc.nextLine(); // Consumir la nueva línea después de nextInt()
         System.out.println(
@@ -239,8 +242,7 @@ public class POOGestionarEmpleados {
             posicion = sc.nextInt();
             if (posicion == 0) {
                 System.out.println("Volviendo al inicio");
-            }
-            else if (posicion < 1 || posicion > listaEmpleados.size()) {
+            } else if (posicion < 1 || posicion > listaEmpleados.size()) {
                 System.out.println("Debe ser un número comprendido entre 0 y " + listaEmpleados.size()
                         + " (el tamaño de la lista actualmente).");
             } else {
