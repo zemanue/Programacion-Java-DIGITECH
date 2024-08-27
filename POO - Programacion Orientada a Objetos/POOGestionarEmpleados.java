@@ -107,31 +107,44 @@ public class POOGestionarEmpleados {
     public void modificarUnNombre() {
         System.out.println("Modificar un nombre.");
         String respuesta = "0";
+        boolean repetir;
+        System.out.println("Hay " + listaEmpleados.size() + " nombres registrados.");
         do {
+            repetir = false;
             System.out.println(
-                    "Escriba la posición en la que está registrado el nombre que desea modificar (1, 2, 3, 4...):");
-            int posicion = sc.nextInt() - 1;
-            sc.nextLine(); // Consumir la nueva línea después de nextInt()
-            System.out.println("El nombre asignado en esa posición es: " + listaEmpleados.get(posicion));
-
-            System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
-            System.out.println(
-                    "¿No es el nombre que buscaba? Escriba 'n' para escribir otra posición, o 'salir' si quiere cancelar la operación y volver al inicio.");
-            respuesta = sc.nextLine();
-            // if else para posibles respuestas: 'n', 'salir' u otras combinaciones para
-            // registrar modificar el nombre.
-            if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a pedir la posición.
-                System.out.println("Buscando otro nombre de la lista.");
-            } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
-                                                              // inicio
-                System.out.println("Volviendo al inicio.");
-                return;
-            } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
-                listaEmpleados.set(posicion, respuesta);
-                System.out.println("Nombre modificado.");
-                return;
+                    "Escriba la posición en la que está registrado el nombre que desea borrar (1, 2, 3...):");
+            int posicion = sc.nextInt();
+            // Si el número es < 0 ó > empleados.size(), se pide de nuevo la posición
+            // (vuelta al comienzo del do while)
+            if (posicion < 1 || posicion > listaEmpleados.size()) {
+                System.out.println("Debe ser un número comprendido entre 1 y " + listaEmpleados.size()
+                        + " (el tamaño de la lista actualmente).");
+                repetir = true;
+            // Si el número es válido
+            } else {
+                sc.nextLine(); // Consumir la nueva línea después de nextInt()                
+                System.out.println(
+                        "El nombre asignado en esa posición es: " + listaEmpleados.get(posicion - 1));
+                System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
+                System.out.println(
+                        "¿No es el nombre que buscaba? Escriba 'n' para escribir otra posición, o 'salir' si quiere cancelar la operación y volver al inicio.");
+                respuesta = sc.nextLine();
+                // if else para posibles respuestas: 'n', 'salir' u otras combinaciones para
+                // registrar modificar el nombre.
+                if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a pedir la posición.
+                    System.out.println("Buscando otro nombre de la lista.");
+                    repetir = true;
+                } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                                  // inicio
+                    System.out.println("Volviendo al inicio.");
+                    return;
+                } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
+                    listaEmpleados.set(posicion, respuesta);
+                    System.out.println("Nombre modificado.");
+                    return;
+                }
             }
-        } while (respuesta.equalsIgnoreCase("n"));
+        } while (repetir);
     }
 
     public void borrarNombres() {
