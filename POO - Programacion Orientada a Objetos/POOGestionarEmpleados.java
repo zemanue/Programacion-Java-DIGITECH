@@ -73,9 +73,21 @@ public class POOGestionarEmpleados {
     }
 
     public void agregarNombres() {
+        boolean numeroValido = false;
+        int numeroNombres;
         System.out.println("Agregar nombres.");
-        System.out.println("¿Cuántos nombres quiere escribir?");
-        int numeroNombres = sc.nextInt();
+        do {
+            System.out.println("¿Cuántos nombres quiere escribir?");
+            numeroNombres = sc.nextInt();
+            if (numeroNombres == 0) {
+                System.out.println("No se ha agregado ningún nombre.");
+                return;
+            } else if (numeroNombres < 0) {
+                System.out.println("Número no válido.");
+            } else {
+                numeroValido = true;
+            }
+        } while (!numeroValido);
         sc.nextLine(); // Consumir la nueva línea después de nextInt()
         System.out.println(
                 "Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");
