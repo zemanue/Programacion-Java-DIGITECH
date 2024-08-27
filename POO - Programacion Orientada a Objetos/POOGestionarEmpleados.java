@@ -77,7 +77,6 @@ public class POOGestionarEmpleados {
     }
 
     public void agregarNombres() {
-        boolean numeroValido = false;
         int numeroNombres;
         System.out.println("Agregar nombres.");
         do {
@@ -88,9 +87,7 @@ public class POOGestionarEmpleados {
                 return;
             } else if (numeroNombres < 0)
                 System.out.println("Número no válido.");
-            else
-                numeroValido = true;
-        } while (!numeroValido);
+        } while (numeroNombres < 0);
         sc.nextLine(); // Consumir la nueva línea después de nextInt()
         System.out.println(
                 "Ahora introduzca uno a uno los nombres que quiera agregar a la lista. Escriba 'salir' si quiere terminar antes.");
