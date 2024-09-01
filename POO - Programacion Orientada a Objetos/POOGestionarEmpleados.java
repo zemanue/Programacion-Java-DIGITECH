@@ -263,7 +263,10 @@ public class POOGestionarEmpleados {
 
     public void visualizarTodosLosNombres() {
         System.out.println("Estos son los nombres que están registrados en la lista: ");
-        System.out.println(listaEmpleados);
+        for (int i = 0; i < listaEmpleados.size(); i++) {
+            System.out.println(i + 1 + "- " + listaEmpleados.get(i));
+        }
+        System.out.println("Volviendo al inicio.");
     }
 
     public static void main(String[] args) {
