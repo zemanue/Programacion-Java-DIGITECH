@@ -112,7 +112,7 @@ public class POOGestionarEmpleados {
         do {
             repetir = false;
             System.out.println(
-                    "Escriba la posición en la que está registrado el nombre que desea borrar (1, 2, 3...):");
+                    "Escriba la posición en la que está registrado el nombre que desea modificar (1, 2, 3...):");
             int posicion = sc.nextInt();
             // Si el número es < 0 ó > empleados.size(), se pide de nuevo la posición
             // (vuelta al comienzo del do while)
@@ -123,8 +123,9 @@ public class POOGestionarEmpleados {
             // Si el número es válido
             } else {
                 sc.nextLine(); // Consumir la nueva línea después de nextInt()                
+                String nombreEmpleado = listaEmpleados.get(posicion - 1);
                 System.out.println(
-                        "El nombre asignado en esa posición es: " + listaEmpleados.get(posicion - 1));
+                        "El nombre asignado en esa posición es: " + nombreEmpleado);
                 System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
                 System.out.println(
                         "¿No es el nombre que buscaba? Escriba 'n' para escribir otra posición, o 'salir' si quiere cancelar la operación y volver al inicio.");
@@ -139,8 +140,9 @@ public class POOGestionarEmpleados {
                     System.out.println("Volviendo al inicio.");
                     return;
                 } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
-                    listaEmpleados.set(posicion, respuesta);
-                    System.out.println("Nombre modificado.");
+                    listaEmpleados.set(posicion - 1, respuesta);
+                    System.out.println("El nombre '" + nombreEmpleado + "' ha sido modificado por '" + respuesta + "'.");
+                    System.out.println("Volviendo al inicio.");
                     return;
                 }
             }
