@@ -149,27 +149,22 @@ public class POOGestionarEmpleados {
 
     public void borrarNombres() {
         System.out.println("Borrar nombres.");
-        String respuesta = "0";
+        String respuesta = "";
         do {
-            if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
-                System.out.println(
-                        "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+            System.out.println(
+                    "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
+            respuesta = sc.nextLine();
+            if (respuesta.equals("1")) {
+                borrarPorPosicion();
                 return;
+            } else if (respuesta.equals("2")) {
+                borrarPorNombre();
+                return;
+            } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                              // inicio
+                System.out.println("Volviendo al inicio.");
             } else {
-                System.out.println(
-                        "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
-                respuesta = sc.nextLine();
-                if (respuesta.equals("1")) {
-                    borrarPorPosicion();
-                } else if (respuesta.equals("2")) {
-                    borrarPorNombre();
-                } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
-                                                                  // inicio
-                    System.out.println("Volviendo al inicio.");
-                    break;
-                } else {
-                    System.out.println("Introduzca un número válido.");
-                }
+                System.out.println("Introduzca un número válido.");
             }
         } while (!respuesta.equalsIgnoreCase("salir"));
     }
@@ -197,8 +192,8 @@ public class POOGestionarEmpleados {
                 if (respuesta.equalsIgnoreCase("s")) {
                     listaEmpleados.remove(posicion - 1);
                     System.out.println(
-                            "'" + nombreEmpleado + "' eliminado de la lista. ¿Quiere continuar?");
-                            return;
+                            "'" + nombreEmpleado + "' eliminado de la lista.");
+                    return;
                 } else if (respuesta.equalsIgnoreCase("n")) { // Si el usuario teclea 'n', se vuelve a
                                                               // pedir la posición.
                     System.out.println("Buscando otra posición de la lista.");
@@ -235,14 +230,12 @@ public class POOGestionarEmpleados {
                 // otro nombre.
                 listaEmpleados.remove(nombreEmpleado);
                 System.out
-                        .println("'" + nombreEmpleado + "' eliminado de la lista. ¿Quiere continuar?");
+                        .println("'" + nombreEmpleado + "' eliminado de la lista.");
                 break;
             } else { // Si no coincide, se avisa y se vuelve a pedir el nombre.
                 System.out.println("El nombre indicado no está en la lista.");
-                break;
             }
         } while (!nombreEmpleado.equalsIgnoreCase("salir"));
-
     }
 
     public void visualizarUnNombre() {
