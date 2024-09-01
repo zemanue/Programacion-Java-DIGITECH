@@ -149,23 +149,29 @@ public class POOGestionarEmpleados {
 
     public void borrarNombres() {
         System.out.println("Borrar nombres.");
-        String nombreEmpleado = "0", respuesta = "0";
+        String respuesta = "0";
         do {
-            System.out.println(
-                    "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
-            respuesta = sc.nextLine();
-            if (respuesta.equals("1")) {
-                borrarPorPosicion();
-            } else if (respuesta.equals("2")) {
-                borrarPorNombre();
-            } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
-                                                              // inicio
-                System.out.println("Volviendo al inicio.");
-                break;
+            if (listaEmpleados.isEmpty()) { // Si la lista está vacía, enviar de nuevo al inicio.
+                System.out.println(
+                        "No hay ningún nombre registrado en la lista. Escriba '1' para agregar algún nombre primero.");
+                return;
             } else {
-                System.out.println("Introduzca un número válido.");
+                System.out.println(
+                        "Escriba '1' para borrar por posiciones, '2' para borrar por nombre, o 'salir' para cancelar la operación y volver al inicio.");
+                respuesta = sc.nextLine();
+                if (respuesta.equals("1")) {
+                    borrarPorPosicion();
+                } else if (respuesta.equals("2")) {
+                    borrarPorNombre();
+                } else if (respuesta.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                                  // inicio
+                    System.out.println("Volviendo al inicio.");
+                    break;
+                } else {
+                    System.out.println("Introduzca un número válido.");
+                }
             }
-        } while (!respuesta.equalsIgnoreCase("salir") && !nombreEmpleado.equalsIgnoreCase("salir"));
+        } while (!respuesta.equalsIgnoreCase("salir"));
     }
 
     public void borrarPorPosicion() {
