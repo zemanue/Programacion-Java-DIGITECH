@@ -165,6 +165,13 @@ public class POOActoresFamosos {
         System.out.println("- 7: Salir.");
     }
 
+    public void estaLaListaVacia() {
+        if (listaActores.listaActores.isEmpty()) {
+            System.out.println("No hay ningún nombre registrado en la lista en este momento.");
+            return;
+        }
+    }
+
     public void comenzar(int opcion) {
         boolean repetir;
         switch (opcion) {
@@ -203,92 +210,90 @@ public class POOActoresFamosos {
                 break;
 
             case 2:
-                if (listaActores.listaActores.isEmpty()) { //Si la lista está vacía, enviar de nuevo al menú.
-                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                    return;
-                }
-                String nombreAnterior, nombreNuevo;
-                System.out.println("Modificar un nombre.");
-                do {
-                    repetir = false;
-                    System.out.println("Ingrese el nombre del actor a modificar (o escribe 'salir' si quieres volver al menú): ");
-                    nombreAnterior = sc.nextLine(); // Se introduce el nombre del actor a modificar
-                    if (nombreAnterior.equalsIgnoreCase("salir")) {
-                        System.out.println("Volviendo al menú. Ningún nombre se ha modificado.");
-                        return;
-                    }
-                    for (Actor actor : listaActores.listaActores) {
-                        if (actor.getNombreActor().equalsIgnoreCase(nombreAnterior)) {
-                            System.out.println("'" + actor.getNombreActor() + "' existe en la lista. Ingrese ahora el nuevo nombre del actor/actriz: ");
-                            nombreNuevo = sc.nextLine(); // Se introduce el nuevo nombre del actor  
-                            listaActores.modificarNombres(nombreAnterior, nombreNuevo);
+                estaLaListaVacia();
+                if (!listaActores.listaActores.isEmpty()) {
+                    String nombreAnterior, nombreNuevo;
+                    System.out.println("Modificar un nombre.");
+                    do {
+                        repetir = false;
+                        System.out.println("Ingrese el nombre del actor a modificar (o escribe 'salir' si quieres volver al menú): ");
+                        nombreAnterior = sc.nextLine(); // Se introduce el nombre del actor a modificar
+                        if (nombreAnterior.equalsIgnoreCase("salir")) {
+                            System.out.println("Volviendo al menú. Ningún nombre se ha modificado.");
                             return;
                         }
-                    }
-                    System.out.println("El nombre de actor que intenta modificar no existe en la lista.");
-                    repetir = true;
-                } while (repetir);
+                        for (Actor actor : listaActores.listaActores) {
+                            if (actor.getNombreActor().equalsIgnoreCase(nombreAnterior)) {
+                                System.out.println("'" + actor.getNombreActor() + "' existe en la lista. Ingrese ahora el nuevo nombre del actor/actriz: ");
+                                nombreNuevo = sc.nextLine(); // Se introduce el nuevo nombre del actor  
+                                listaActores.modificarNombres(nombreAnterior, nombreNuevo);
+                                return;
+                            }
+                        }
+                        System.out.println("El nombre de actor que intenta modificar no existe en la lista.");
+                        repetir = true;
+                    } while (repetir);    
+                }
                 break;   
 
             case 3:
-                if (listaActores.listaActores.isEmpty()) { // Si la lista está vacía, enviar de nuevo al menú.
-                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                    return;
-                }
-                String nombreActor;
-                System.out.println("Borrar nombres.");
-                //Bucle do while para pedir el nombre del empleado y comprobar si existe.
-                do {
-                    repetir = false;
-                    System.out.println("Escribe el nombre del empleado que quieres eliminar de la lista, o escribe 'salir' para volver.");
-                    nombreActor = sc.nextLine();           
-                    if (nombreActor.equalsIgnoreCase("salir")) { //Si se escribe 'salir', se sale de nuevo al inicio
-                        System.out.println("Volviendo al inicio.");
-                        return;
-                    }
-                listaActores.borrarNombres(nombreActor);
-                System.out.println("¿Quieres continuar?");
-                repetir = true;
-                } while (repetir);
-                break;  
-                
-            case 4:
-                if (listaActores.listaActores.isEmpty()) { // Si la lista está vacía, enviar de nuevo al menú.
-                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                    return;
-                }
-                do {
-                    repetir = false;
-                    System.out.println("Escribe el nombre que quiera buscar, o escribe 'salir' volver al menú.");
-                    nombreActor = sc.nextLine();
-                    if (nombreActor.equalsIgnoreCase("salir")) {
-                        System.out.println("Volviendo al inicio.");
-                        return;
-                    } else if (nombreActor.equals("")) { //Si el usuario no introduce ningún carácter
-                        System.out.println("Debes escribir algún carácter.");
-                        repetir = true;
-                    } else {
-                        listaActores.buscarNombre(nombreActor);
+                estaLaListaVacia();
+                if (!listaActores.listaActores.isEmpty()) {
+                    String nombreActor;
+                    System.out.println("Borrar nombres.");
+                    // Bucle do while para pedir el nombre del empleado y comprobar si existe.
+                    do {
+                        repetir = false;
+                        System.out.println(
+                                "Escribe el nombre del empleado que quieres eliminar de la lista, o escribe 'salir' para volver.");
+                        nombreActor = sc.nextLine();
+                        if (nombreActor.equalsIgnoreCase("salir")) { // Si se escribe 'salir', se sale de nuevo al
+                                                                     // inicio
+                            System.out.println("Volviendo al inicio.");
+                            return;
+                        }
+                        listaActores.borrarNombres(nombreActor);
                         System.out.println("¿Quieres continuar?");
                         repetir = true;
-                    }
-                } while (repetir);
+                    } while (repetir);
+                }
+                break;
+                
+            case 4:
+                estaLaListaVacia();
+                if (!listaActores.listaActores.isEmpty()) {
+                    String nombreActor;
+                    do {
+                        repetir = false;
+                        System.out.println("Escribe el nombre que quiera buscar, o escribe 'salir' volver al menú.");
+                        nombreActor = sc.nextLine();
+                        if (nombreActor.equalsIgnoreCase("salir")) {
+                            System.out.println("Volviendo al inicio.");
+                            return;
+                        } else if (nombreActor.equals("")) { // Si el usuario no introduce ningún carácter
+                            System.out.println("Debes escribir algún carácter.");
+                            repetir = true;
+                        } else {
+                            listaActores.buscarNombre(nombreActor);
+                            System.out.println("¿Quieres continuar?");
+                            repetir = true;
+                        }
+                    } while (repetir);
+                }
                 break;
                 
             case 5:
-                if (listaActores.listaActores.isEmpty()) { 
-                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                    return;
+                estaLaListaVacia();
+                if (!listaActores.listaActores.isEmpty()) {
+                    listaActores.visualizarNombres();
                 }
-                listaActores.visualizarNombres();
-                break; 
+                break;
 
             case 6:
-                if (listaActores.listaActores.isEmpty()) { // Si la lista está vacía, enviar de nuevo al menú.
-                    System.out.println("No hay ningún nombre registrado en la lista en este momento.");
-                    return;
+                estaLaListaVacia();
+                if (!listaActores.listaActores.isEmpty()) {
+                    listaActores.visualizarCantantes();
                 }
-                listaActores.visualizarCantantes();
                 break;
                 
             case 7:
