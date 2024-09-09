@@ -18,6 +18,21 @@ Tras procesar cada opción, se debe mostrar de nuevo el menú inicial, hasta que
 
 import java.util.*;
 
+class Empleado {
+    private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Empleado(String nombre) {
+        setNombre(nombre);
+    }
+}
+
 public class POOGestionarEmpleados {
 
     Scanner sc = new Scanner(System.in);
