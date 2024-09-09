@@ -242,14 +242,17 @@ public class POOGestionarEmpleados {
                                                             // al inicio
                 System.out.println("Volviendo al inicio.");
                 return;
-            } else if (listaEmpleados.contains(nombreEmpleado)) {
-                // Si coincide con algún elemento de la lista, se elimina el nombre y se pide
-                // otro nombre.
-                listaEmpleados.remove(nombreEmpleado);
-                System.out
-                        .println("'" + nombreEmpleado + "' eliminado de la lista.");
-                break;
-            } else { // Si no coincide, se avisa y se vuelve a pedir el nombre.
+            }
+            boolean coincide = false;
+            for (Empleado empleado : listaEmpleados) {
+                if (empleado.getNombre().equalsIgnoreCase(nombreEmpleado)){
+                    coincide = true;
+                    listaEmpleados.remove(empleado);
+                    System.out.println("'" + nombreEmpleado + "' eliminado de la lista.");
+                    return;
+                }
+            }
+            if (!coincide) {
                 System.out.println("El nombre indicado no está en la lista.");
             }
         } while (!nombreEmpleado.equalsIgnoreCase("salir"));
