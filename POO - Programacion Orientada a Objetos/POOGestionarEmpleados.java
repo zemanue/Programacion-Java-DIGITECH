@@ -36,7 +36,7 @@ class Empleado {
 public class POOGestionarEmpleados {
 
     Scanner sc = new Scanner(System.in);
-    ArrayList<String> listaEmpleados = new ArrayList<>();
+    ArrayList<Empleado> listaEmpleados = new ArrayList<>();
 
     public void menu() {
         System.out.println("Por favor, pulse uno de los siguientes números para hacer una acción:");
@@ -112,7 +112,7 @@ public class POOGestionarEmpleados {
                 System.out.println("Volviendo al inicio.");
                 return;
             } else {
-                listaEmpleados.add(nombreEmpleado);
+                listaEmpleados.add(new Empleado(nombreEmpleado));
                 System.out.println("Nombre registrado.");
             }
         }
@@ -138,7 +138,7 @@ public class POOGestionarEmpleados {
             // Si el número es válido
             } else {
                 sc.nextLine(); // Consumir la nueva línea después de nextInt()                
-                String nombreEmpleado = listaEmpleados.get(posicion - 1);
+                String nombreEmpleado = listaEmpleados.get(posicion - 1).getNombre();
                 System.out.println(
                         "El nombre asignado en esa posición es: " + nombreEmpleado);
                 System.out.println("Escriba ahora por qué nombre lo quiere modificar.");
@@ -155,7 +155,7 @@ public class POOGestionarEmpleados {
                     System.out.println("Volviendo al inicio.");
                     return;
                 } else { // Si teclea cualquier valor que no sea 'n' o 'salir', se registra el nombre.
-                    listaEmpleados.set(posicion - 1, respuesta);
+                    listaEmpleados.get(posicion - 1).setNombre(respuesta);
                     System.out.println("El nombre '" + nombreEmpleado + "' ha sido modificado por '" + respuesta + "'.");
                     System.out.println("Volviendo al inicio.");
                     return;
@@ -200,7 +200,7 @@ public class POOGestionarEmpleados {
                 System.out.println("Debe ser un número comprendido entre 1 y " + listaEmpleados.size()
                         + " (el tamaño de la lista actualmente).");
             } else {
-                String nombreEmpleado = listaEmpleados.get(posicion - 1);
+                String nombreEmpleado = listaEmpleados.get(posicion - 1).getNombre();
                 System.out.println(
                         "El nombre asignado en esa posición es: " + nombreEmpleado);
                 System.out.println(
@@ -270,7 +270,7 @@ public class POOGestionarEmpleados {
                         + " (el tamaño de la lista actualmente).");
             } else {
                 System.out.println(
-                        "Nombre de la posición " + posicion + ": " + listaEmpleados.get(posicion - 1) + ".");
+                        "Nombre de la posición " + posicion + ": " + listaEmpleados.get(posicion - 1).getNombre() + ".");
                 System.out.println("¿Quiere visualizar algún nombre más?");
             }
         } while (posicion != 0);
@@ -279,7 +279,7 @@ public class POOGestionarEmpleados {
     public void visualizarTodosLosNombres() {
         System.out.println("Estos son los nombres que están registrados en la lista: ");
         for (int i = 0; i < listaEmpleados.size(); i++) {
-            System.out.println(i + 1 + "- " + listaEmpleados.get(i));
+            System.out.println(i + 1 + "- " + listaEmpleados.get(i).getNombre());
         }
         System.out.println("Volviendo al inicio.");
     }
