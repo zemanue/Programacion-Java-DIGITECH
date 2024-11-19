@@ -1,4 +1,5 @@
-# 📘 Ejercicios de Java (Español)        [![English Version](https://img.shields.io/badge/%F0%9F%93%96-English%20Version-blue)](#english-version)
+# [📘 Ejercicios de Java (Español)](#spanish-version)         [![English Version⬇](https://img.shields.io/badge/%F0%9F%93%96-English%20Version-blue)](#english-version)
+
 
 <div align="center">
     <img src="https://img.shields.io/badge/Java-v17-blue?style=flat&logo=java" alt="Java 17">
@@ -64,8 +65,7 @@ Administra una lista de actores y actrices con funcionalidades como:
 
 ---
 
-## [English Version](#english-version)
-# 📘 Java Exercises (English)
+# [📘 Java Exercises (English)](#english-version)          [![Spanish Version⬆](https://img.shields.io/badge/%F0%9F%93%96-Spanish%20Version-red)](#spanish-version)
 
 ## Description
 
