@@ -1,11 +1,11 @@
-# [📘 Ejercicios de Java (Español)](#spanish-version)         [![English Version⬇](https://img.shields.io/badge/%F0%9F%93%96-English%20Version-blue)](#english-version)
-
+# 📘 Ejercicios de Java / Java Exercises 📘
 
 <div align="center">
-    <img src="https://img.shields.io/badge/Java-v17-blue?style=flat&logo=java" alt="Java 17">
-    <img src="https://img.shields.io/badge/Status-Finished-green" alt="Status: Finished">
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Status-Finished-green?style=for-the-badge&logo=github&logoColor=white" alt="Status: Finished">
 </div>
 
+### [Español](#spanish-version) | [English](#english-version)
 ## Descripción
 
 Este repositorio contiene ejercicios realizados durante una asignatura en la que comencé desde cero a programar en Java. Los ejercicios están organizados por temas, desde los más básicos hasta otros más avanzados que utilizan **Programación Orientada a Objetos (POO)**.
@@ -65,8 +65,8 @@ Administra una lista de actores y actrices con funcionalidades como:
 
 ---
 
-# [📘 Java Exercises (English)](#english-version)          [![Spanish Version⬆](https://img.shields.io/badge/%F0%9F%93%96-Spanish%20Version-red)](#spanish-version)
 
+### [English](#english-version)
 ## Description
 
 This repository contains exercises completed as part of a course where I started programming in Java from scratch. The exercises are organized by topics, ranging from basic programs to more advanced ones utilizing **Object-Oriented Programming (OOP)**.
