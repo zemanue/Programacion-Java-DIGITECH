@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/badge/Status-Finished-green?style=for-the-badge&logo=github&logoColor=white" alt="Status: Finished">
 </div>
 
-### [Español](#spanish-version) | [English](#english-version)
+### [Español](#descripción) | [English](#description)
 ## Descripción
 
 Este repositorio contiene ejercicios realizados durante una asignatura en la que comencé desde cero a programar en Java. Los ejercicios están organizados por temas, desde los más básicos hasta otros más avanzados que utilizan **Programación Orientada a Objetos (POO)**.
